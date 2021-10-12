@@ -1,30 +1,7 @@
 <template>
     <div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
                     <label>TAMBAH TRANSAKSI</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="tambah">
-                        <router-link to="AddProduct"><button type="button">+Tambah</button></router-link>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="cariproduk">
-                        <input type="text" class="form-control" placeholder="Cari Produk" aria-label="First name">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="carikategori">
-                        <input type="text" class="form-control" placeholder="Cari Kategori" aria-label="Last name">
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="container">
         <div class="container-product2">

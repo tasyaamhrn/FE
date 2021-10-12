@@ -3,8 +3,8 @@
         <h1>TENTANG KAMI</h1>
         <p class="awal">Aplikasi Kasirin Toko adalah aplikasi diperuntukan untuk kasir bagi toko yang sedang 
           membutuhkan pencatatan dalam setiap transaksi. Aplikasi ini dilengkapi dengan potongan pertransaksi
-          dan stok untuk produk, sehingga anda bisa mudah memonitor produk-produk anda. Aplikasi dikembangkan oleh Dokter Apps 
-            <router-link to="`mailto:${dokterapps.mail@gmail.com}`">(dokterapps.mail@gmail.com) </router-link>
+          dan stok untuk produk, sehingga anda bisa mudah memonitor produk-produk anda. Aplikasi dikembangkan oleh Dokter Apps
+          <a href = "dokterapps.mail@gmail.com" target="_blank">(dokterapps.mail@gmail.com)</a> 
             
             
         </p>

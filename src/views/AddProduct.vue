@@ -18,21 +18,29 @@
         </div>
         <div class="container">
             <p class="judul">
-                Nama Produk
+                Nama Produk/Layanan
             </p>
             <input type="text" class="form-control" id="namaproduk" placeholder="Masukkan Nama Produk..">
             <p class="judul">
-                Harga Produk
+                Nomor Barcode
             </p>
-            <input type="text" class="form-control" id="namaproduk" placeholder="Masukkan Harga Produk..">
+            <input type="text" class="form-control" id="nomorbarcode" placeholder="Masukkan Nomor Barcode..">
+            <p class="judul">
+                Harga
+            </p>
+            <input type="number" class="form-control" id="harga" placeholder="Rp 0">
+            <p class="judul">
+                Stok Produk
+            </p>
+            <input type="number" class="form-control" id="stokproduk" placeholder="0">
             <p class="judul">
                 Kategori Produk
             </p>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <select class="col-lg-12" aria-label=".form-select-lg example">
                 <option selected>Pilih Kategori Produk..</option>
-                <option value="1">Makanan</option>
-                <option value="2">Minuman</option>
-                <option value="3">Snack</option>
+                <option value="1">Barang Pokok</option>
+                <option value="2">Barang Impulsif</option>
+                <option value="3">Barang Darurat</option>
             </select>
             <p class="judul">
                 Foto Produk
@@ -42,6 +50,9 @@
     </div>
 </template>
 <style scoped>
+    .col-lg-12{
+        height: 34px;
+    }
     label {
         padding-top: 90px;
         margin-bottom: 15px;

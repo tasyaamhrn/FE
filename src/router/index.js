@@ -9,6 +9,8 @@ import Transaksi from '../views/Transaksi.vue'
 import About from '../views/About.vue'
 import detail_transaksi from '../views/detail_transaksi.vue'
 import AddProduct from '../views/AddProduct.vue'
+import Call from '../views/Call.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -56,6 +58,11 @@ const routes = [
     path: '/AddProduct',
     name: 'AddProduct',
     component: AddProduct
+  },
+  {
+    path: '/Call',
+    name: 'Call',
+    component: Call
   },
 ]
 

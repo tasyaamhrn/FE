@@ -51,11 +51,12 @@
           </router-link>
 
         </li>
+        
         <li>
-          <router-link to="">
+          <a href="mailto:dokterapps.mail@gmail.com">
             <i class='bx bx-plus'></i>
             <span class="links_name">Hubungi Kami</span>
-          </router-link>
+          </a>
 
         </li>
         <li class="out">

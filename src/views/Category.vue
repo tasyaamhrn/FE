@@ -59,7 +59,7 @@
 <style scoped>
     h1 {
         font-family: Arial, Helvetica, sans-serif;
-        color: #7bb4fd;
+        color: #4CAF50;
         font-size: 18px;
         font-weight: bold;
         padding-top: 75px;
@@ -89,7 +89,7 @@
     }
 #edit{
    margin-right:150px; 
-   background-color: #7bb4fd;
+   background-color: #4CAF50;
 }
 #hapus{
    margin-left:120px; 
@@ -97,17 +97,17 @@
 
 }
 .modal-body{
-    color:#7bb4fd;
+    color:#4CAF50;
     font-weight: bold;
     font-size: 16px;
     text-align: center;
 }   
 .close{
-  color:#7bb4fd;
+  color:#4CAF50;
   font-weight: bold;
     font-size: 24px;
 }
 .list-group li{
-    border-bottom:4px solid #7bb4fd;
+    border-bottom:4px solid #4CAF50;
 }
 </style>

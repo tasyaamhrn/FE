@@ -2,7 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Product from '../views/Product.vue'
-
+import Category from '../views/Category.vue'
+import AddCategory from '../views/AddCategory.vue'
+import EditCategory from '../views/EditCategory.vue'
+import Transaksi from '../views/Transaksi.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -23,6 +26,26 @@ const routes = [
     path: '/Product',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/category',
+    name: 'Category',
+    component: Category
+  },
+  {
+    path: '/AddCategory',
+    name: 'AddCategory',
+    component: AddCategory
+  },
+  {
+    path: '/EditCategory',
+    name: 'EditCategory',
+    component: EditCategory
+  },
+  {
+    path: '/transaksi',
+    name: 'Transaksi',
+    component: Transaksi
   },
 ]
 

@@ -6,33 +6,33 @@
                     <h1>KATEGORI</h1>
                 </div>
                 <div class="col-4">
-                  <div class="add">
-                        <router-link to="/AddCategory"><button type="button" id="btn-add">+Tambah</button></router-link>
+                    <div class="add">
+                        <router-link to="/AddCategory"><button type="button" id="btn-add">+ Tambah</button></router-link>
                     </div>
                 </div>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Makanan
-                    <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buka Modal</button> -->
+                    Barang Pokok
 
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
 
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Minuman
-                  <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
+                    Barang Implusif
+                    <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Snack Ringan
+                    Barang Darurat
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
                 </li>
             </ul>
-        
-        </div>
-    <!-- Modal -->
 
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false" aria-hidden="true">
+        </div>
+        <!-- Modal -->
+
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -46,8 +46,11 @@
                     </div>
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                        <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i class='bx bx-trash'>Hapus</i></button>
-                        <router-link to="EditCategory"> <button type="button" id="edit" class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Edit</i></button></router-link>
+                        <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
+                                class='bx bx-trash'>Hapus</i></button>
+                        <router-link to="EditCategory"> <button type="button" id="edit"
+                                class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Edit</i></button>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -59,55 +62,58 @@
 <style scoped>
     h1 {
         font-family: Arial, Helvetica, sans-serif;
-        color: #7bb4fd;
+        color: #4CAF50;
         font-size: 18px;
         font-weight: bold;
         padding-top: 75px;
 
     }
 
-   .add {
+    .add {
         margin-top: 65px;
-        
         float: right;
-       
-        
-      
         text-align: center;
     }
-#btn-add{
-    background-color: #66DE94;
-      border-color: transparent;
-      color: white;
-       border-radius: 10px;
-           width: 135px;
-        height: 30px;
+
+    #btn-add {
+        background-color: #4CAF50;
+        border-color: transparent;
+        color: white;
+        border-radius: 10px;
+        width: 150px;
+        height: 40px;
         font-weight: bold;
-}
+    }
+
     .hapus i {
         color: red;
     }
-#edit{
-   margin-right:150px; 
-   background-color: #7bb4fd;
-}
-#hapus{
-   margin-left:120px; 
-   background-color: #FD7B7B;
 
-}
-.modal-body{
-    color:#7bb4fd;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-}   
-.close{
-  color:#7bb4fd;
-  font-weight: bold;
-    font-size: 24px;
-}
-.list-group li{
-    border-bottom:4px solid #7bb4fd;
-}
+    #edit {
+        margin-right: 150px;
+        background-color: #4CAF50;
+    }
+
+    #hapus {
+        margin-left: 120px;
+        background-color: #FD7B7B;
+
+    }
+
+    .modal-body {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .close {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .list-group li {
+        border-bottom: 4px solid #4CAF50;
+    }
 </style>

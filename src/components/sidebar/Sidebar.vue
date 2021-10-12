@@ -45,7 +45,7 @@
 
         </li>
         <li>
-          <router-link to="/aboutus">
+          <router-link to="/about">
             <i class='bx bx-plus'></i>
             <span class="links_name">Tentang Kami</span>
           </router-link>

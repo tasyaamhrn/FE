@@ -14,7 +14,6 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     Barang Pokok
-                    <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buka Modal</button> -->
 
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
 

@@ -48,7 +48,7 @@
         <div class="list-transaksi">
           <div class="list-group">
 
-            <router-link to="">
+            <router-link to="/detail_transaksi">
               <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span class="jml">Rp10.000</span>
               <span class="waktu">10.00</span>
               <p>1 item</p></li>

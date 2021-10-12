@@ -7,6 +7,7 @@ import AddCategory from '../views/AddCategory.vue'
 import EditCategory from '../views/EditCategory.vue'
 import Transaksi from '../views/Transaksi.vue'
 import About from '../views/About.vue'
+import detail_transaksi from '../views/detail_transaksi.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,6 +45,11 @@ const routes = [
     path: '/transaksi',
     name: 'Transaksi',
     component: Transaksi
+  },
+  {
+    path: '/detail_transaksi',
+    name: 'detail_transaksi',
+    component: detail_transaksi
   },
 ]
 

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <label>TAMBAH KATEGORI</label>
+                <label>EDIT KATEGORI</label>
             </div>
             <div class="col-md-6">
                 <div class="kembali">

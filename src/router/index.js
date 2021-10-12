@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Product from '../views/Product.vue'
 import Category from '../views/Category.vue'
 import AddCategory from '../views/AddCategory.vue'
+import EditCategory from '../views/EditCategory.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,6 +35,11 @@ const routes = [
     path: '/AddCategory',
     name: 'AddCategory',
     component: AddCategory
+  },
+  {
+    path: '/EditCategory',
+    name: 'EditCategory',
+    component: EditCategory
   },
 ]
 

@@ -13,18 +13,18 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Makanan
+                   Barang Pokok
                     <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buka Modal</button> -->
 
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
 
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Minuman
+                    Barang Implusif
                   <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Snack Ringan
+                    Barang Darurat
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
                 </li>
             </ul>
@@ -76,7 +76,7 @@
         text-align: center;
     }
 #btn-add{
-    background-color: #66DE94;
+    background-color: #4CAF50;
       border-color: transparent;
       color: white;
        border-radius: 10px;

@@ -29,73 +29,73 @@
         <div class="container">
         <div class="container-product2">
             <div class="col-makan">
-                <h6>BAHAN BANGUNAN</h6>
+                <h6>BARANG POKOK</h6>
                 <hr />
                 <div class="row">
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/beras.png" alt="">
+                            <p class="makanan">Beras <br> 65.000</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
+                        <div class="container-barang">
                             <router-link to="DetailProduct">
-                                <img src="../assets/asbes.jpeg">
+                                <img src="../assets/miesedap.png">
                             </router-link>
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                            <p class="makanan">Mie Sedap <br> 2.500</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/telur.jpg" alt="">
+                            <p class="makanan">Telur <br> 1.500</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/gula.jpg" alt="">
+                            <p class="makanan">Gula <br> 12.500</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/minyak.jpg" alt="">
+                            <p class="makanan">Minyak Goreng <br> 36.000</p>
                         </div>
                     </div>
                 </div>
-                <h6>BAHAN BANGUNAN</h6>
+                <h6>BARANG DARURAT</h6>
                 <hr />
                 <div class="row">
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/payung.jpg" alt="">
+                            <p class="makanan">Payung <br> 100.000</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/jashujan.jpg" alt="">
+                            <p class="makanan">Jas Hujan <br> 450.000</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/kacamata.jpg" alt="">
+                            <p class="makanan">Kacamata radiasi <br> 200.000</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/pembalut.jpg" alt="">
+                            <p class="makanan">Pembalut <br> 13.000</p>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="container-makanan">
-                            <img src="../assets/asbes.jpeg" alt="">
-                            <p class="makanan">Nasi Goreng <br> 15.000</p>
+                        <div class="container-barang">
+                            <img src="../assets/hansaplas.jpg" alt="">
+                            <p class="makanan">Hansaplast <br> 10.000</p>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
     }
     .makanan {
         font-weight: bold;
-        color: #66DE94;
+        color: #4CAF50;
         text-align: center;
 
     }
@@ -136,7 +136,7 @@
         padding-left: 0px;
         margin-top: 90px;
         margin-bottom: 15px;
-        color: #66DE94;
+        color: #4CAF50;
         font-size: 20px;
         font-weight: bold;
         font-family: sans-serif;
@@ -145,7 +145,7 @@
     button {
         margin-top: 90px;
         border-radius: 15px;
-        background-color: #66DE94;
+        background-color: #4CAF50;
         width: 150px;
         height: 30px;
         color: white;
@@ -172,7 +172,7 @@
         width: 98%;
         height: 80%;
         border-radius: 15px;
-        background-color: #66DE94;
+        background-color: #4CAF50;
     }
 
     img {
@@ -182,7 +182,7 @@
         margin-left: 25px;
     }
 
-    .container-makanan {
+    .container-barang {
         margin-top: 12px;
         margin-bottom: 20px;
         border-radius: 10px;

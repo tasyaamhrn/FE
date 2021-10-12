@@ -10,7 +10,7 @@
         <p>Nama Toko</p>
 
         <li class="transaksi">
-          <a href="#">
+          <a href="/AddTransaksi">
             <i class='bx bx-plus'></i>
             <span class="links_name">Tambah Transaksi</span>
           </a>

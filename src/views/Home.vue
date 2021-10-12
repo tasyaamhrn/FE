@@ -3,7 +3,7 @@
     <div class="home">
       <h1>BERANDA</h1>
       <div class="btn-filter">
-        
+
         <button type="button" class="btn btn-outline-primary">Hari Ini</button>
         <button type="button" class="btn btn-outline-primary">Minggu Ini</button>
         <button type="button" class="btn btn-outline-primary">Bulan Ini</button>
@@ -108,15 +108,15 @@
   .home button {
     margin-left: 5px;
     border-radius: 10px;
-    border:1px solid #4CAF50;
-    color:#1E6E22;
+    border: 1px solid #4CAF50;
+    color: #1E6E22;
     /* margin: auto; */
 
   }
 
   .home button:hover {
     background-color: #1E6E22;
-    color:#fff;
+    color: #fff;
   }
 
   .home .container .hsl {

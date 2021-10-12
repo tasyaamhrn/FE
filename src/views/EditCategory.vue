@@ -43,6 +43,7 @@
         height: 40px;
         color: white;
         border-color: transparent;
+        font-weight: bold;
     }
 
     .kembali {
@@ -62,7 +63,7 @@
         border-radius: 10px;
         background-color: #4CAF50;
         float: right;
-        /* height: 30px; */
+       font-weight: bold;
         color: white;
         border-color: transparent;
     }

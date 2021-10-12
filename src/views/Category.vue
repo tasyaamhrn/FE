@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-4">
                     <div class="add">
-                        <router-link to="/AddCategory"><button type="button" id="btn-add">+Tambah</button></router-link>
+                        <router-link to="/AddCategory"><button type="button" id="btn-add">+ Tambah</button></router-link>
                     </div>
                 </div>
             </div>
@@ -81,8 +81,8 @@
         border-color: transparent;
         color: white;
         border-radius: 10px;
-        width: 135px;
-        height: 30px;
+        width: 150px;
+        height: 40px;
         font-weight: bold;
     }
 

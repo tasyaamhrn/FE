@@ -43,6 +43,7 @@
         height: 40px;
         color: white;
         border-color: transparent;
+        font-weight:bold;
     }
 
     .kembali {
@@ -65,5 +66,6 @@
         /* height: 30px; */
         color: white;
         border-color: transparent;
+         font-weight:bold;
     }
 </style>

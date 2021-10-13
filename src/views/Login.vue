@@ -1,11 +1,13 @@
 <template>
-    <div class="login">
+    <section id="login">
         ini
-    </div>
+    </section>
+    
 </template>
 <style scoped>
-    .login{
-        background-color: hsl(122, 39%, 49%);
+    #login{
+        background: #4CAF50;
+        background-size: cover;
         background-repeat: repeat;
     }
 </style>

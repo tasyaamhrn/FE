@@ -1,10 +1,16 @@
 <template>
   <div>
-    <div class="sidebar open">
-    <side-bar></side-bar>
+    <div v-if="routeName != 'Login'">
+      <div class="sidebar open">
+      <side-bar></side-bar>
+      </div>
+      <div class="home-section">
+      <router-view />
+      </div>
     </div>
-    <div class="home-section">
-    <router-view />
+    <div v-else>
+      <router-view />
+
     </div>
   </div>
 </template>
@@ -25,8 +31,20 @@
   import SideBar from "../src/components/sidebar/Sidebar.vue";
   export default {
     name: "App",
-    components: {
+        components: {
       SideBar,
     },
+    data(){
+      return {
+        routeName : "",
+      }
+    },
+    mounted(){
+      this.routeName = this.$route.name;
+    },
+    updated(){
+      this.routeName = this.$route.name;
+    },
   };
+  
 </script>

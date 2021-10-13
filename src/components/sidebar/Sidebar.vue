@@ -70,7 +70,17 @@
     </div>
   </div>
 </template>
-
+<script>
+  export default {
+    name: "Logout",
+    methods:{
+       peringatan(){
+       }
+      
+    },
+  };
+</script>
+ 
 // global
 <style>
   * {

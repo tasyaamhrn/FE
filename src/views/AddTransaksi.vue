@@ -96,11 +96,12 @@
                             <div id="vue-counter">
                     
                                 <p id="tambah"> 
-                                    <i class='bx bx-plus' @click="increase"></i> 
+                                    <i class='bx bx-minus' @click="decrease"></i>
+
                                     &nbsp;&nbsp;
                                     {{ counter }}
                                     &nbsp;&nbsp;
-                                    <i class='bx bx-minus' @click="decrease"></i>
+                                    <i class='bx bx-plus' @click="increase"></i> 
                                 </p>
                                 
                                

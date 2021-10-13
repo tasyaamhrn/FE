@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="routeName != 'Login'">
+    <div v-if="routeName != 'Login' && routeName != 'Register'">
       <div class="sidebar open">
       <side-bar></side-bar>
       </div>

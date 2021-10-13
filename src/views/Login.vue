@@ -15,6 +15,7 @@
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            &nbsp;&nbsp;
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="text" id="form3Example1c" class="form-control"
                                                     placeholder="Masukkan username/email" />
@@ -23,6 +24,7 @@
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            &nbsp;&nbsp;
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="password" id="form3Example4c" class="form-control"
                                                     placeholder="Masukkan password" />

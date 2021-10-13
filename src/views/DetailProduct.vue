@@ -116,10 +116,15 @@
                         </div>
                         <div class="modal-body">
                             <div class="container-makanan2">
-                                <center>
+                                
                                     <img id="detail" src="../assets/beras.png" align="middle" alt="">
-                                </center>
-                                <p class="makanan2">Nasi Goreng <br> 15.000</p>
+                               
+                                <p class="makanan2">
+                                    Beras 
+                                    <br> 
+                                    65.000
+                                    <br>
+                                    Stock : 4</p>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -146,8 +151,8 @@
     }
 
     .modal-content {
-        width: 500px;
-        height: 400px;
+        width: 520px;
+        height: 420px;
     }
 
     #detail {
@@ -158,7 +163,7 @@
     }
 
     .container-makanan2 {
-        width: 100px;
+        /* width: 100px; */
         height: 100px;
         margin: auto;
     }

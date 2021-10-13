@@ -12,7 +12,7 @@
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/beras.png" alt="">
-                                <p class="makanan">Beras <br> 65.000</p>
+                                <p class="makanan">Beras <br> 65.000 <br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
@@ -20,25 +20,25 @@
 
                                 <img src="../assets/miesedap.png">
 
-                                <p class="makanan">Mie Sedap <br> 2.500</p>
+                                <p class="makanan">Mie Sedap <br> 2.500 <br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/telur.jpg" alt="">
-                                <p class="makanan">Telur <br> 1.500</p>
+                                <p class="makanan">Telur <br> 1.500 <br>Stok:98 </p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/gula.jpg" alt="">
-                                <p class="makanan">Gula <br> 12.500</p>
+                                <p class="makanan">Gula <br> 12.500 <br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/minyak.jpg" alt="">
-                                <p class="makanan">Minyak Goreng <br> 36.000</p>
+                                <p class="makanan">Minyak Goreng <br> 36.000 <br>Stok:98</p>
                             </div>
                         </div>
                     </div>
@@ -48,31 +48,31 @@
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/payung.jpg" alt="">
-                                <p class="makanan">Payung <br> 100.000</p>
+                                <p class="makanan">Payung <br> 100.000 <br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/jashujan.jpg" alt="">
-                                <p class="makanan">Jas Hujan <br> 450.000</p>
+                                <p class="makanan">Jas Hujan <br> 450.000 <br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/kacamata.jpg" alt="">
-                                <p class="makanan">Kacamata radiasi <br> 200.000</p>
+                                <p class="makanan">Kacamata radiasi <br> 200.000 <br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/pembalut.jpg" alt="">
-                                <p class="makanan">Pembalut <br> 13.000</p>
+                                <p class="makanan">Pembalut <br> 13.000<br>Stok:98</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="container-barang" data-toggle="modal" data-target="#myModal">
                                 <img src="../assets/hansaplas.jpg" alt="">
-                                <p class="makanan">Hansaplast <br> 10.000</p>
+                                <p class="makanan">Hansaplast <br> 10.000<br>Stok:98</p>
                             </div>
                         </div>
                     </div>
@@ -95,9 +95,14 @@
                             <p class="makanan">Beras <br> 65.000 <br> Stok:98</p>
                             <div id="vue-counter">
                     
-                                <p id="tambah"> <i class='bx bx-plus' @click="increase"></i> </p>
-                                 <h3>{{ counter }}</h3>
-                                <p id="kurang"> <i class='bx bx-minus' @click="decrease"></i></p>
+                                <p id="tambah"> 
+                                    <i class='bx bx-plus' @click="increase"></i> 
+                                    &nbsp;&nbsp;
+                                    {{ counter }}
+                                    &nbsp;&nbsp;
+                                    <i class='bx bx-minus' @click="decrease"></i>
+                                </p>
+                                
                                
                                 <!-- <button type="button" @click="increase">Increase By 1</button>  -->
                                 <!-- <button type="button" @click="decrease">Decrease By 1</button>  -->
@@ -108,9 +113,9 @@
                         <div class="modal-footer">
                             <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                             <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
-                                    class='bx bx-trash'>Hapus</i></button>
+                                    class='bx bx-trash'>Batal</i></button>
                             <router-link to="EditCategory"> <button type="button" id="edit"
-                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Edit</i></button>
+                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Pilih</i></button>
                             </router-link>
                         </div>
                     </div>
@@ -142,10 +147,7 @@
     .col-md-6 {
         padding-left: 0px;
     }
-#tambah{
-    padding-top:30px;
-  
-}
+
     .makanan {
         font-weight: bold;
         color: #4CAF50;
@@ -219,7 +221,7 @@
         margin-bottom: 20px;
         border-radius: 10px;
         width: 120px;
-        height: 130px;
+        height: 140px;
         background-color: white;
         z-index: 1;
     }

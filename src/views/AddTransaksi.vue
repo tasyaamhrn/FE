@@ -154,7 +154,9 @@
         text-align: center;
 
     }
-
+#tambah{
+    padding-top:30px;
+}
     hr {
         border: none;
         height: 3px;

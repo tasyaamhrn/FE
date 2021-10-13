@@ -113,9 +113,9 @@
                         <div class="modal-footer">
                             <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                             <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
-                                    class='bx bx-trash'>Batal</i></button>
+                                    class='bx bx-minus-circle'>Batal</i></button>
                             <router-link to="EditCategory"> <button type="button" id="edit"
-                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Pilih</i></button>
+                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-check'>Pilih</i></button>
                             </router-link>
                         </div>
                     </div>

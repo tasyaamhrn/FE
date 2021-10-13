@@ -8,13 +8,12 @@
       </div>
       <ul class="nav-list">
         <p>Nama Toko</p>
-
-        <li class="transaksi">
-          <a href="/AddTransaksi">
+<li>
+           <router-link to="/AddTransaksi">
             <i class='bx bx-plus'></i>
             <span class="links_name">Tambah Transaksi</span>
-          </a>
-          <span class="tooltip">+Tambah Transaksi</span>
+           </router-link>
+         
         </li>
         <li>
           <router-link to="/">

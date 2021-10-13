@@ -37,7 +37,12 @@
                         <span data-toggle="modal" data-target="#myModal">
                         <div class="container-barang">
                             <img src="../assets/beras.png" alt="">
-                            <p class="makanan">Beras <br> 65.000</p>
+                            <p class="makanan">
+                                Beras 
+                                <br>
+                                65.000
+                                <br>
+                                Stock : 98 </p>
                         </div>
                         </span>
                     </div>
@@ -46,25 +51,41 @@
                             <router-link to="DetailProduct">
                                 <img src="../assets/miesedap.png">
                             </router-link>
-                            <p class="makanan">Mie Sedap <br> 2.500</p>
+                            <p class="makanan">
+                                Mie Sedap 
+                                <br> 
+                                2.500
+                                <br> 
+                                Stock : 98
+                                </p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/telur.jpg" alt="">
-                            <p class="makanan">Telur <br> 1.500</p>
+                            <p class="makanan">
+                                Telur 
+                                <br> 
+                                1.500
+                                <br> 
+                                Stock : 98</p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/gula.jpg" alt="">
-                            <p class="makanan">Gula <br> 12.500</p>
+                            <p class="makanan">
+                                Gula 
+                                <br> 
+                                12.500
+                                <br>
+                                Stock : 98 </p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/minyak.jpg" alt="">
-                            <p class="makanan">Minyak Goreng <br> 36.000</p>
+                            <p class="makanan">Minyak Goreng <br> 36.000 <br> Stock : 98</p>
                         </div>
                     </div>
                 </div>
@@ -74,31 +95,31 @@
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/payung.jpg" alt="">
-                            <p class="makanan">Payung <br> 100.000</p>
+                            <p class="makanan">Payung <br> 100.000 <br> Stock : 98</p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/jashujan.jpg" alt="">
-                            <p class="makanan">Jas Hujan <br> 450.000</p>
+                            <p class="makanan">Jas Hujan <br> 450.000 <br> Stock : 98</p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/kacamata.jpg" alt="">
-                            <p class="makanan">Kacamata radiasi <br> 200.000</p>
+                            <p class="makanan">Kacamata radiasi <br> 200.000 <br> Stock : 98</p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/pembalut.jpg" alt="">
-                            <p class="makanan">Pembalut <br> 13.000</p>
+                            <p class="makanan">Pembalut <br> 13.000 <br> Stock : 98</p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="container-barang">
                             <img src="../assets/hansaplas.jpg" alt="">
-                            <p class="makanan">Hansaplast <br> 10.000</p>
+                            <p class="makanan">Hansaplast <br> 10.000 <br> Stock : 98</p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +136,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="container-makanan2">
+                            <div class="container-makanan2 text-center">
                                 
                                     <img id="detail" src="../assets/beras.png" align="middle" alt="">
                                
@@ -124,7 +145,7 @@
                                     <br> 
                                     65.000
                                     <br>
-                                    Stock : 4</p>
+                                    Stock : 98</p>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -166,6 +187,7 @@
         /* width: 100px; */
         height: 100px;
         margin: auto;
+
     }
 
     #edit {
@@ -270,7 +292,7 @@
         margin-bottom: 20px;
         border-radius: 10px;
         width: 120px;
-        height: 130px;
+        height: 140px;
         background-color: white;
         z-index: 1;
     }

@@ -93,12 +93,16 @@
                         <div class="modal-body">
                             <img src="../assets/beras.png" alt="">
                             <p class="makanan">Beras <br> 65.000 <br> Stok:98</p>
-                            <!-- <div id="vue-counter">
-                                <h3>Counter: {{ counter }}</h3>
-                                <button type="button" v-on:click="increase">Increase By 1</button> <button type="button"
-                                    v-on:click="decrease">Decrease By 1</button> <button type="button"
-                                    v-on:click="reset">Reset Counter</button>
-                            </div> -->
+                            <div id="vue-counter">
+                    
+                                <p id="tambah"> <i class='bx bx-plus' @click="increase"></i> </p>
+                                 <h3>{{ counter }}</h3>
+                                <p id="kurang"> <i class='bx bx-minus' @click="decrease"></i></p>
+                               
+                                <!-- <button type="button" @click="increase">Increase By 1</button>  -->
+                                <!-- <button type="button" @click="decrease">Decrease By 1</button>  -->
+                                <!-- <button type="button" @click="reset">Reset Counter</button> -->
+                            </div>
                            
                         </div>
                         <div class="modal-footer">
@@ -116,31 +120,32 @@
     </div>
 </template>
 <script>
-
-// var vueApp = new Vue({
-//   el: "#vue-counter",
-//   data: {
-//     counter: 0,
-//   },
-//   methods: {
-//     increase: function() {
-//       this.counter++;
-//     },
-//     decrease:  function() {
-//       this.counter--;
-//     },
-//     reset: function() {
-//       this.counter = 0;
-//     }
-//   },
-// })
+  export default {
+    name: "CreateTransaction",
+    data(){
+        return {
+            counter: 0
+        }
+    },
+    methods:{
+        increase(){
+            this.counter++;
+        },
+        decrease(){
+            this.counter--;
+        }
+    },
+  };
 </script>
 
 <style scoped>
     .col-md-6 {
         padding-left: 0px;
     }
-
+#tambah{
+    padding-top:30px;
+  
+}
     .makanan {
         font-weight: bold;
         color: #4CAF50;

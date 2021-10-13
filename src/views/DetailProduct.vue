@@ -7,7 +7,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="tambah">
-                        <router-link to="AddProduct"><button type="button">+Tambah</button></router-link>
+                        <router-link to="AddProduct"><button class="buttontambah" type="button">+Tambah</button>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -27,16 +28,18 @@
             </div>
         </div>
         <div class="container">
-        <div class="container-product2">
+            <div class="container-product2">
             <div class="col-makan">
                 <h6>BARANG POKOK</h6>
                 <hr />
                 <div class="row">
                     <div class="col">
+                        <span data-toggle="modal" data-target="#myModal">
                         <div class="container-barang">
                             <img src="../assets/beras.png" alt="">
                             <p class="makanan">Beras <br> 65.000</p>
                         </div>
+                        </span>
                     </div>
                     <div class="col">
                         <div class="container-barang">
@@ -100,15 +103,87 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <h5 class="modal-title" id="exampleModalLabel">Kategori</h5> -->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-makanan2">
+                                <center>
+                                    <img id="detail" src="../assets/beras.png" align="middle" alt="">
+                                </center>
+                                <p class="makanan2">Nasi Goreng <br> 15.000</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                            <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
+                                    class='bx bx-trash'>Hapus</i></button>
+                            <router-link to="EditProduct"> <button type="button" id="edit"
+                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Edit</i></button>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
 </template>
+
 <style scoped>
-    .col-md-6{
+    .makanan2 {
+        font-weight: bold;
+        color: #4CAF50;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .modal-content {
+        width: 500px;
+        height: 400px;
+    }
+
+    #detail {
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        align-content: center;
+    }
+
+    .container-makanan2 {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+    }
+
+    #edit {
+        margin-right: 150px;
+        background-color: #4CAF50;
+    }
+
+    #hapus {
+        margin-left: 120px;
+        background-color: #FD7B7B;
+
+    }
+
+    .close {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .col-md-6 {
         padding-left: 0px;
     }
+
     .makanan {
         font-weight: bold;
         color: #4CAF50;
@@ -143,10 +218,10 @@
         font-family: sans-serif;
     }
 
-    button {
+    .buttontambah {
         margin-top: 90px;
         border-radius: 15px;
-        background-color: #4CAF50;
+        background-color: #66DE94;
         width: 150px;
         height: 30px;
         color: white;
@@ -162,9 +237,11 @@
         padding-top: 0px;
         margin: auto;
     }
-    .container{
+
+    .container {
         padding-left: 0px;
     }
+
     .container-product2 {
         margin-top: 20px;
         padding-top: 40px;

@@ -58,7 +58,7 @@
           </a>
 
         </li>
-        <li class="out">
+        <li class="out" @click='peringatan'>
           <router-link to="">
             <i class='bx bx-log-out'></i>
             <span class="links_name">Keluar</span>
@@ -75,6 +75,21 @@
     name: "Logout",
     methods:{
        peringatan(){
+         this.$swal({
+  title: 'Anda yakin ingin logout?',
+  showDenyButton: true,
+ 
+  showCancelButton: false,
+  confirmButtonText: 'Ya',
+   denyButtonText: `Batal`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+this.$router.push({ path: 'Login' })
+  } else if (result.isDenied) {
+    // Swal.fire('Changes are not saved', '', 'info')
+  }
+});
        }
       
     },

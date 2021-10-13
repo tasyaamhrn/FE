@@ -23,7 +23,7 @@
 
         </li>
         <li>
-          <router-link to="/product">
+          <router-link to="/detailproduct">
             <i class='bx bx-plus'></i>
             <span class="links_name">Produk</span>
           </router-link>

@@ -11,7 +11,11 @@ import detail_transaksi from '../views/detail_transaksi.vue'
 import AddProduct from '../views/AddProduct.vue'
 import AddTransaksi from '../views/AddTransaksi.vue'
 import Call from '../views/Call.vue'
+import DetailProduct from '../views/DetailProduct.vue'
+import EditProduct from '../views/EditProduct.vue'
+import Login from '../views/Login.vue'
 Vue.use(VueRouter)
+
 
 const routes = [
   {
@@ -68,6 +72,21 @@ const routes = [
     path: '/Call',
     name: 'Call',
     component: Call
+  },
+  {
+    path: '/DetailProduct',
+    name: 'DetailProduct',
+    component: DetailProduct
+  },
+  {
+    path: '/EditProduct',
+    name: 'EditProduct',
+    component: EditProduct
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login
   },
 ]
 

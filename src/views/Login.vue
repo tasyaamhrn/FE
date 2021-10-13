@@ -30,13 +30,18 @@
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <router-link to="/AddTransaksi">
+                                            <router-link to="/Home">
                                                 <button type="button" class="btn btn-success btn-lg">
                                                     Masuk
                                                 </button>
                                             </router-link>
                                         </div>
-
+                                        <p>
+                                            Don't have an account? 
+                                            <router-link to="/Register">
+                                            Register
+                                             </router-link>
+                                        </p>
                                     </form>
 
                                 </div>
@@ -53,3 +58,8 @@
         </div>
     </section>
 </template>
+<style scoped>
+    p{
+        text-align: center;
+    }
+</style>

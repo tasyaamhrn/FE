@@ -1,90 +1,146 @@
 <template>
     <div>
         <div class="container">
-                    <label>TAMBAH TRANSAKSI</label>
+            <label>TAMBAH TRANSAKSI</label>
         </div>
         <div class="container">
-        <div class="container-product2">
-            <div class="col-makan">
-                <h6>BARANG POKOK</h6>
-                <hr />
-                <div class="row">
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/beras.png" alt="">
-                            <p class="makanan">Beras <br> 65.000</p>
+            <div class="container-product2">
+                <div class="col-makan">
+                    <h6>BARANG POKOK</h6>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/beras.png" alt="">
+                                <p class="makanan">Beras <br> 65.000</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <router-link to="DetailProduct">
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+
                                 <img src="../assets/miesedap.png">
-                            </router-link>
-                            <p class="makanan">Mie Sedap <br> 2.500</p>
+
+                                <p class="makanan">Mie Sedap <br> 2.500</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/telur.jpg" alt="">
+                                <p class="makanan">Telur <br> 1.500</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/gula.jpg" alt="">
+                                <p class="makanan">Gula <br> 12.500</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/minyak.jpg" alt="">
+                                <p class="makanan">Minyak Goreng <br> 36.000</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/telur.jpg" alt="">
-                            <p class="makanan">Telur <br> 1.500</p>
+                    <h6>BARANG DARURAT</h6>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/payung.jpg" alt="">
+                                <p class="makanan">Payung <br> 100.000</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/gula.jpg" alt="">
-                            <p class="makanan">Gula <br> 12.500</p>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/jashujan.jpg" alt="">
+                                <p class="makanan">Jas Hujan <br> 450.000</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/minyak.jpg" alt="">
-                            <p class="makanan">Minyak Goreng <br> 36.000</p>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/kacamata.jpg" alt="">
+                                <p class="makanan">Kacamata radiasi <br> 200.000</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/pembalut.jpg" alt="">
+                                <p class="makanan">Pembalut <br> 13.000</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container-barang" data-toggle="modal" data-target="#myModal">
+                                <img src="../assets/hansaplas.jpg" alt="">
+                                <p class="makanan">Hansaplast <br> 10.000</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <h6>BARANG DARURAT</h6>
-                <hr />
-                <div class="row">
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/payung.jpg" alt="">
-                            <p class="makanan">Payung <br> 100.000</p>
+            </div>
+            <!-- Modal -->
+
+            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <h5 class="modal-title" id="exampleModalLabel">Kategori</h5> -->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/jashujan.jpg" alt="">
-                            <p class="makanan">Jas Hujan <br> 450.000</p>
+                        <div class="modal-body">
+                            <img src="../assets/beras.png" alt="">
+                            <p class="makanan">Beras <br> 65.000 <br> Stok:98</p>
+                            <!-- <div id="vue-counter">
+                                <h3>Counter: {{ counter }}</h3>
+                                <button type="button" v-on:click="increase">Increase By 1</button> <button type="button"
+                                    v-on:click="decrease">Decrease By 1</button> <button type="button"
+                                    v-on:click="reset">Reset Counter</button>
+                            </div> -->
+                           
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/kacamata.jpg" alt="">
-                            <p class="makanan">Kacamata radiasi <br> 200.000</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/pembalut.jpg" alt="">
-                            <p class="makanan">Pembalut <br> 13.000</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/hansaplas.jpg" alt="">
-                            <p class="makanan">Hansaplast <br> 10.000</p>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                            <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
+                                    class='bx bx-trash'>Hapus</i></button>
+                            <router-link to="EditCategory"> <button type="button" id="edit"
+                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Edit</i></button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
 </template>
+<script>
+
+// var vueApp = new Vue({
+//   el: "#vue-counter",
+//   data: {
+//     counter: 0,
+//   },
+//   methods: {
+//     increase: function() {
+//       this.counter++;
+//     },
+//     decrease:  function() {
+//       this.counter--;
+//     },
+//     reset: function() {
+//       this.counter = 0;
+//     }
+//   },
+// })
+</script>
+
 <style scoped>
-    .col-md-6{
+    .col-md-6 {
         padding-left: 0px;
     }
+
     .makanan {
         font-weight: bold;
         color: #4CAF50;
@@ -119,15 +175,7 @@
         font-family: sans-serif;
     }
 
-    button {
-        margin-top: 90px;
-        border-radius: 15px;
-        background-color: #4CAF50;
-        width: 150px;
-        height: 30px;
-        color: white;
-        border-color: transparent;
-    }
+
 
     .tambah {
         text-align: right;
@@ -138,9 +186,11 @@
         padding-top: 0px;
         margin: auto;
     }
-    .container{
+
+    .container {
         padding-left: 0px;
     }
+
     .container-product2 {
         margin-top: 20px;
         padding-top: 40px;
@@ -167,5 +217,38 @@
         height: 130px;
         background-color: white;
         z-index: 1;
+    }
+
+    #edit {
+        margin-right: 150px;
+        background-color: #4CAF50;
+    }
+
+    #hapus {
+        margin-left: 120px;
+        background-color: #FD7B7B;
+
+    }
+
+    .modal-body {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+
+    }
+
+    .modal-body .makanan {
+        float: left;
+    }
+
+    .modal-body img {
+        float: left;
+    }
+
+    .close {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 24px;
     }
 </style>

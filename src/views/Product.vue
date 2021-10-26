@@ -29,7 +29,7 @@
         <div class="container">
         <div class="container-product2">
             <div class="col-makan">
-                <h6 >BARANG POKOK</h6>
+                <h6 class="judul" v-for="item in categories" :key="item.id">{{ item.name }}</h6>
                 <hr />
                 <div class="row">
                     <div class="col-md-3" v-for="item in products" :key="item.id">

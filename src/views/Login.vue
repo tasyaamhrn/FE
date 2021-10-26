@@ -10,53 +10,37 @@
 
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Selamat Datang di Kasirin
                                         Toko</p>
+                                    <div class="alert alert-danger" v-for="(error, index) in errors" :key="index">
+                                        {{ error[0] }}
+                                    </div>
+                                    <form @submit.prevent="userLogin" method="post" class="mx-1 mx-md-4">
+                                        <input-form fa="fas fa-envelope">
 
-                                    <form class="mx-1 mx-md-4">
-                                        <input-form fa="fas fa-envelope" :errors="errors.email">
-                                            <template v-slot:form>
-                                                <input type="email" placeholder="Masukkan Email" v-model="form.email"
-                                                    class="form-control" />
-                                            </template>
+                                            <input type="email" placeholder="Masukkan Email" v-model="form.email"
+                                                class="form-control" />
                                         </input-form>
-                                        <input-form fa="fas fa-lock" :errors="errors.password">
-                                            <template v-slot:form>
-                                                <input type="password" placeholder="Masukkan Password"
-                                                    v-model="form.password" class="form-control" />
-                                            </template>
+                                        <input-form fa="fas fa-lock">
+
+                                            <input type="password" placeholder="Masukkan Password"
+                                                v-model="form.password" class="form-control" />
+
                                         </input-form>
-
-                                        <!-- <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                            &nbsp;&nbsp;
-                                            <div class="form-outline flex-fill mb-0">
-                                                <input type="text" id="form3Example1c" class="form-control"
-                                                    placeholder="Masukkan username/email" />
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                            &nbsp;&nbsp;
-                                            <div class="form-outline flex-fill mb-0">
-                                                <input type="password" id="form3Example4c" class="form-control"
-                                                    placeholder="Masukkan password" />
-                                            </div>
-                                        </div> -->
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <router-link to="/">
-                                                <button type="button" class="btn btn-success btn-lg">
-                                                    Masuk
-                                                </button>
-                                            </router-link>
+
+                                            <button type="submit" class="btn btn-success btn-lg">
+                                                Masuk
+                                            </button>
+
                                         </div>
-                                        <p>
-                                            Don't have an account?
-                                            <router-link to="/Register">
-                                                Register
-                                            </router-link>
-                                        </p>
                                     </form>
+                                    <p>
+                                        Don't have an account?
+                                        <router-link to="/Register">
+                                            Register
+                                        </router-link>
+                                    </p>
+
 
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
@@ -78,30 +62,28 @@
     }
 </style>
 <script>
-    import axios from "axios";
-    import InputForm from "../components/inputForm.vue";
     export default {
         data() {
             return {
                 form: {
-                    email: "",
-                    password: "",
+                    email: '',
+                    password: '',
                 },
-                errors: [],
-            };
-        },
-        components: {
-            InputForm
+                errors: null
+            }
         },
         methods: {
-            register() {
-                axios
-                    .post("https://api-kasirin.jaggs.id/api/login", this.form)
-                    .then((res) => console.log(res))
-                    .catch((err) => {
-                        this.errors = err.response.data;
-                    });
-            },
-        },
-    };
+            userLogin() {
+                this.$store.dispatch('login', this.form)
+                    .then(response => {
+                        console.log(response)
+                        this.$router.push({
+                            name: 'Home'
+                        })
+                    }).catch(error => {
+                        this.errors = error.response.data.errors
+                    })
+            }
+        }
+    }
 </script>

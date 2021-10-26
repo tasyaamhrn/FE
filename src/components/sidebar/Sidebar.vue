@@ -85,7 +85,7 @@
 }).then((result) => {
   /* Read more about isConfirmed, isDenied below */
   if (result.isConfirmed) {
-this.$router.push({ path: 'Login' })
+this.$router.push({ path: '/' })
   } else if (result.isDenied) {
     // Swal.fire('Changes are not saved', '', 'info')
   }

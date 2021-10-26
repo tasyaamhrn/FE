@@ -15,6 +15,7 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+
 Vue.use(VueRouter)
 
 
@@ -22,7 +23,8 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+
   },
   {
     path: '/about',

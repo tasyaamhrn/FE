@@ -12,8 +12,20 @@
                                         Toko</p>
 
                                     <form class="mx-1 mx-md-4">
+                                        <input-form fa="fas fa-envelope" :errors="errors.email">
+                                            <template v-slot:form>
+                                                <input type="email" placeholder="Masukkan Email" v-model="form.email"
+                                                    class="form-control" />
+                                            </template>
+                                        </input-form>
+                                        <input-form fa="fas fa-lock" :errors="errors.password">
+                                            <template v-slot:form>
+                                                <input type="password" placeholder="Masukkan Password"
+                                                    v-model="form.password" class="form-control" />
+                                            </template>
+                                        </input-form>
 
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <!-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             &nbsp;&nbsp;
                                             <div class="form-outline flex-fill mb-0">
@@ -29,7 +41,7 @@
                                                 <input type="password" id="form3Example4c" class="form-control"
                                                     placeholder="Masukkan password" />
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <router-link to="/">
@@ -39,10 +51,10 @@
                                             </router-link>
                                         </div>
                                         <p>
-                                            Don't have an account? 
+                                            Don't have an account?
                                             <router-link to="/Register">
-                                            Register
-                                             </router-link>
+                                                Register
+                                            </router-link>
                                         </p>
                                     </form>
 
@@ -61,7 +73,35 @@
     </section>
 </template>
 <style scoped>
-    p{
+    p {
         text-align: center;
     }
 </style>
+<script>
+    import axios from "axios";
+    import InputForm from "../components/inputForm.vue";
+    export default {
+        data() {
+            return {
+                form: {
+                    email: "",
+                    password: "",
+                },
+                errors: [],
+            };
+        },
+        components: {
+            InputForm
+        },
+        methods: {
+            register() {
+                axios
+                    .post("https://api-kasirin.jaggs.id/api/login", this.form)
+                    .then((res) => console.log(res))
+                    .catch((err) => {
+                        this.errors = err.response.data;
+                    });
+            },
+        },
+    };
+</script>

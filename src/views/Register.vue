@@ -32,13 +32,41 @@
                         />
                       </template>
                     </input-form>
-                    <input-form fa="fas fa-lock" :errors="errors.password">
+                    <input-form
+                      fa="fas fa-map-marker-alt"
+                      :errors="errors.address"
+                    >
+                      <template v-slot:form>
+                        <textarea
+                          class="form-control"
+                          placeholder="Masukkan Alamat Toko Anda"
+                          v-model="form.address"
+                        />
+                      </template>
+                    </input-form>
+                    <input-form
+                      
+                      fa="fas fa-venus-mars"
+                      :errors="errors.gender"
+                    >
                       <template v-slot:form>
                         <input
-                          type="password"
-                          placeholder="Masukkan Password"
-                          v-model="form.password"
                           class="form-control"
+                          placeholder="Masukkan Jenis Kelamin Anda"
+                          v-model="form.gender"
+                        />
+                      </template>
+                    </input-form>
+                    <input-form
+                    
+                      fa="far fa-image"
+                      :errors="errors.avatar"
+                    >
+                      <template v-slot:form>
+                        <input
+                          type="file"
+                          class="form-control"
+                          placeholder="Masukkan Foto Anda"
                         />
                       </template>
                     </input-form>
@@ -52,18 +80,17 @@
                         />
                       </template>
                     </input-form>
-                    <input-form
-                      fa="fas fa-map-marker-alt"
-                      :errors="errors.address"
-                    >
+                    <input-form fa="fas fa-lock" :errors="errors.password">
                       <template v-slot:form>
-                        <textarea
+                        <input
+                          type="password"
+                          placeholder="Masukkan Password"
+                          v-model="form.password"
                           class="form-control"
-                          placeholder="Masukkan Alamat Toko Anda"
-                          v-model="form.address"
                         />
                       </template>
                     </input-form>
+                    
                     <div
                       class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                     >
@@ -131,7 +158,10 @@ export default {
     register() {
       axios
         .post("https://api-kasirin.jaggs.id/api/register", this.form)
-        .then((res) => console.log(res))
+        .then((res) => console.log(res));
+        this.$router.push({
+          name:'Login'
+        })
         .catch((err) => {
           this.errors = err.response.data;
         });

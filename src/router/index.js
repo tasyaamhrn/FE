@@ -20,7 +20,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -85,7 +85,7 @@ const routes = [
     component: EditProduct
   },
   {
-    path: '/Login',
+    path: '/',
     name: 'Login',
     component: Login
   },

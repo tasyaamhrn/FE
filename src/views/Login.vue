@@ -60,6 +60,12 @@
     p {
         text-align: center;
     }
+    .form-control{
+        margin-top:3%;
+    }
+    .btn-success{
+        margin-top:3%;
+    } 
 </style>
 <script>
     export default {

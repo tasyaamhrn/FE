@@ -7,7 +7,7 @@
 
       </div>
       <ul class="nav-list">
-        <p>Nama Toko</p>
+        <p>{{user.name}}</p>
 <li>
            <router-link to="/AddTransaksi">
             <i class='bx bx-plus'></i>
@@ -71,7 +71,16 @@
   </div>
 </template>
 <script>
+import {
+    mapGetters
+  } from 'vuex'
   export default {
+     computed: {
+      ...mapGetters({
+        isLoggedIn: 'isLoggedIn',
+        user: 'user',
+      })
+    },
     name: "Logout",
     methods:{
        peringatan(){

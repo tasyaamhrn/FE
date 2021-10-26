@@ -11,21 +11,21 @@
                     </div>
                 </div>
             </div>
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush" v-for="item in categories" :key="item.id">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Barang Pokok
+                    {{ item.name }}
 
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
 
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
                     Barang Implusif
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     Barang Darurat
                     <span class="hapus" data-toggle="modal" data-target="#myModal"><i class='bx bx-trash'></i></span>
-                </li>
+                </li> -->
             </ul>
 
         </div>
@@ -58,7 +58,35 @@
     </div>
 </template>
 
+<script>
+  
+   import axios from 'axios'
 
+  export default {
+    
+    data() {
+      return {
+        categories: {},
+      }
+    },
+
+    mounted() {
+      axios
+        .get("https://api-kasirin.jaggs.id/api/category", {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+
+          }
+        })
+        .then(({
+          data
+        }) => (this.categories = data.data))
+        .catch((err) => {
+          console.log(err)
+        });
+    },
+  }
+</script>
 <style scoped>
     h1 {
         font-family: Arial, Helvetica, sans-serif;

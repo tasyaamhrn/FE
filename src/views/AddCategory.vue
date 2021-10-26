@@ -20,11 +20,61 @@
             <p class="judul">
                 Nama Kategori
             </p>
-            <input type="text" class="form-control" id="namakategori" placeholder="Masukkan Nama Kategori..">
-            <router-link to="/category"><button type="button" class="btn-save">Simpan</button></router-link>
+            <form>
+               <input-form :errors="errors.name">
+                      <template v-slot:form>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Masukkan Nama Kategori"
+                          v-model="form.name"
+                        
+                        />
+                      </template>
+               </input-form>
+                    <button
+                        @click="add"
+                        type="button"
+                        class="btn-save"
+                      >
+                        Simpan
+                      </button>
+            <!-- <input type="text" class="form-control" id="namakategori"  placeholder="Masukkan Nama Kategori..">
+            <router-link to="/category"><button type="button" class="btn-save">Simpan</button></router-link> -->
+            </form> 
         </div>
     </div>
 </template>
+<script>
+import axios from "axios";
+import InputForm from "../components/inputForm.vue";
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        
+      },
+      errors: [],
+    };
+  },
+  components: { InputForm },
+  methods: {
+    add() {
+      axios
+        .post("https://api-kasirin.jaggs.id/api/category", this.form)
+        .then((res) => console.log(res));
+        this.$router.push({
+          name:'Category'
+        })
+        .catch((err) => {
+          this.errors = err.response.data;
+        });
+    },
+  },
+};
+</script>
+
 <style scoped>
     label {
         padding-top: 90px;

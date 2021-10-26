@@ -29,16 +29,18 @@
         <div class="container">
         <div class="container-product2">
             <div class="col-makan">
-                <h6>BARANG POKOK</h6>
+                <h6 >BARANG POKOK</h6>
                 <hr />
                 <div class="row">
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/beras.png" alt="">
-                            <p class="makanan">Beras <br> 65.000</p>
+                    <div class="col-md-3" v-for="item in products" :key="item.id">
+                        <div class="container-barang" >
+                            <img :src="item.image_url" style="width:20%;" alt="Product Image">
+                            <!-- <img src="../assets/beras.png" alt=""> -->
+                            <p class="makanan">{{ item.name }}</p>
+                            <p class="makanan">{{ item.price }}</p>
                         </div>
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <div class="container-barang">
                             <router-link to="DetailProduct">
                                 <img src="../assets/miesedap.png">
@@ -63,9 +65,9 @@
                             <img src="../assets/minyak.jpg" alt="">
                             <p class="makanan">Minyak Goreng <br> 36.000</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <h6>BARANG DARURAT</h6>
+                <!-- <h6>BARANG DARURAT</h6>
                 <hr />
                 <div class="row">
                     <div class="col">
@@ -98,7 +100,7 @@
                             <p class="makanan">Hansaplast <br> 10.000</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         </div>
@@ -193,3 +195,29 @@
         z-index: 1;
     }
 </style>
+<script>
+import axios from 'axios'
+export default {
+    data() {
+      return {
+        products: {},
+      }
+    },
+
+    mounted() {
+      axios
+        .get("https://api-kasirin.jaggs.id/api/product", {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+
+          }
+        })
+        .then(({
+          data
+        }) => (this.products = data.data))
+        .catch((err) => {
+          console.log(err)
+        });
+    },
+  }
+</script>

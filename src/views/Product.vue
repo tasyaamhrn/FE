@@ -29,15 +29,20 @@
         <div class="container">
         <div class="container-product2">
             <div class="col-makan">
-                <h6 class="judul" v-for="item in categories" :key="item.id">{{ item.name }}</h6>
+                <div v-for="item in categories" :key="item.id">
+                    <h6>{{ item.name }}</h6>
+                </div>
                 <hr />
                 <div class="row">
                     <div class="col-md-3" v-for="item in products" :key="item.id">
                         <div class="container-barang" >
+                            <center>
                             <img :src="item.image_url" style="width:20%;" alt="Product Image">
+                            </center>
                             <!-- <img src="../assets/beras.png" alt=""> -->
                             <p class="makanan">{{ item.name }}</p>
                             <p class="makanan">{{ item.price }}</p>
+                            <p class="makanan">Stock : {{ item.stock }}</p>
                         </div>
                     </div>
                     <!-- <div class="col">
@@ -47,60 +52,8 @@
                             </router-link>
                             <p class="makanan">Mie Sedap <br> 2.500</p>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/telur.jpg" alt="">
-                            <p class="makanan">Telur <br> 1.500</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/gula.jpg" alt="">
-                            <p class="makanan">Gula <br> 12.500</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/minyak.jpg" alt="">
-                            <p class="makanan">Minyak Goreng <br> 36.000</p>
-                        </div>
                     </div> -->
                 </div>
-                <!-- <h6>BARANG DARURAT</h6>
-                <hr />
-                <div class="row">
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/payung.jpg" alt="">
-                            <p class="makanan">Payung <br> 100.000</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/jashujan.jpg" alt="">
-                            <p class="makanan">Jas Hujan <br> 450.000</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/kacamata.jpg" alt="">
-                            <p class="makanan">Kacamata radiasi <br> 200.000</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/pembalut.jpg" alt="">
-                            <p class="makanan">Pembalut <br> 13.000</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="container-barang">
-                            <img src="../assets/hansaplas.jpg" alt="">
-                            <p class="makanan">Hansaplast <br> 10.000</p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
         </div>
@@ -108,6 +61,9 @@
     
 </template>
 <style scoped>
+    p{
+        margin-bottom: 0px;
+    }
     .col-md-6{
         padding-left: 0px;
     }
@@ -182,15 +138,14 @@
         width: 70px;
         height: 70px;
         margin-top: 10px;
-        margin-left: 25px;
     }
 
     .container-barang {
         margin-top: 12px;
         margin-bottom: 20px;
         border-radius: 10px;
-        width: 120px;
-        height: 130px;
+        width: 130px;
+        height: 140px;
         background-color: white;
         z-index: 1;
     }
@@ -201,6 +156,7 @@ export default {
     data() {
       return {
         products: {},
+        categories: {},
       }
     },
 
@@ -214,10 +170,13 @@ export default {
         })
         .then(({
           data
-        }) => (this.products = data.data))
+        }) => 
+        (this.products = data.data))
         .catch((err) => {
           console.log(err)
         });
+        
     },
+    
   }
 </script>

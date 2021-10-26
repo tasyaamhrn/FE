@@ -16,7 +16,7 @@
          
         </li>
         <li>
-          <router-link to="/">
+          <router-link to="/home">
             <i class='bx bx-plus'></i>
             <span class="links_name">Beranda</span>
           </router-link>

@@ -72,7 +72,7 @@
 
     mounted() {
       axios
-        .get("https://api-kasirin.jaggs.id/api/category", {
+        .get('https://api-kasirin.jaggs.id/api/category?store_id=1', {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
 

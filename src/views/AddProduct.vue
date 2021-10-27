@@ -3,7 +3,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <label>TAMBAH PRODUK</label>
+                    <button 
+                        @click="product"
+                        type="button"
+                        class="btn btn-success btn-lg"
+                      >
+                        TAMBAH
+                      </button>
+                    <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
                 <div class="col-md-6">
                     <div class="kembali">
@@ -20,32 +27,95 @@
             <p class="judul">
                 Nama Produk/Layanan
             </p>
-            <input type="text" class="form-control" id="namaproduk" placeholder="Masukkan Nama Produk..">
+            <input-form :errors="errors.name">
+            <template v-slot:form>
+                <input
+                    class="form-control"
+                    id="namaproduk"
+                    type="text"
+                    placeholder="Masukkan Nama Barang"
+                    v-model="form.name"
+                />
+            </template>  
+            </input-form> 
             <p class="judul">
-                Nomor Barcode
+                Nama Kategori
             </p>
-            <input type="text" class="form-control" id="nomorbarcode" placeholder="Masukkan Nomor Barcode..">
+            <input-form :errors="errors.category_id">
+            <template v-slot:form>
+                <input
+                    class="form-control"
+                    id="kategoriproduk"
+                    type="int"
+                    placeholder="Pilih Kategori Barang"
+                    v-model="form.category_id"
+                />
+            </template>  
+            </input-form>
             <p class="judul">
-                Harga
+                Foto Produk/Layanan
             </p>
-            <input type="number" class="form-control" id="harga" placeholder="Rp 0">
+            <input-form :errors="errors.image">
+            <template v-slot:form>
+                <input
+                    class="form-control"
+                    id="fotoproduk"
+                    type="file"
+                    placeholder="Masukkan Foto Barang"
+                />
+            </template>  
+            </input-form>
             <p class="judul">
-                Stok Produk
+                Harga Produk/Layanan
             </p>
-            <input type="number" class="form-control" id="stokproduk" placeholder="0">
+            <input-form :errors="errors.price">
+            <template v-slot:form>
+                <input
+                    class="form-control"
+                    id="namaproduk"
+                    type="text"
+                    placeholder="Masukkan Harga Barang"
+                    v-model="form.price"
+                />
+            </template>  
+            </input-form>
             <p class="judul">
-                Kategori Produk
+                Stock Produk/Layanan
             </p>
-            <select class="col-lg-12" aria-label=".form-select-lg example">
+            <input-form :errors="errors.stock">
+            <template v-slot:form>
+                <input
+                    class="form-control"
+                    id="stockproduk"
+                    type="int"
+                    placeholder="Masukkan Stock Barang"
+                    v-model="form.stock"
+                />
+            </template>  
+            </input-form>
+            <p class="judul">
+                Barcode Produk/Layanan
+            </p>
+            <input-form :errors="errors.barcode">
+            <template v-slot:form>
+                <input
+                    class="form-control"
+                    id="barcodeproduk"
+                    type="int"
+                    placeholder="Masukkan Nomor Barcode"
+                    v-model="form.barcode"
+                />
+            </template>  
+            </input-form>
+            
+            
+            <!-- <select class="col-lg-12" aria-label=".form-select-lg example">
                 <option selected>Pilih Kategori Produk..</option>
                 <option value="1">Barang Pokok</option>
                 <option value="2">Barang Impulsif</option>
                 <option value="3">Barang Darurat</option>
             </select>
-            <p class="judul">
-                Foto Produk
-            </p>
-            <input class="form-control" type="file" id="fotoproduk" placeholder="Masukkan foto produk">
+             -->
         </div>
     </div>
 </template>
@@ -84,3 +154,37 @@
         margin-bottom: 5px;
     }
 </style>
+<script>
+import axios from "axios";
+import InputForm from "../components/inputForm.vue";
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        category_id: "",
+        image:"",
+        price: "",
+        stock: "",
+        barcode: "",
+      },
+      errors: [],
+    };
+  },
+  components: { InputForm },
+  methods: {
+    product() {
+      axios
+        .post("https://api-kasirin.jaggs.id/api/product/store", this.form)
+        .then((res) => console.log(res));
+        this.$router.push({
+          name:'Product'
+        })
+        .catch((err) => {
+          this.errors = err.response.data;
+        });
+    },
+  },
+};
+</script>
+

@@ -18,9 +18,10 @@
       <p class="judul">Nama Kategori</p>
       <form @submit.prevent="save">
         <input type="hidden" v-model="form.id" name="" value="" />
-        <input type="text" v-model="form.name" name="" value="" /><br />
+        <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />
+        <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>
         <input type="hidden" v-model="form.store_id" name="" value="" />
-        <button type="submit" v-show="!updateSubmit" name="button">SAVE</button>
+        
       </form>
       <!-- <input type="text" class="form-control" id="namakategori"  placeholder="Masukkan Nama Kategori..">
             <router-link to="/category"><button type="button" class="btn-save">Simpan</button></router-link> -->
@@ -61,7 +62,7 @@ button {
   margin-bottom: 5px;
 }
 
-.btn-save {
+.sv {
   margin-top: 20px;
   border-radius: 10px;
   background-color: #4caf50;

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <button @click="createProduct" type="button" class="btn btn-success btn-lg">
-                        TAMBAH
+                        Tambah
                     </button>
                     <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
@@ -22,27 +22,32 @@
         <div class="container">
             <div class="mb-3">
                 <label for="exampleInputProduct" class="form-label">Nama Produk</label>
-                <input type="text" class="form-control" id="exampleProduct" aria-describedby="emailHelp">
+                <input type="text" v-model="form.name" class="form-control" id="exampleProduct" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control" id="exampleCategory">
+                <select class="col-lg-12" v-model="form.category_id" aria-label=".form-select-lg example">
+                <option selected>Pilih Kategori Produk..</option>
+                <option value="1">2</option>
+                <option value="2">Barang Impulsif</option>
+                <option value="3">Barang Darurat</option>
+            </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhotoProduct" class="form-label">Foto Produk</label>
-                <input type="file" class="form-control" id="examplePhotoProduct">
+                <input type="file"  class="form-control" id="examplePhotoProduct">
             </div>
             <div class="mb-3">
                 <label for="examplePriceProduct" class="form-label">Harga Produk</label>
-                <input type="text" class="form-control" id="examplePriceProduct">
+                <input type="text" v-model="form.price" class="form-control" id="examplePriceProduct">
             </div>
             <div class="mb-3">
                 <label for="exampleStockProduct" class="form-label">Stok Produk</label>
-                <input type="text" class="form-control" id="exampleStockProduct">
+                <input type="text" v-model="form.stock" class="form-control" id="exampleStockProduct">
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Barcode</label>
-                <input type="integer" class="form-control" id="exampleBarcode">
+                <input type="integer" v-model="form.barcode" class="form-control" id="exampleBarcode">
             </div>
         </div>
     </div>
@@ -72,6 +77,7 @@
 
     .kembali {
         text-align: right;
+        font-size: 16px;
     }
 
     .form-label {
@@ -80,6 +86,9 @@
         font-size: 16px;
         padding-top: 10px;
         margin-bottom: 5px;
+    }
+    .btn-success{
+        font-size: 16px;
     }
 </style>
 <script>
@@ -90,14 +99,14 @@
             return {
                 data: "test",
                 form: {
-                    category_id: this.$category.state.auth.category_id,
                     name: "",
+                    category_id: this.$store.state.auth,
                     image: "",
                     price: "",
                     stock: "",
                     barcode: "",
                 },
-                user: this.$category_id.state.auth.user,
+                user: this.$store.state.auth.user,
             };
         },
         methods: {
@@ -109,7 +118,7 @@
                         },
                     })
                     .then(() => console.log("sukses"))
-                    .catch(() => console.log("gagal"));
+                    .catch((err) => console.log(err));
             },
         },
     };

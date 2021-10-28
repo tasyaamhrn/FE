@@ -3,7 +3,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <label>EDIT PRODUK</label>
+                    <button  type="button" class="btn btn-success btn-lg">
+                        Edit Product
+                    </button>
+                    <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
                 <div class="col-md-6">
                     <div class="kembali">
@@ -17,55 +20,58 @@
             </div>
         </div>
         <div class="container">
-            <p class="judul">
-                Nama Produk/Layanan
-            </p>
-            <input type="text" class="form-control" id="namaproduk" placeholder="Masukkan Nama Produk..">
-            <p class="judul">
-                Nomor Barcode
-            </p>
-            <input type="text" class="form-control" id="nomorbarcode" placeholder="Masukkan Nomor Barcode..">
-            <p class="judul">
-                Harga
-            </p>
-            <input type="number" class="form-control" id="harga" placeholder="Rp 0">
-            <p class="judul">
-                Stok Produk
-            </p>
-            <input type="number" class="form-control" id="stokproduk" placeholder="0">
-            <p class="judul">
-                Kategori Produk
-            </p>
-            <select class="col-lg-12" aria-label=".form-select-lg example">
+             <div class="mb-3">
+                <label for="exampleInputProduct" class="form-label">Nama Produk</label>
+                <input type="text" class="form-control" id="exampleProduct" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
+                <select class="col-lg-12" aria-label=".form-select-lg example">
                 <option selected>Pilih Kategori Produk..</option>
                 <option value="1">Barang Pokok</option>
                 <option value="2">Barang Impulsif</option>
                 <option value="3">Barang Darurat</option>
             </select>
-            <p class="judul">
-                Foto Produk
-            </p>
-            <input class="form-control" type="file" id="fotoproduk" placeholder="Masukkan foto produk">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPhotoProduct" class="form-label">Foto Produk</label>
+                <input type="file" class="form-control" id="examplePhotoProduct">
+            </div>
+            <div class="mb-3">
+                <label for="examplePriceProduct" class="form-label">Harga Produk</label>
+                <input type="text" class="form-control" id="examplePriceProduct">
+            </div>
+            <div class="mb-3">
+                <label for="exampleStockProduct" class="form-label">Stok Produk</label>
+                <input type="text" class="form-control" id="exampleStockProduct">
+            </div>
+            <div class="mb-3">
+                <label for="exampleBarcodeProduct" class="form-label">Barcode</label>
+                <input type="integer" class="form-control" id="exampleBarcode">
+            </div>
         </div>
     </div>
 </template>
 <style scoped>
-    .col-lg-12{
+    .btn-success{
+        font-size: 16px;
+    }
+    .col-lg-12 {
         height: 34px;
     }
+
     label {
-        padding-top: 90px;
-        margin-bottom: 15px;
-        color: #4CAF50;
-        font-size: 20px;
-        font-weight: bold;
+        color: #4caf50;
         font-family: sans-serif;
+        font-size: 16px;
+        padding-top: 10px;
+        margin-bottom: 5px;
     }
 
     button {
         margin-top: 90px;
         border-radius: 15px;
-        background-color: #376CAF;
+        background-color: #376caf;
         width: 150px;
         height: 40px;
         color: white;
@@ -74,12 +80,13 @@
 
     .kembali {
         text-align: right;
+        font-size: 16px;
     }
 
-    .judul {
-        color: #4CAF50;
+    .form-label {
+        color: #4caf50;
         font-family: sans-serif;
-        font-size: 18px;
+        font-size: 16px;
         padding-top: 10px;
         margin-bottom: 5px;
     }

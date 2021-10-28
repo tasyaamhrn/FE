@@ -42,7 +42,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/home">
+          <router-link :to="{ name: 'Home' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Beranda</span>
           </router-link>
@@ -474,8 +474,8 @@ export default {
 }
 </style>
 <style scoped>
-label{
-  color:#fff;
+label {
+  color: #fff;
   font-size: 20px;
 }
 </style>

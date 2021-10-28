@@ -6,12 +6,16 @@
         <div class="logo_name">Kasirin Toko</div>
       </div>
       <ul class="nav-list">
-        <li class="dropdown">
-          <a href="#">Pilih Store</a>
-          <ul class="isi-dropdown">
-            <li></li>
-          </ul>
-        </li>
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="bx bx-store"></i>
+    <span class="links_name" style="font-size:18px;">Pilih Store</span>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">{{}}</a>
+   
+  </div>
+</div>
         <!-- <p>{{user.name}}</p> -->
         <li>
           <router-link to="/AddTransaksi">
@@ -105,34 +109,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-li.dropdown {
-  display: inline-block;
-}
 
-.dropdown:hover .isi-dropdown {
-  display: block;
-}
-
-.isi-dropdown a:hover {
-  color: #fff !important;
-}
-
-.isi-dropdown {
-  position: absolute;
-  display: none;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  background-color: #f9f9f9;
-}
-
-.isi-dropdown a {
-  color: #3c3c3c !important;
-}
-
-.isi-dropdown a:hover {
-  color: #232323 !important;
-  background: #f3f3f3 !important;
-}
 .sidebar {
   position: fixed;
   left: 0;
@@ -339,7 +316,25 @@ li.dropdown {
   pointer-events: none;
   transition: 0.4s;
 }
+#dropdownMenuButton{
+    display: flex;
+   height: 100%;
+   width: 100%;
+   border-radius: 12px;
+   align-items: center;
+   text-decoration: none;
+   transition: all 0.4s ease;
+   background: #4CAF50;
+   padding-top: 5px;
+   border: 1px solid #fff;
 
+ }
+ #dropdownMenuButton:hover{
+   color:#fff;
+ }
+ .dropdown-item{
+   color:#4CAF50;
+ }
 .sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;

@@ -18,6 +18,12 @@
 </div>
         <!-- <p>{{user.name}}</p> -->
         <li>
+          <router-link to="/AddStore">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Tambah Toko</span>
+          </router-link>
+        </li>
+        <li>
           <router-link to="/AddTransaksi">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tambah Transaksi</span>

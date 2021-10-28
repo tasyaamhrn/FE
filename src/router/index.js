@@ -15,6 +15,7 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import AddStore from '../views/AddStore.vue'
 
 Vue.use(VueRouter)
 
@@ -95,6 +96,11 @@ const routes = [
     path: '/Register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/AddStore',
+    name: 'AddStore',
+    component: AddStore
   },
 ]
 

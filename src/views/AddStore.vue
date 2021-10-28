@@ -25,85 +25,44 @@
         </div>
         <div class="container">
             <p class="judul">
-                Nama Produk/Layanan
+                Nama Toko
             </p>
             <input-form :errors="errors.name">
             <template v-slot:form>
                 <input
                     class="form-control"
-                    id="namaproduk"
+                    id="namatoko"
                     type="text"
-                    placeholder="Masukkan Nama Barang"
+                    placeholder="Masukkan Nama Toko"
                     v-model="form.name"
                 />
             </template>  
             </input-form> 
             <p class="judul">
-                Nama Kategori
+                Alamat Toko
             </p>
-            <input-form :errors="errors.category_id">
+            <input-form :errors="errors.address">
             <template v-slot:form>
                 <input
                     class="form-control"
-                    id="kategoriproduk"
-                    type="int"
-                    placeholder="Pilih Kategori Barang"
-                    v-model="form.category_id"
-                />
-            </template>  
-            </input-form>
-            <p class="judul">
-                Foto Produk/Layanan
-            </p>
-            <input-form :errors="errors.image">
-            <template v-slot:form>
-                <input
-                    class="form-control"
-                    id="fotoproduk"
-                    type="file"
-                    placeholder="Masukkan Foto Barang"
-                />
-            </template>  
-            </input-form>
-            <p class="judul">
-                Harga Produk/Layanan
-            </p>
-            <input-form :errors="errors.price">
-            <template v-slot:form>
-                <input
-                    class="form-control"
-                    id="namaproduk"
+                    id="alamattoko"
                     type="text"
-                    placeholder="Masukkan Harga Barang"
-                    v-model="form.price"
+                    placeholder="Masukkan Alamat Toko"
+                    v-model="form.address"
                 />
             </template>  
             </input-form>
             <p class="judul">
-                Stock Produk/Layanan
+                ID Toko
             </p>
-            <input-form :errors="errors.stock">
+            <input-form :errors="errors.store_id">
             <template v-slot:form>
                 <input
                     class="form-control"
-                    id="stockproduk"
-                    type="int"
-                    placeholder="Masukkan Stock Barang"
-                    v-model="form.stock"
-                />
-            </template>  
-            </input-form>
-            <p class="judul">
-                Barcode Produk/Layanan
-            </p>
-            <input-form :errors="errors.barcode">
-            <template v-slot:form>
-                <input
-                    class="form-control"
-                    id="barcodeproduk"
-                    type="int"
-                    placeholder="Masukkan Nomor Barcode"
-                    v-model="form.barcode"
+                    id="idtoko"
+                    type="text"
+                    placeholder="Masukkan ID Toko"
+                    v-model="form.store_id"
                 />
             </template>  
             </input-form>
@@ -130,6 +89,36 @@
         </div>
     </div>
 </template>
+<script>
+import axios from "axios";
+import InputForm from "../components/inputForm.vue";
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        address: "",
+        user_id:"",
+      },
+      errors: [],
+    };
+  },
+  components: { InputForm },
+  methods: {
+    product() {
+      axios
+        .post("http://127.0.0.1:8000/api/stores", this.form)
+        .then((res) => console.log(res));
+        this.$router.push({
+          name:'Store'
+        })
+        .catch((err) => {
+          this.errors = err.response.data;
+        });
+    },
+  },
+};
+</script>
 <style scoped>
     .col-lg-12{
         height: 34px;
@@ -166,36 +155,3 @@
     }
 </style>
 <script>
-import axios from "axios";
-import InputForm from "../components/inputForm.vue";
-export default {
-  data() {
-    return {
-      form: {
-        name: "",
-        category_id: "",
-        image:"",
-        price: "",
-        stock: "",
-        barcode: "",
-      },
-      errors: [],
-    };
-  },
-  components: { InputForm },
-  methods: {
-    product() {
-      axios
-        .post("https://api-kasirin.jaggs.id/api/product/store", this.form)
-        .then((res) => console.log(res));
-        this.$router.push({
-          name:'Product'
-        })
-        .catch((err) => {
-          this.errors = err.response.data;
-        });
-    },
-  },
-};
-</script>
-

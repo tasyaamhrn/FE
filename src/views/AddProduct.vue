@@ -90,14 +90,14 @@
             return {
                 data: "test",
                 form: {
-                    category_id: this.$category.state.auth.category_id,
+                    category_id: this.$store.state.auth,
                     name: "",
                     image: "",
                     price: "",
                     stock: "",
                     barcode: "",
                 },
-                user: this.$category_id.state.auth.user,
+                user: this.$store.state.auth.user,
             };
         },
         methods: {

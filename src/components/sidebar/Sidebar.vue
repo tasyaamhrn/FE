@@ -7,7 +7,13 @@
 
       </div>
       <ul class="nav-list">
-        <p>{{user.name}}</p>
+        <li class="dropdown"><a href="#">Pilih Store</a>
+				<ul class="isi-dropdown">
+					<li></li>
+					
+				</ul>
+			</li>
+        <!-- <p>{{user.name}}</p> -->
 <li>
            <router-link to="/AddTransaksi">
             <i class='bx bx-plus'></i>
@@ -113,7 +119,34 @@ this.$router.push({ path: '/' })
     box-sizing: border-box;
 
   }
-
+li.dropdown {
+		display: inline-block;
+	}
+ 
+	.dropdown:hover .isi-dropdown {
+		display: block;
+	}
+ 
+	.isi-dropdown a:hover {
+		color: #fff !important;
+	}
+ 
+	.isi-dropdown {
+		position: absolute;
+		display: none;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+		background-color: #f9f9f9;
+	}
+ 
+	.isi-dropdown a {
+		color: #3c3c3c !important;
+	}
+ 
+	.isi-dropdown a:hover {
+		color: #232323 !important;
+		background: #f3f3f3 !important;
+	}
   .sidebar {
     position: fixed;
     left: 0;

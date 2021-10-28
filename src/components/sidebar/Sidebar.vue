@@ -48,7 +48,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/product">
+          <router-link :to="{ name: 'Product' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Produk</span>
           </router-link>
@@ -102,7 +102,7 @@ export default {
       user_store: this.$store.state.auth.user.user_store,
     };
   },
-  name: "Logout",
+  name: "Sidebar",
   methods: {
     peringatan() {
       this.$swal({
@@ -115,7 +115,15 @@ export default {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.$router.push({ path: "/" });
+          this.$store
+            .dispatch("logout")
+            .then((response) => {
+              console.log(response);
+              this.$router.push({ path: "/" });
+            })
+            .catch((error) => {
+              this.errors = error.response.data.errors;
+            });
         } else if (result.isDenied) {
           // Swal.fire('Changes are not saved', '', 'info')
         }

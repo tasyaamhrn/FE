@@ -17,7 +17,7 @@
     <div class="container">
      
       <form @submit.prevent="save">
-       <div class="dropdown">
+       <!-- <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
             type="button"
@@ -38,20 +38,16 @@
               >{{ store.store_id }}</a
             >
           </div>
-        </div>
-        <!-- <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01">Store ID</label>
-  </div>
-  <select class="custom-select" id="inputGroupSelect01">
-    <option selected>Pilih...</option>
-    <option v-for="(store, index) in user_store"
+        </div> -->
+     
+<select class="form-control">
+  <option>Pilih Store</option>
+              <option class="dropdown-item"
+              href="#"
+              v-for="(store, index) in user_store"
               :key="index"
-           value="">{{ store.store_id }}</option>
-    <option value="">tes</option>
-  
-  </select>
-</div> -->
+          >{{ store.store_id }}</option>
+</select>
          <p class="judul">Nama Kategori</p>
         <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />
          <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>

@@ -16,11 +16,11 @@ axios.defaults.baseURL = 'https://api-kasirin.jaggs.id/api'
 Vue.config.productionTip = false
 
 const token = localStorage.getItem('access_token');
-if (token) { 
-  setHeaderToken(token) 
-} 
+if (token) {
+  setHeaderToken(token)
+}
 
-Vue.use( axios)
+Vue.use(axios)
 
 
 
@@ -31,13 +31,13 @@ Vue.use( axios)
 
 
 store.dispatch('get_user', token)
-.then(() => {
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
-}).catch((error) => {
-  console.error(error);
-})
+  .then(() => {
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }).catch((error) => {
+    console.error(error);
+  })
 

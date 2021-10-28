@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="routeName != 'Login' && routeName != 'Register'">
+    <div
+      v-if="routeName != 'Login' && routeName != 'Register' && token != null"
+    >
       <div class="sidebar open">
         <side-bar></side-bar>
       </div>
@@ -43,6 +45,7 @@ export default {
   data() {
     return {
       routeName: "",
+      token: localStorage.getItem("access_token"),
     };
   },
   mounted() {
@@ -50,6 +53,10 @@ export default {
   },
   updated() {
     this.routeName = this.$route.name;
+    this.token = localStorage.getItem("access_token");
+    if (this.token == null) {
+      this.$router.push({ name: "Login" });
+    }
   },
 };
 </script>

@@ -55,15 +55,14 @@ export default {
                     })
             })
         },
-        async get_user({commit}) 
-                {
+        async get_user({ commit }) {
             if (!localStorage.getItem('access_token')) {
                 return
             }
             try {
-                let response = await axios.get('user/'+ localStorage.getItem('id') )
+                let response = await axios.get('user/' + localStorage.getItem('id'))
                 commit('set_user', response.data.data)
-            } 
+            }
             catch (error) {
                 commit('reset_user')
                 removeHeaderToken()
@@ -74,14 +73,17 @@ export default {
         },
         logout({ commit }) {
             return new Promise((resolve) => {
-             commit('reset_user')
-             localStorage.removeItem('access_token')
-             localStorage.removeItem('id')
-             removeHeaderToken()
-             resolve()
+                axios.get('logout', localStorage.getItem('access_token'))
+                    .then(() => {
+                        commit('reset_user')
+                        localStorage.removeItem('access_token')
+                        localStorage.removeItem('id')
+                        removeHeaderToken()
+                        resolve()
+                    })
             })
-           },
-      
+        },
+
     }
 
 }

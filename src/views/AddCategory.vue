@@ -19,9 +19,9 @@
       <form @submit.prevent="save">
         <input type="hidden" v-model="form.id" name="" value="" />
         <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />
-        <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>
-        <!-- <input type="hidden" v-model="form.store_id" name="" value="" /> -->
-        
+       
+       <input type="text"  class="form-control" id="store_id" v-model="form.store_id" name="" value="" />
+         <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>
       </form>
       <!-- <input type="text" class="form-control" id="namakategori"  placeholder="Masukkan Nama Kategori..">
             <router-link to="/category"><button type="button" class="btn-save">Simpan</button></router-link> -->

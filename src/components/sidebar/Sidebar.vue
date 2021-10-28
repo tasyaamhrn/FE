@@ -6,7 +6,7 @@
         <div class="logo_name">Kasirin Toko</div>
       </div>
       <ul class="nav-list">
-        <!-- <label>{{ user.name }}</label> -->
+        <label>{{ user.name }}</label>
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"

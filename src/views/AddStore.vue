@@ -3,7 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <!-- <label>TAMBAH PRODUK</label> -->
+          <button @click="createStore" type="button" class="btn btn-success btn-lg">
+            DAFTAR
+          </button>
         </div>
       </div>
     </div>
@@ -28,9 +30,7 @@
         v-model="form.address"
         placeholder="Masukkan Alamat Toko.."
       />
-      <button @click="createStore" type="button" class="btn btn-success btn-lg">
-        Daftar
-      </button>
+      
     </div>
   </div>
 </template>

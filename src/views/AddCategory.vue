@@ -20,7 +20,7 @@
         <input type="hidden" v-model="form.id" name="" value="" />
         <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />
         <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>
-        <input type="hidden" v-model="form.store_id" name="" value="" />
+        <!-- <input type="hidden" v-model="form.store_id" name="" value="" /> -->
         
       </form>
       <!-- <input type="text" class="form-control" id="namakategori"  placeholder="Masukkan Nama Kategori..">

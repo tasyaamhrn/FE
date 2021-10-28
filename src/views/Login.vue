@@ -99,13 +99,31 @@ export default {
         .dispatch("login", this.form)
         .then((response) => {
           console.log(response);
+          this.alertSuccess();
           this.$router.push({
             name: "Home",
           });
         })
         .catch((error) => {
+          this.alertError();
           this.errors = error.response.data.errors;
         });
+    },
+    alertSuccess() {
+      // Use sweetalert2
+      this.$swal({
+        type: "success",
+        title: "Success",
+        text: "Login Berhasil!",
+      });
+    },
+    alertError() {
+      // Use sweetalert2
+      this.$swal({
+        type: "error",
+        title: "Oops...",
+        text: "Login gagal! periksa email dan password anda",
+      });
     },
   },
 };

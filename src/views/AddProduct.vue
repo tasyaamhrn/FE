@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <button @click="createProduct" type="button" class="btn btn-success btn-lg">
-                        TAMBAH
+                        Tambah
                     </button>
                     <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
@@ -26,7 +26,12 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control" id="exampleCategory">
+                <select class="col-lg-12" aria-label=".form-select-lg example">
+                <option selected>Pilih Kategori Produk..</option>
+                <option value="1">Barang Pokok</option>
+                <option value="2">Barang Impulsif</option>
+                <option value="3">Barang Darurat</option>
+            </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhotoProduct" class="form-label">Foto Produk</label>
@@ -72,6 +77,7 @@
 
     .kembali {
         text-align: right;
+        font-size: 16px;
     }
 
     .form-label {

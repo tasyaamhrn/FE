@@ -40,10 +40,11 @@
           </div>
         </div> -->
      
-<select class="form-control">
+<select class="form-control"  v-model="form.store_id">
   <option>Pilih Store</option>
               <option class="dropdown-item"
               href="#"
+             
               v-for="(store, index) in user_store"
               :key="index"
           >{{ store.store_id }}</option>
@@ -142,7 +143,7 @@ export default {
           "https://api-kasirin.jaggs.id/api/category/store",
           {
               name: this.form.name,
-              store_id: 1,
+              store_id: this.form.store_id,
           },
           {
             headers: {

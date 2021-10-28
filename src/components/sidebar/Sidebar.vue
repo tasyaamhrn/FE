@@ -7,16 +7,27 @@
       </div>
       <ul class="nav-list">
         <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="bx bx-store"></i>
-    <span class="links_name" style="font-size:18px;">Pilih Store</span>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">{{}}</a>
-   
-  </div>
-</div>
-        <!-- <p>{{user.name}}</p> -->
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-store"></i>
+            <span class="links_name" style="font-size:18px;">Pilih Store</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a
+              class="dropdown-item"
+              href="#"
+              v-for="(store, index) in user_store"
+              :key="index"
+              >{{ store.store_id }}</a
+            >
+          </div>
+        </div>
         <li>
           <router-link to="/AddStore">
             <i class="bx bx-plus"></i>
@@ -84,6 +95,11 @@ export default {
       isLoggedIn: "isLoggedIn",
       user: "user",
     }),
+  },
+  data() {
+    return {
+      user_store: this.$store.state.auth.user.user_store,
+    };
   },
   name: "Logout",
   methods: {
@@ -322,25 +338,24 @@ export default {
   pointer-events: none;
   transition: 0.4s;
 }
-#dropdownMenuButton{
-    display: flex;
-   height: 100%;
-   width: 100%;
-   border-radius: 12px;
-   align-items: center;
-   text-decoration: none;
-   transition: all 0.4s ease;
-   background: #4CAF50;
-   padding-top: 5px;
-   border: 1px solid #fff;
-
- }
- #dropdownMenuButton:hover{
-   color:#fff;
- }
- .dropdown-item{
-   color:#4CAF50;
- }
+#dropdownMenuButton {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #4caf50;
+  padding-top: 5px;
+  border: 1px solid #fff;
+}
+#dropdownMenuButton:hover {
+  color: #fff;
+}
+.dropdown-item {
+  color: #4caf50;
+}
 .sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;

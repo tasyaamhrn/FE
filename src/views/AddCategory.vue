@@ -15,12 +15,45 @@
       </div>
     </div>
     <div class="container">
-      <p class="judul">Nama Kategori</p>
+     
       <form @submit.prevent="save">
-        <input type="hidden" v-model="form.id" name="" value="" />
+       <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          > 
+            <span class="links_name" style="font-size:18px;">Pilih Store</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a
+              class="dropdown-item"
+              href="#"
+              v-for="(store, index) in user_store"
+              :key="index"
+          
+              >{{ store.store_id }}</a
+            >
+          </div>
+        </div>
+        <!-- <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Store ID</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option selected>Pilih...</option>
+    <option v-for="(store, index) in user_store"
+              :key="index"
+           value="">{{ store.store_id }}</option>
+    <option value="">tes</option>
+  
+  </select>
+</div> -->
+         <p class="judul">Nama Kategori</p>
         <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />
-       
-       <input type="text"  class="form-control" id="store_id" v-model="form.store_id" name="" value="" />
          <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>
       </form>
       <!-- <input type="text" class="form-control" id="namakategori"  placeholder="Masukkan Nama Kategori..">
@@ -49,7 +82,25 @@ button {
   border-color: transparent;
   font-weight: bold;
 }
-
+#dropdownMenuButton {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #fff;
+  color:#4caf50;
+  padding-top: 5px;
+  border: 1px solid #EDEDED;
+}
+#dropdownMenuButton:hover {
+  color: #4caf50;
+}
+.dropdown-item {
+  color: #4caf50;
+}
 .kembali {
   text-align: right;
 }
@@ -79,10 +130,11 @@ export default {
   data() {
     return {
       form: {
-        id: "",
         name: "",
         store_id: "",
+        
       },
+       user_store: this.$store.state.auth.user.user_store,
       categories: [],
       updateSubmit: false,
     };

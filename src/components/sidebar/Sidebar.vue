@@ -79,17 +79,25 @@
           </a>
         </li>
         <li class="out" @click="peringatan">
-          <a href="">
+          <router-link to="">
             <i class="bx bx-log-out"></i>
             <span class="links_name">Keluar</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
 export default {
+  computed: {
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
+  },
   data() {
     return {
       user_store: this.$store.state.auth.user.user_store,

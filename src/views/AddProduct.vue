@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <button @click="createProduct" type="button" class="btn btn-success btn-lg">
-                        TAMBAH
+                        Tambah
                     </button>
                     <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
@@ -26,7 +26,12 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control" id="exampleCategory">
+                <select class="col-lg-12" aria-label=".form-select-lg example">
+                <option selected>Pilih Kategori Produk..</option>
+                <option value="1">Barang Pokok</option>
+                <option value="2">Barang Impulsif</option>
+                <option value="3">Barang Darurat</option>
+            </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhotoProduct" class="form-label">Foto Produk</label>
@@ -53,12 +58,11 @@
     }
 
     label {
-        padding-top: 90px;
-        margin-bottom: 15px;
         color: #4caf50;
-        font-size: 20px;
-        font-weight: bold;
         font-family: sans-serif;
+        font-size: 16px;
+        padding-top: 10px;
+        margin-bottom: 5px;
     }
 
     button {
@@ -73,45 +77,46 @@
 
     .kembali {
         text-align: right;
+        font-size: 16px;
     }
 
     .form-label {
         color: #4caf50;
         font-family: sans-serif;
-        font-size: 18px;
+        font-size: 16px;
         padding-top: 10px;
         margin-bottom: 5px;
     }
 </style>
 <script>
-import axios from "axios";
-export default {
-  name: "Product",
-  data() {
-    return {
-      data: "test",
-      form: {
-        category_id: this.$category.state.auth.category_id,
-        name: "",
-        image: "",
-        price: "",
-        stock:"",
-        barcode:"",
-      },
-      user: this.$category_id.state.auth.user,
+    import axios from "axios";
+    export default {
+        name: "Product",
+        data() {
+            return {
+                data: "test",
+                form: {
+                    category_id: this.$store.state.auth,
+                    name: "",
+                    image: "",
+                    price: "",
+                    stock: "",
+                    barcode: "",
+                },
+                user: this.$store.state.auth.user,
+            };
+        },
+        methods: {
+            createProduct() {
+                axios
+                    .post("https://api-kasirin.jaggs.id/api/product/store", this.form, {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("access_token"),
+                        },
+                    })
+                    .then(() => console.log("sukses"))
+                    .catch(() => console.log("gagal"));
+            },
+        },
     };
-  },
-  methods: {
-    createProduct() {
-      axios
-        .post("https://api-kasirin.jaggs.id/api/product/store", this.form, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        })
-        .then(() => console.log("sukses"))
-        .catch(() => console.log("gagal"));
-    },
-  },
-};
 </script>

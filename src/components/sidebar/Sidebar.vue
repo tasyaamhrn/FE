@@ -42,7 +42,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/home">
+          <router-link :to="{ name: 'Home' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Beranda</span>
           </router-link>
@@ -102,7 +102,7 @@ export default {
       user_store: this.$store.state.auth.user.user_store,
     };
   },
-  name: "Sidebar",
+  name: "Logout",
   methods: {
     peringatan() {
       this.$swal({
@@ -115,15 +115,7 @@ export default {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.$store
-            .dispatch("logout")
-            .then((response) => {
-              console.log(response);
-              this.$router.push({ path: "/" });
-            })
-            .catch((error) => {
-              this.errors = error.response.data.errors;
-            });
+          this.$router.push({ path: "/" });
         } else if (result.isDenied) {
           // Swal.fire('Changes are not saved', '', 'info')
         }
@@ -474,8 +466,8 @@ export default {
 }
 </style>
 <style scoped>
-label{
-  color:#fff;
+label {
+  color: #fff;
   font-size: 20px;
 }
 </style>

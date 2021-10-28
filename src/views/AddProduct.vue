@@ -22,32 +22,32 @@
         <div class="container">
             <div class="mb-3">
                 <label for="exampleInputProduct" class="form-label">Nama Produk</label>
-                <input type="text" class="form-control" id="exampleProduct" aria-describedby="emailHelp">
+                <input type="text" v-model="form.name" class="form-control" id="exampleProduct" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
-                <select class="col-lg-12" aria-label=".form-select-lg example">
+                <select class="col-lg-12" v-model="form.category_id" aria-label=".form-select-lg example">
                 <option selected>Pilih Kategori Produk..</option>
-                <option value="1">Barang Pokok</option>
+                <option value="1">2</option>
                 <option value="2">Barang Impulsif</option>
                 <option value="3">Barang Darurat</option>
             </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPhotoProduct" class="form-label">Foto Produk</label>
-                <input type="file" class="form-control" id="examplePhotoProduct">
+                <input type="file"  class="form-control" id="examplePhotoProduct">
             </div>
             <div class="mb-3">
                 <label for="examplePriceProduct" class="form-label">Harga Produk</label>
-                <input type="text" class="form-control" id="examplePriceProduct">
+                <input type="text" v-model="form.price" class="form-control" id="examplePriceProduct">
             </div>
             <div class="mb-3">
                 <label for="exampleStockProduct" class="form-label">Stok Produk</label>
-                <input type="text" class="form-control" id="exampleStockProduct">
+                <input type="text" v-model="form.stock" class="form-control" id="exampleStockProduct">
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Barcode</label>
-                <input type="integer" class="form-control" id="exampleBarcode">
+                <input type="integer" v-model="form.barcode" class="form-control" id="exampleBarcode">
             </div>
         </div>
     </div>
@@ -87,6 +87,9 @@
         padding-top: 10px;
         margin-bottom: 5px;
     }
+    .btn-success{
+        font-size: 16px;
+    }
 </style>
 <script>
     import axios from "axios";
@@ -96,8 +99,8 @@
             return {
                 data: "test",
                 form: {
-                    category_id: this.$store.state.auth,
                     name: "",
+                    category_id: this.$store.state.auth,
                     image: "",
                     price: "",
                     stock: "",
@@ -115,7 +118,7 @@
                         },
                     })
                     .then(() => console.log("sukses"))
-                    .catch(() => console.log("gagal"));
+                    .catch((err) => console.log(err));
             },
         },
     };

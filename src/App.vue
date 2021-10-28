@@ -7,7 +7,7 @@
         <side-bar></side-bar>
       </div>
       <div class="home-section">
-        <router-view />
+        <router-view></router-view>
       </div>
     </div>
     <div v-else>

@@ -6,7 +6,7 @@
         <div class="logo_name">Kasirin Toko</div>
       </div>
       <ul class="nav-list">
-        <label>{{ user.name }}</label>
+        <!-- <label>{{ user.name }}</label> -->
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
@@ -30,13 +30,13 @@
           </div>
         </div>
         <li>
-          <router-link to="/AddStore">
+          <router-link :to="{ name: 'AddStore' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tambah Toko</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/AddTransaksi">
+          <router-link :to="{ name: 'AddTransaksi' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tambah Transaksi</span>
           </router-link>
@@ -54,19 +54,19 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/category">
+          <router-link :to="{ name: 'Category' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Kategori</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/transaksi">
+          <router-link :to="{ name: 'Transaksi' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Transaksi</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/about">
+          <router-link :to="{ name: 'About' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tentang Kami</span>
           </router-link>
@@ -79,24 +79,17 @@
           </a>
         </li>
         <li class="out" @click="peringatan">
-          <router-link to="">
+          <a href="">
             <i class="bx bx-log-out"></i>
             <span class="links_name">Keluar</span>
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
 export default {
-  computed: {
-    ...mapGetters({
-      isLoggedIn: "isLoggedIn",
-      user: "user",
-    }),
-  },
   data() {
     return {
       user_store: this.$store.state.auth.user.user_store,

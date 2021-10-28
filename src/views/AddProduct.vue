@@ -53,12 +53,11 @@
     }
 
     label {
-        padding-top: 90px;
-        margin-bottom: 15px;
         color: #4caf50;
-        font-size: 20px;
-        font-weight: bold;
         font-family: sans-serif;
+        font-size: 16px;
+        padding-top: 10px;
+        margin-bottom: 5px;
     }
 
     button {
@@ -78,40 +77,40 @@
     .form-label {
         color: #4caf50;
         font-family: sans-serif;
-        font-size: 18px;
+        font-size: 16px;
         padding-top: 10px;
         margin-bottom: 5px;
     }
 </style>
 <script>
-import axios from "axios";
-export default {
-  name: "Product",
-  data() {
-    return {
-      data: "test",
-      form: {
-        category_id: this.$category.state.auth.category_id,
-        name: "",
-        image: "",
-        price: "",
-        stock:"",
-        barcode:"",
-      },
-      user: this.$category_id.state.auth.user,
+    import axios from "axios";
+    export default {
+        name: "Product",
+        data() {
+            return {
+                data: "test",
+                form: {
+                    category_id: this.$category.state.auth.category_id,
+                    name: "",
+                    image: "",
+                    price: "",
+                    stock: "",
+                    barcode: "",
+                },
+                user: this.$category_id.state.auth.user,
+            };
+        },
+        methods: {
+            createProduct() {
+                axios
+                    .post("https://api-kasirin.jaggs.id/api/product/store", this.form, {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("access_token"),
+                        },
+                    })
+                    .then(() => console.log("sukses"))
+                    .catch(() => console.log("gagal"));
+            },
+        },
     };
-  },
-  methods: {
-    createProduct() {
-      axios
-        .post("https://api-kasirin.jaggs.id/api/product/store", this.form, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        })
-        .then(() => console.log("sukses"))
-        .catch(() => console.log("gagal"));
-    },
-  },
-};
 </script>

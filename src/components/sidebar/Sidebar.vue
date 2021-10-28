@@ -6,6 +6,7 @@
         <div class="logo_name">Kasirin Toko</div>
       </div>
       <ul class="nav-list">
+        <label>{{ user.name }}</label>
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
@@ -462,5 +463,11 @@ export default {
   .sidebar li .tooltip {
     display: none;
   }
+}
+</style>
+<style scoped>
+label{
+  color:#fff;
+  font-size: 20px;
 }
 </style>

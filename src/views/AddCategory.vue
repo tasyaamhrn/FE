@@ -47,7 +47,7 @@
              
               v-for="(store, index) in user_store"
               :key="index"
-          >{{ store.store_id }}</option>
+          >{{ store.store.name }}</option>
 </select>
          <p class="judul">Nama Kategori</p>
         <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />

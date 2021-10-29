@@ -25,7 +25,7 @@
               href="#"
               v-for="(store, index) in user_store"
               :key="index"
-              >{{ store.store_id }}</a
+              >{{ store.store.name }}</a
             >
           </div>
         </div>

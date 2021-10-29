@@ -3,7 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <button @click="createStore" type="button" class="btn btn-success btn-lg">
+          <button @click="createStore" type="button" class="btn btn-success btn-lg" >
+            
             DAFTAR
           </button>
         </div>
@@ -93,7 +94,27 @@ export default {
           },
         })
         .then(() => console.log("sukses"))
-        .catch(() => console.log("gagal"));
+        this.alertSuccess();
+        this.$router.push({
+          name:'Home'
+        })
+        .catch(() => console.log("gagal"))
+    },
+    alertSuccess() {
+      // Use sweetalert2
+      this.$swal({
+        type: "success",
+        title: "Success",
+        text: "Toko berhasil ditambahkan",
+      });
+    },
+    alertError() {
+      // Use sweetalert2
+      this.$swal({
+        type: "error",
+        title: "Oops...",
+        text: "Toko gagal ditambahkan, silahkan coba lagi",
+      });
     },
   },
 };

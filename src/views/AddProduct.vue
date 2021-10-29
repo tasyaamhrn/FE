@@ -100,7 +100,7 @@
                 data: "test",
                 form: {
                     name: "",
-                    category_id: this.$store.state.auth,
+                    category_id: this.$store.state.auth.category_id,
                     image: "",
                     price: "",
                     stock: "",

@@ -26,6 +26,7 @@
              
               v-for="(store, index) in user_store"
               :key="index"
+              
           >{{ store.store_id}} {{ store.store.name }}</option>
           
          

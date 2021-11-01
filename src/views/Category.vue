@@ -15,7 +15,7 @@
             <ul class="list-group list-group-flush" v-for="item in categories" :key="item.id" v-show="!updateSubmit"
                 :disabled="loading">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{item.store_id}} {{ item.name }}
+                    {{ item.name }}
 
                     <a href="#" @click="deleteData(item.id)" style="padding-left:85%;" class="text-danger">
                         <i class="fas fa-trash-alt red"></i>
@@ -29,7 +29,7 @@
 
         </div>
         <div class="container">
-            <form @submit.prevent="updateData()" v-show="updateSubmit" @click="update(form)">
+            <form v-show="updateSubmit">
                 <div class="form-group">
                     <label class="judul">
                         Nama Kategori
@@ -45,7 +45,7 @@
 
 
                 </select>
-                <button type="submit" class="btn-save">Update</button>
+                <button type="submit" @click="update(form)" class="btn-save">Update</button>
 
             </form>
 
@@ -99,31 +99,41 @@
             },
             edit(item) {
                 this.updateSubmit = true
+                this.form.id = item.id
                 this.form.name = item.name
                 this.form.store_id = item.store_id
             },
             update(form) {
-                axios({
-                        method: 'put',
-                        url: 'https://api-kasirin.jaggs.id/api/category/edit/' + form.id,
-                        data: {
-                            id: form.id,
-                            name: this.form.name,
-                            store_id: this.form.store_id
-                        }
+                axios.post('https://api-kasirin.jaggs.id/api/category/edit/' + form.id, {
+
+
+                        name: this.form.name,
+                        store_id: this.form.store_id
+
+                    }, {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.access_token,
+                        },
                     })
                     .then(() => {
                         this.load()
-                        this.form.id = ''
+
                         this.form.name = ''
                         this.form.store_id = ''
                         this.updateSubmit = false
-                        alert("saving...");
+                        Swal.fire(
+                            "Terupdate",
+                            "kategori Anda Sudah Terupdate",
+                            "success"
+                        );
                     })
-                    .catch(err => {
-                        console.log(err);
-                        alert("saving error");
-                    });
+                    .catch(() => {
+                        Swal.fire(
+                            "Gagal",
+                            "Produk Anda Gagal diupdate",
+                            "warning"
+                        );
+                    })
             },
             deleteData(id) {
                 Swal.fire({

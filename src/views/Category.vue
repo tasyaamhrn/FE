@@ -12,7 +12,8 @@
                     </div>
                 </div>
             </div>
-            <ul class="list-group list-group-flush" v-for="item in categories" :key="item.id" v-show="!updateSubmit" :disabled="loading">
+            <ul class="list-group list-group-flush" v-for="item in categories" :key="item.id" v-show="!updateSubmit"
+                :disabled="loading">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{item.store_id}} {{ item.name }}
 
@@ -25,30 +26,30 @@
                 </li>
 
             </ul>
-            
+
         </div>
         <div class="container">
-                <form @submit.prevent="updateData()" v-show="updateSubmit" @click="update(form)">
-                    <div class="form-group">
-                        <label class="judul">
-                            Nama Kategori
-                        </label>
-                        <input type="text" class="form-control" id="namakategori"
-                            placeholder="Masukkan Nama Kategori.." v-model="form.name">
-                    </div>
-                    <select class="form-control" v-model="form.store_id">
+            <form @submit.prevent="updateData()" v-show="updateSubmit" @click="update(form)">
+                <div class="form-group">
+                    <label class="judul">
+                        Nama Kategori
+                    </label>
+                    <input type="text" class="form-control" id="namakategori" placeholder="Masukkan Nama Kategori.."
+                        v-model="form.name">
+                </div>
+                <select class="form-control" v-model="form.store_id">
 
-                        <option>Pilih Toko</option>
-                        <option class="dropdown-item" href="#" v-for="(store, index) in user_store" :key="index">
-                            {{ store.store_id}} {{ store.store.name }}</option>
+                    <option>Pilih Toko</option>
+                    <option class="dropdown-item" href="#" v-for="(store, index) in user_store" :key="index">
+                        {{ store.store_id}} {{ store.store.name }}</option>
 
 
-                    </select>
-                    <router-link to="/category" ><button type="submit" class="btn-save">Update</button></router-link>
+                </select>
+                <button type="submit" class="btn-save">Update</button>
 
-                </form>
+            </form>
 
-            </div>
+        </div>
     </div>
 </template>
 
@@ -58,7 +59,7 @@
     import {
         mapGetters
     } from 'vuex'
-  
+
     export default {
         computed: {
             ...mapGetters({
@@ -68,14 +69,14 @@
         },
         data() {
             return {
-                 form: {
-        name: "",
-        store_id: "",
-        
-      },
+                form: {
+                    name: "",
+                    store_id: "",
+
+                },
                 categories: {},
                 user_store: this.$store.state.auth.user.user_store,
-                 loading: false,
+                loading: false,
                 updateSubmit: false
             }
         },
@@ -96,11 +97,34 @@
                         console.log(err)
                     });
             },
-           edit(item){ 
-      this.updateSubmit = true
-      this.form.name = item.name 
-      this.form.store_id = item.store_id
-    },
+            edit(item) {
+                this.updateSubmit = true
+                this.form.name = item.name
+                this.form.store_id = item.store_id
+            },
+            update(form) {
+                axios({
+                        method: 'put',
+                        url: 'https://api-kasirin.jaggs.id/api/category/edit/' + form.id,
+                        data: {
+                            id: form.id,
+                            name: this.form.name,
+                            store_id: this.form.store_id
+                        }
+                    })
+                    .then(() => {
+                        this.load()
+                        this.form.id = ''
+                        this.form.name = ''
+                        this.form.store_id = ''
+                        this.updateSubmit = false
+                        alert("saving...");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert("saving error");
+                    });
+            },
             deleteData(id) {
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus Data Ini ?",
@@ -162,7 +186,8 @@
         float: right;
         text-align: center;
     }
-.btn-save {
+
+    .btn-save {
         margin-top: 20px;
         border-radius: 10px;
         background-color: #4CAF50;
@@ -173,6 +198,7 @@
         width: 150px;
         height: 40px;
     }
+
     #btn-add {
         background-color: #4CAF50;
         border-color: transparent;

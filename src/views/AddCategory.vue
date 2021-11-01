@@ -115,7 +115,7 @@ export default {
       },
        user_store: this.$store.state.auth.user.user_store,
       categories: [],
-      updateSubmit: false,
+      
     };
   },
   methods: {

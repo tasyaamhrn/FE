@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Product from '../views/Product.vue'
 import Category from '../views/Category.vue'
 import AddCategory from '../views/AddCategory.vue'
-import EditCategory from '../views/EditCategory.vue'
+
 import Transaksi from '../views/Transaksi.vue'
 import About from '../views/About.vue'
 import detail_transaksi from '../views/detail_transaksi.vue'
@@ -47,11 +47,7 @@ const routes = [
     name: 'AddCategory',
     component: AddCategory
   },
-  {
-    path: '/EditCategory',
-    name: 'EditCategory',
-    component: EditCategory
-  },
+
   {
     path: '/transaksi',
     name: 'Transaksi',

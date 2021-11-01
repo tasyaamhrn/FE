@@ -12,46 +12,43 @@
                     </div>
                 </div>
             </div>
-            <ul class="list-group list-group-flush" v-for="item in categories" :key="item.id">
+            <ul class="list-group list-group-flush" v-for="item in categories" :key="item.id" v-show="!updateSubmit" :disabled="loading">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ item.name }}
+                    {{item.store_id}} {{ item.name }}
 
-                    <a href="#" @click="deleteData(item.id)"  style="padding-left:85%;" class="text-danger">
+                    <a href="#" @click="deleteData(item.id)" style="padding-left:85%;" class="text-danger">
                         <i class="fas fa-trash-alt red"></i>
                     </a>
-                    <router-link to="EditCategory"><i class="far fa-edit"></i></router-link>
+                    <a href="#" @click="edit(item)"><i class="far fa-edit"></i></a>
 
 
                 </li>
 
             </ul>
-
+            
         </div>
-        <!-- Modal -->
+        <div class="container">
+                <form @submit.prevent="updateData()" v-show="updateSubmit" @click="update(form)">
+                    <div class="form-group">
+                        <label class="judul">
+                            Nama Kategori
+                        </label>
+                        <input type="text" class="form-control" id="namakategori"
+                            placeholder="Masukkan Nama Kategori.." v-model="form.name">
+                    </div>
+                    <select class="form-control" v-model="form.store_id">
 
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <!-- <h5 class="modal-title" id="exampleModalLabel">Kategori</h5> -->
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus kategori ini?
-                    </div>
-                    <div class="modal-footer">
-                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                        <option>Pilih Toko</option>
+                        <option class="dropdown-item" href="#" v-for="(store, index) in user_store" :key="index">
+                            {{ store.store_id}} {{ store.store.name }}</option>
 
-                        <router-link to="EditCategory"> <button type="button" id="edit"
-                                class="btn btn-primary  btn-lg center-block"><i class='bx bx-edit'>Edit</i></button>
-                        </router-link>
-                    </div>
-                </div>
+
+                    </select>
+                    <router-link to="/category" ><button type="submit" class="btn-save">Update</button></router-link>
+
+                </form>
+
             </div>
-        </div>
     </div>
 </template>
 
@@ -61,6 +58,7 @@
     import {
         mapGetters
     } from 'vuex'
+  
     export default {
         computed: {
             ...mapGetters({
@@ -70,7 +68,15 @@
         },
         data() {
             return {
+                 form: {
+        name: "",
+        store_id: "",
+        
+      },
                 categories: {},
+                user_store: this.$store.state.auth.user.user_store,
+                 loading: false,
+                updateSubmit: false
             }
         },
 
@@ -90,7 +96,11 @@
                         console.log(err)
                     });
             },
-
+           edit(item){ 
+      this.updateSubmit = true
+      this.form.name = item.name 
+      this.form.store_id = item.store_id
+    },
             deleteData(id) {
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus Data Ini ?",
@@ -152,7 +162,17 @@
         float: right;
         text-align: center;
     }
-
+.btn-save {
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #4CAF50;
+        float: right;
+        font-weight: bold;
+        color: white;
+        border-color: transparent;
+        width: 150px;
+        height: 40px;
+    }
     #btn-add {
         background-color: #4CAF50;
         border-color: transparent;

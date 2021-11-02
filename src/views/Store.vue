@@ -12,11 +12,11 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped" v-show="!updateSubmit"
+                    <table class="table table-bordered" v-show="!updateSubmit"
         :disabled="loading">
-                        <thead>
+                        <thead class="tbl">
                             <tr>
-                                <th>ID</th>
+                               
                                 <th>Store Name</th>
                                 <th>Address</th>
                                 <th>Action</th>
@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in stores" :key="item.id" >
-                                <td>{{ item.store.id }}</td>
+                               
                                 <td>{{ item.store.name }}</td>
                                 <td>{{ item.store.address }}</td>
                                 <td>
@@ -83,6 +83,10 @@
         float: right;
         text-align: center;
     }
+      .tbl {
+    background-color: #4CAF50;
+    color: white;
+  }
     .btn-save {
   margin-top: 20px;
   border-radius: 10px;

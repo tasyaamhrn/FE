@@ -14,9 +14,47 @@
         </div>
       </div>
     </div>
-    <div class="container ">
+    <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Pilih Toko</label>
+            <select
+              v-model="store_id"
+              class="form-control"
+              @change="getCategory"
+            >
+              <option value="">Pilih Toko</option>
+              <option
+                :value="store.store.id"
+                v-for="(store, index) in stores"
+                :key="index"
+              >
+                {{ store.store.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <!-- <div class="col-md-12" v-if="store_id">
+          <div class="form-group">
+            <label>Pilih Kategori</label>
+            <select
+              v-model="category_id"
+              class="form-control"
+              @change="getData"
+            >
+              <option value="">Pilih Kategori</option>
+              <option
+                :value="category.id"
+                v-for="(category, index) in categories"
+                :key="index"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+        </div> -->
+        <!-- <div class="col-md-6">
           <div class="cariproduk">
             <input
               type="text"
@@ -35,48 +73,111 @@
               aria-label="Last name"
             />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="container">
-      <div class="container-product2">
+      <div class="container-product2" v-for="item in categories" :key="item.id">
         <div class="col-makan">
-          <div v-for="item in categories" :key="item.id">
+          <div>
             <h6>{{ item.name }}</h6>
           </div>
           <hr />
           <div class="row">
-            <div class="col-md-3" v-for="item in products" :key="item.id">
+            <div class="col-md-3" v-for="p in item.product" :key="p.id">
               <div class="container-barang">
                 <center>
                   <img
-                    :src="item.image_url"
-                    style="width:20%;"
+                    :src="p.image_url"
+                    style="width: 20%"
                     alt="Product Image"
                   />
                 </center>
-                <!-- <img src="../assets/beras.png" alt=""> -->
-                <p class="makanan">{{ item.name }}</p>
-                <p class="makanan">{{ item.price }}</p>
-                <p class="makanan">Stock : {{ item.stock }}</p>
+                <p class="makanan">{{ p.name }}</p>
+                <p class="makanan">{{ p.price }}</p>
+                <p class="makanan">Stock : {{ p.stock }}</p>
               </div>
             </div>
-            <!-- <div class="col">
-                        <div class="container-barang">
-                            <router-link to="DetailProduct">
-                                <img src="../assets/miesedap.png">
-                            </router-link>
-                            <p class="makanan">Mie Sedap <br> 2.500</p>
-                        </div>
-                    </div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      products: [],
+      store_id: "",
+      category_id: "",
+      stores: [],
+      categories: [],
+    };
+  },
+  mounted() {
+    this.getStore();
+  },
+  methods: {
+    getStore() {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"),
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          this.stores = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getCategory() {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          this.category_id = "";
+          this.categories = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getData() {
+      axios
+        .get("https://api-kasirin.jaggs.id/api/product", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+          params: {
+            category_id: this.category_id,
+          },
+        })
+        .then(({ data }) => (this.products = data.data))
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
+</script>
+
 <style scoped>
-h3{
+h3 {
   font-family: Arial, Helvetica, sans-serif;
   color: #4caf50;
   font-size: 18px;
@@ -164,27 +265,3 @@ img {
   z-index: 1;
 }
 </style>
-<script>
-import axios from "axios";
-export default {
-  data() {
-    return {
-      products: {},
-      categories: {},
-    };
-  },
-
-  mounted() {
-    axios
-      .get("https://api-kasirin.jaggs.id/api/product", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => (this.products = data.data))
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-};
-</script>

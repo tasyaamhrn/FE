@@ -8,33 +8,33 @@
       <ul class="nav-list">
         <label>{{ user.name }}</label>
         <li>
-          <router-link :to="{ name: 'Store' }">
+          <router-link :to="{ name: 'Home' }">
             <i class="bx bx-plus"></i>
-            <span class="links_name">Toko</span>
+            <span class="links_name">Beranda</span>
           </router-link>
         </li>
-        <li>
+         <li>
           <router-link :to="{ name: 'AddTransaksi' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tambah Transaksi</span>
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Home' }">
+          <router-link :to="{ name: 'Store' }">
             <i class="bx bx-plus"></i>
-            <span class="links_name">Beranda</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'Product' }">
-            <i class="bx bx-plus"></i>
-            <span class="links_name">Produk</span>
+            <span class="links_name">Toko</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Category' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Kategori</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Product' }">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Produk</span>
           </router-link>
         </li>
         <li>

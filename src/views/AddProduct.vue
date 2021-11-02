@@ -45,10 +45,23 @@
         <template v-slot:form>
           <input type="file" accept="image/*" class="form-control" @change="onImageSelected" />
         </template>
+      <select class="form-control"></select>
       </input-form>
+      <div class="form-group">
+            <select class="form-control" v-model="store_id" @change="load">
+              <option value="">Pilih Toko</option>
+              <option
+                :value="store.store_id"
+                v-for="(store, index) in user_store"
+                :key="index"
+              >
+                {{ store.store.name }}
+              </option>
+            </select>
+          </div>
         <div class="form-group">
             <select class="form-control" v-model="form.category_id">
-              <option value="">Pilih Toko</option>
+              <option value="">Pilih Kategori</option>
               <option
                 v-for="item in categories" :key="item.id"
                  :value="item.id"
@@ -160,7 +173,15 @@
 <script>
   import axios from "axios";
   import InputForm from "../components/inputForm.vue";
+import { mapGetters } from "vuex";
+
   export default {
+     computed: {
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
+  },
     data() {
       return {
         form: {
@@ -171,6 +192,8 @@
           stock: "",
           barcode: "",
         },
+         store_id: "",
+         user_store: this.$store.state.auth.user.user_store,
         errors: [],
         categories:{},
       };
@@ -184,7 +207,7 @@
       },
        load(){
          axios
-        .get("https://api-kasirin.jaggs.id/api/category?store_id=1", {
+        .get("https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
           }

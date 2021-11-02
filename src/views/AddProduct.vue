@@ -29,7 +29,7 @@
             v-model="form.name" />
         </template>
       </input-form>
-      <p class="judul">
+      <!-- <p class="judul">
         Pilih Kategori
       </p>
       <input-form :errors="errors.category_id">
@@ -37,7 +37,7 @@
           <input class="form-control" id="kategoriproduk" type="int" placeholder="Pilih Kategori Barang"
             v-model="form.category_id" />
         </template>
-      </input-form>
+      </input-form> -->
       <p class="judul">
         Foto Produk/Layanan
       </p>
@@ -46,6 +46,17 @@
           <input type="file" accept="image/*" class="form-control" @change="onImageSelected" />
         </template>
       </input-form>
+        <div class="form-group">
+            <select class="form-control" v-model="form.category_id">
+              <option value="">Pilih Toko</option>
+              <option
+                v-for="item in categories" :key="item.id"
+                 :value="item.id"
+              >
+               {{ item.name }}
+              </option>
+            </select>
+          </div>
       <p class="judul">
         Harga Produk/Layanan
       </p>
@@ -73,6 +84,25 @@
             v-model="form.barcode" />
         </template>
       </input-form>
+
+      <!-- <input-form :errors="errors.category_id">
+            <template v-slot:form>
+                <select
+                    class="form-control"
+                    id="kategoriproduk"
+                    type="text"
+                    placeholder="Masukkan Jenis Kategori"
+                    v-model="form.category_id"
+                />
+            </template>  
+            </input-form> -->
+
+      <!-- <select class="col-lg-12" aria-label=".form-select-lg example">
+                <option selected>Pilih Kategori Produk..</option>
+                <option value="1">Barang Pokok</option>
+                <option value="2">Barang Impulsif</option>
+                <option value="3">Barang Darurat</option>
+            </select> -->
     </div>
   </div>
 </template>
@@ -142,6 +172,7 @@
           barcode: "",
         },
         errors: [],
+        categories:{},
       };
     },
     components: {
@@ -151,6 +182,22 @@
       onImageSelected(event) {
         this.form.image = event.target.files[0];
       },
+       load(){
+         axios
+        .get("https://api-kasirin.jaggs.id/api/category?store_id=1", {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+          }
+        })
+        .then(({
+          data
+        }) => {
+          this.categories = data.data;
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    },
       product() {
         let formData = new FormData();
         formData.set("name", this.form.name);
@@ -171,6 +218,9 @@
             this.errors = err.response.data;
           });
       },
+    },
+    mounted() {
+      this.load()
     },
   };
 </script>

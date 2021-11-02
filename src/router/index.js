@@ -15,8 +15,8 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import AddStore from '../views/AddStore.vue'
-import Store from '../views/Store.vue'
+import AddStore from '../views/Store/AddStore.vue'
+import Store from '../views/Store/Store.vue'
 Vue.use(VueRouter)
 
 
@@ -33,7 +33,7 @@ const routes = [
     component: About
   },
   {
-    path: '/Product',
+    path: '/product',
     name: 'Product',
     component: Product
   },
@@ -43,7 +43,7 @@ const routes = [
     component: Category
   },
   {
-    path: '/AddCategory',
+    path: '/addcategory',
     name: 'AddCategory',
     component: AddCategory
   },
@@ -64,22 +64,22 @@ const routes = [
     component: AddProduct
   },
   {
-    path: '/AddTransaksi',
+    path: '/addtransaksi',
     name: 'AddTransaksi',
     component: AddTransaksi
   },
   {
-    path: '/Call',
+    path: '/call',
     name: 'Call',
     component: Call
   },
   {
-    path: '/DetailProduct',
+    path: '/detailproduct',
     name: 'DetailProduct',
     component: DetailProduct
   },
   {
-    path: '/EditProduct',
+    path: '/editproduct',
     name: 'EditProduct',
     component: EditProduct
   },
@@ -89,20 +89,25 @@ const routes = [
     component: Login
   },
   {
-    path: '/Register',
+    path: '/register',
     name: 'Register',
     component: Register
   },
   {
-    path: '/AddStore',
-    name: 'AddStore',
-    component: AddStore
-  },
-  {
-    path: '/Store',
+    path: '/store',
     name: 'Store',
     component: Store
   },
+  {
+    path: '/addstore',
+    name: 'AddStore',
+    component: AddStore
+  },
+  // {
+  //   path: '/EditStore',
+  //   name: 'EditStore',
+  //   component: EditStore
+  // },
 ]
 
 const router = new VueRouter({

@@ -132,9 +132,6 @@
 .tambahproduk{
     width: 100%;
 }
-.col-lg-12 {
-  height: 34px;
-}
 label {
   padding-top: 90px;
   margin-bottom: 15px;

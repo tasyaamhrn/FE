@@ -66,7 +66,93 @@ h1 {
 }
 </style>
 <script>
-//  import axios from 'axios'
-//   import Swal from 'sweetalert2';
+ import axios from "axios";
+
+ import Swal from 'sweetalert2';
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "user",
+    }),
+  },
+  data() {
+    return {
+     stores: {
+          id: "",
+          name: "",
+          address: ""
+        },
+    }
+  },
+  methods: {
+    load() {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/user-stores?user_id=" + localStorage.getItem('id'),
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then(({
+            data
+          }) => {
+            this.stores = data.data;
+
+          })
+          .catch((err) => {
+            console.log(err)
+          });
+      },
+    deleteData(id) {
+        Swal.fire({
+          title: "Anda Yakin Ingin Menghapus Store Ini ?",
+          text: "Klik Batal untuk Membatalkan Penghapusan",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Batal",
+          confirmButtonText: "Hapus"
+        }).then(result => {
+          if (result.value) {
+            axios.delete('https://api-kasirin.jaggs.id/api/stores/' + id)
+              .then(res => {
+                Swal.fire(
+                  "Terhapus",
+                  "Store Anda Sudah Terhapus",
+                  "success"
+                );
+                this.load();
+                console.log(res);
+              })
+              .catch((err) => {
+                Swal.fire(
+                  "Gagal",
+                  "Store Anda Gagal Terhapus",
+                  "warning"
+                );
+                console.log(err)
+              })
+          } else {
+            Swal.fire(
+              "Gagal",
+              "Store Anda Gagal Terhapus",
+              "warning"
+            );
+          }
+        })
+      }
+    
+  },
+mounted(){
+this.load()
+}
+};
+
 
 </script>

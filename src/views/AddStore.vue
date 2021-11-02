@@ -91,7 +91,7 @@ export default {
         .then(() => console.log("sukses"))
         this.alertSuccess();
         this.$router.push({
-          name:'Home'
+          name:'Store'
         })
         .catch(() => console.log("gagal"))
     },

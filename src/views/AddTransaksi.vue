@@ -176,13 +176,7 @@
     }
 
     label {
-        padding-left: 0px;
-        margin-top: 90px;
-        margin-bottom: 15px;
         color: #4CAF50;
-        font-size: 20px;
-        font-weight: bold;
-        font-family: sans-serif;
     }
 
 

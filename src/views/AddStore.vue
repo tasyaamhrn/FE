@@ -40,12 +40,7 @@
   height: 34px;
 }
 label {
-  padding-top: 90px;
-  margin-bottom: 15px;
   color: #4caf50;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: sans-serif;
 }
 
 button {

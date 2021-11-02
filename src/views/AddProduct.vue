@@ -59,10 +59,6 @@
 
     label {
         color: #4caf50;
-        font-family: sans-serif;
-        font-size: 16px;
-        padding-top: 10px;
-        margin-bottom: 5px;
     }
 
     button {

@@ -17,7 +17,7 @@
             <div class="form-group">
               <label>Pilih Toko</label>
               <select class="form-control" v-model="form.store_id">
-                <option>Pilih Store</option>
+                <option disabled selected>Pilih Store</option>
                 <option
                   class="dropdown-item"
                   v-for="(store, index) in user_store"

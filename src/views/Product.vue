@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
         <div class="col-md-6">
-          <label>PRODUK</label>
+          <h3>PRODUK</h3>
         </div>
         <div class="col-md-6">
           <div class="tambah">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container ">
       <div class="row">
         <div class="col-md-6">
           <div class="cariproduk">
@@ -76,6 +76,13 @@
   </div>
 </template>
 <style scoped>
+h3{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #4caf50;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 75px;
+}
 p {
   margin-bottom: 0px;
 }

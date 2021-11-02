@@ -66,7 +66,7 @@ h1 {
 }
 </style>
 <script>
- import axios from 'axios'
-  import Swal from 'sweetalert2';
-  
+//  import axios from 'axios'
+//   import Swal from 'sweetalert2';
+
 </script>

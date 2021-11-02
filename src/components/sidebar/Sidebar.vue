@@ -8,7 +8,7 @@
       <ul class="nav-list">
         <label>{{ user.name }}</label>
         <li>
-          <router-link :to="{ name: 'AddStore' }">
+          <router-link :to="{ name: 'Store' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Toko</span>
           </router-link>

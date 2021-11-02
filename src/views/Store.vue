@@ -62,7 +62,7 @@
                v-model="stores.address"
                >
            </div>
-            <button type="submit" @click="update(form)" class="btn-save">
+            <button type="submit" @click="update(stores)" class="btn-save">
         Update
       </button>
        </form>
@@ -157,6 +157,29 @@
                 this.stores.name = item.store.name;
                 this.stores.address = item.store.address;
             },
+            update(stores) {
+      axios
+        .put(
+          "https://api-kasirin.jaggs.id/api/stores/" + stores.id,
+          {
+            name: this.stores.name,
+            address: this.stores.address,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.access_token,
+            },
+          }
+        )
+        .then(() => {
+          this.load();
+          this.updateSubmit = false;
+          Swal.fire("Terupdate", "kategori Anda Sudah Terupdate", "success");
+        })
+        .catch(() => {
+          Swal.fire("Gagal", "Produk Anda Gagal diupdate", "warning");
+        });
+    },
             deleteData(id) {
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus Store Ini ?",

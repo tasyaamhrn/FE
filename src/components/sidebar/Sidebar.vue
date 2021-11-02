@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sidebar open" style="overflow-y: scroll">
+    <div class="sidebar open" style="overflow-y: scroll;">
       <div class="logo-details">
         <img src="../../assets/logo-kasirin.png" />
         <div class="logo_name">Kasirin Toko</div>
@@ -114,6 +114,9 @@ export default {
 
 // global
 <style>
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+}
 * {
   margin: 0;
   padding: 0;

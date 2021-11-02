@@ -29,15 +29,7 @@
             v-model="form.name" />
         </template>
       </input-form>
-      <!-- <p class="judul">
-        Pilih Kategori
-      </p>
-      <input-form :errors="errors.category_id">
-        <template v-slot:form>
-          <input class="form-control" id="kategoriproduk" type="int" placeholder="Pilih Kategori Barang"
-            v-model="form.category_id" />
-        </template>
-      </input-form> -->
+     
       <p class="judul">
         Foto Produk/Layanan
       </p>
@@ -47,7 +39,10 @@
         </template>
       <select class="form-control"></select>
       </input-form>
-      <div class="form-group">
+      <p class="judul">
+         Toko
+      </p>
+      <div class="form-group" style="margin-left:30px;">
             <select class="form-control" v-model="store_id" @change="load">
               <option value="">Pilih Toko</option>
               <option
@@ -59,7 +54,10 @@
               </option>
             </select>
           </div>
-        <div class="form-group">
+          <p class="judul">
+         Kategori
+          </p>
+        <div class="form-group" style="margin-left:30px;">
             <select class="form-control" v-model="form.category_id">
               <option value="">Pilih Kategori</option>
               <option
@@ -97,25 +95,6 @@
             v-model="form.barcode" />
         </template>
       </input-form>
-
-      <!-- <input-form :errors="errors.category_id">
-            <template v-slot:form>
-                <select
-                    class="form-control"
-                    id="kategoriproduk"
-                    type="text"
-                    placeholder="Masukkan Jenis Kategori"
-                    v-model="form.category_id"
-                />
-            </template>  
-            </input-form> -->
-
-      <!-- <select class="col-lg-12" aria-label=".form-select-lg example">
-                <option selected>Pilih Kategori Produk..</option>
-                <option value="1">Barang Pokok</option>
-                <option value="2">Barang Impulsif</option>
-                <option value="3">Barang Darurat</option>
-            </select> -->
     </div>
   </div>
 </template>
@@ -136,7 +115,6 @@
     font-weight: bold;
     font-family: sans-serif;
   }
-
   button {
     font-size: 16px;
     margin-top: 90px;

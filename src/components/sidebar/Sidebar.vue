@@ -1,62 +1,40 @@
 <template>
   <div>
-    <div class="sidebar open">
+    <div class="sidebar open" style="overflow-y: scroll">
       <div class="logo-details">
         <img src="../../assets/logo-kasirin.png" />
         <div class="logo_name">Kasirin Toko</div>
       </div>
       <ul class="nav-list">
         <label>{{ user.name }}</label>
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i class="bx bx-store"></i>
-            <span class="links_name" style="font-size:18px;">Pilih Store</span>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a
-              class="dropdown-item"
-              href="#"
-              v-for="(store, index) in user_store"
-              :key="index"
-              >{{ store.store.name }}</a
-            >
-          </div>
-        </div>
-        <li>
-          <router-link :to="{ name: 'AddStore' }">
-            <i class="bx bx-plus"></i>
-            <span class="links_name">Tambah Toko</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'AddTransaksi' }">
-            <i class="bx bx-plus"></i>
-            <span class="links_name">Tambah Transaksi</span>
-          </router-link>
-        </li>
         <li>
           <router-link :to="{ name: 'Home' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Beranda</span>
           </router-link>
         </li>
-        <li>
-          <router-link :to="{ name: 'Product' }">
+         <li>
+          <router-link :to="{ name: 'AddTransaksi' }">
             <i class="bx bx-plus"></i>
-            <span class="links_name">Produk</span>
+            <span class="links_name">Tambah Transaksi</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Store' }">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Toko</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Category' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Kategori</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Product' }">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Produk</span>
           </router-link>
         </li>
         <li>

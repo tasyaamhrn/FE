@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
         <div class="col-md-6">
-          <label>TAMBAH KATEGORI</label>
+          <h3>TAMBAH KATEGORI</h3>
         </div>
         <div class="col-md-6">
           <div class="kembali">
@@ -12,43 +12,51 @@
             </router-link>
           </div>
         </div>
+        <div class="col-md-12">
+          <form @submit.prevent="save">
+            <div class="form-group">
+              <label>Pilih Toko</label>
+              <select class="form-control" v-model="form.store_id">
+                <option disabled selected>Pilih Store</option>
+                <option
+                  class="dropdown-item"
+                  v-for="(store, index) in user_store"
+                  :key="index"
+                  :value="store.store.id"
+                >
+                  {{ store.store.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nama Kategori</label>
+              <input
+                type="text"
+                class="form-control"
+                id="namakategori"
+                v-model="form.name"
+                name=""
+                value=""
+              />
+            </div>
+            <button
+              type="submit"
+              v-show="!updateSubmit"
+              name="button"
+              class="sv"
+            >
+              SAVE
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="container">
-     
-      <form @submit.prevent="save">
-      
-     
-<select class="form-control"  v-model="form.store_id">
-  <option>Pilih Store</option>
-              <option class="dropdown-item"
-              href="#"
-             
-              v-for="(store, index) in user_store"
-              :key="index"
-              
-          >{{ store.store_id}} {{ store.store.name }}</option>
-          
-         
-</select>
-         <p class="judul">Nama Kategori</p>
-        <input type="text"  class="form-control" id="namakategori" v-model="form.name" name="" value="" />
-         <button type="submit" v-show="!updateSubmit" name="button" class="sv">SAVE</button>
-      </form>
-      <!-- <input type="text" class="form-control" id="namakategori"  placeholder="Masukkan Nama Kategori..">
-            <router-link to="/category"><button type="button" class="btn-save">Simpan</button></router-link> -->
     </div>
   </div>
 </template>
 
 <style scoped>
 label {
-  padding-top: 90px;
-  margin-bottom: 15px;
   color: #4caf50;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: sans-serif;
 }
 
 button {
@@ -60,25 +68,6 @@ button {
   color: white;
   border-color: transparent;
   font-weight: bold;
-}
-#dropdownMenuButton {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  border-radius: 12px;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.4s ease;
-  background: #fff;
-  color:#4caf50;
-  padding-top: 5px;
-  border: 1px solid #EDEDED;
-}
-#dropdownMenuButton:hover {
-  color: #4caf50;
-}
-.dropdown-item {
-  color: #4caf50;
 }
 .kembali {
   text-align: right;
@@ -111,11 +100,9 @@ export default {
       form: {
         name: "",
         store_id: "",
-        
       },
-       user_store: this.$store.state.auth.user.user_store,
+      user_store: this.$store.state.auth.user.user_store,
       categories: [],
-      
     };
   },
   methods: {
@@ -124,8 +111,8 @@ export default {
         .post(
           "https://api-kasirin.jaggs.id/api/category/store",
           {
-              name: this.form.name,
-              store_id: this.form.store_id,
+            name: this.form.name,
+            store_id: this.form.store_id,
           },
           {
             headers: {
@@ -133,17 +120,13 @@ export default {
             },
           }
         )
-        .then(res => {
-            console.log(res.data);
-        //   this.load();
-          this.form.name = "";
-          alert("saving...");
-           this.$router.push({
-          name:'Category'
+        .then(() => {
+          this.$router.push({
+            name: "Category",
+          });
         })
-        })
-        .catch(err => {
-            console.log(err);
+        .catch((err) => {
+          console.log(err);
           alert("saving error");
         });
     },

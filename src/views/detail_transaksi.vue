@@ -86,11 +86,6 @@
     /* margin-left:30px; */
   }
 
-  label {
-    padding-top: 25px;
-    font-size: 16px;
-  }
-
   .produk {
     padding-top: 20px;
   }

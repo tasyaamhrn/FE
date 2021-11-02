@@ -15,8 +15,12 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import AddStore from '../views/Store/AddStore.vue'
+
+//store
 import Store from '../views/Store/Store.vue'
+import AddStore from '../views/Store/AddStore.vue'
+import EditStore from '../views/Store/EditStore.vue'
+//endofstore
 Vue.use(VueRouter)
 
 
@@ -102,6 +106,11 @@ const routes = [
     path: '/addstore',
     name: 'AddStore',
     component: AddStore
+  },
+  {
+    path: '/editstore/:id',
+    name: 'EditStore',
+    component: EditStore
   },
   // {
   //   path: '/EditStore',

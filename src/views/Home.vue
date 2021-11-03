@@ -27,26 +27,35 @@
       <div class="container">
         <div class="tren-transaksi">
           <h2>Tren Transaksi</h2>
-          <h3>No chart data available</h3>
+          <transaction-chart></transaction-chart>
+
         </div>
       </div>
       <div class="container">
         <div class="kategori">
           <h2>Kategori paling sering dibeli</h2>
-          <h3>No chart data available</h3>
+          <category-chart></category-chart>
         </div>
       </div>
       <div class="container">
         <div class="produk">
           <h2>Produk paling sering dibeli</h2>
-          <h3>No chart data available</h3>
+          <product-chart></product-chart>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import CategoryChart from './Chart/CategoryChart.vue'
+  import TransactionChart from './Chart/TransactionChart.vue'
+  import ProductChart from './Chart/ProductChart.vue'
   export default {
+    components: {
+      CategoryChart,
+      TransactionChart,
+      ProductChart
+    },
     methods: {
       currentDateTime() {
         const current = new Date();
@@ -61,7 +70,7 @@
 
 <style scoped>
   h2 {
-    color: grey;
+    color: black;
     font-size: 18px;
     text-align: center;
     font-family: Poppins;
@@ -96,7 +105,7 @@
   .kategori,
   .produk {
     /* width:650px; */
-    height: 270px;
+    height: auto;
     box-shadow: 2px 2px 2px 2px rgba(193, 193, 193, 0.8);
     background-color: #fff;
     margin-top: 40px;

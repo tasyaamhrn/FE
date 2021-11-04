@@ -82,9 +82,9 @@
                 <p class="makanan">{{ p.name }}</p>
                 <p class="makanan">{{ p.price }}</p>
                 <p class="makanan">Stock : {{ p.stock }}</p>
-                <button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
+                <router-link :to="{ name: 'EditProduct', params: { id: p.id } }"><button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
                   Edit
-                </button>
+                </button></router-link>
                 <button type="button" style="width:50%;" class="btn btn-danger" @click="deleteData(p.id)">
                   Hapus
                 </button>

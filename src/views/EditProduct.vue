@@ -26,7 +26,7 @@
                     aria-describedby="emailHelp">
             </div>
             <input type="file" accept="image/*" class="form-control" @change="onImageSelected" />
-            <label for="">test</label>
+            <!-- <label for="">test</label> -->
             <!-- <div class="mb-3">
                 <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
                 <select class="form-control" v-model="form.category_id">

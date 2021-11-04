@@ -82,12 +82,16 @@
                 <p class="makanan">{{ p.name }}</p>
                 <p class="makanan">{{ p.price }}</p>
                 <p class="makanan">Stock : {{ p.stock }}</p>
-                <router-link :to="{ name: 'EditProduct', params: { id: p.id } }"><button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
+                <router-link :to="{ name: 'EditProduct', params: { id: p.id } }">
+                   <i class="fas fa-edit blue" style="margin-left:35%;"  @click="edit(item)"></i>
+                  <!-- <button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
                   Edit
-                </button></router-link>
-                <button type="button" style="width:50%;" class="btn btn-danger" @click="deleteData(p.id)">
+                </button> -->
+                </router-link>
+                 <i class="far fa-trash-alt" style="margin-left:10%; color:red;"  @click="deleteData(p.id)"></i>
+                <!-- <button type="button" style="width:50%;" class="btn btn-danger" @click="deleteData(p.id)">
                   Hapus
-                </button>
+                </button> -->
               </div>
             </div>
           </div>

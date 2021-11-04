@@ -152,6 +152,7 @@
   import axios from "axios";
   import InputForm from "../components/inputForm.vue";
 import { mapGetters } from "vuex";
+import Swal from 'sweetalert2';
 
   export default {
      computed: {
@@ -194,6 +195,7 @@ import { mapGetters } from "vuex";
           data
         }) => {
           this.categories = data.data;
+          
         })
         .catch((err) => {
           console.log(err)
@@ -210,6 +212,7 @@ import { mapGetters } from "vuex";
         axios
           .post("https://api-kasirin.jaggs.id/api/product/store", formData)
           .then((res) => {
+            Swal.fire("Berhasil", res.data.message, "success");
             console.log(res);
             this.$router.push({
               name: "Product",
@@ -217,6 +220,7 @@ import { mapGetters } from "vuex";
           })
           .catch((err) => {
             this.errors = err.response.data;
+              Swal.fire("Gagal", err.data.message, "warning");
           });
       },
     },

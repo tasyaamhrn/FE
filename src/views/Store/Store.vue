@@ -45,31 +45,6 @@
         </div>
       </div>
     </div>
-    <form v-show="updateSubmit">
-      <div class="form-group">
-        <label class="judul">Nama Toko</label>
-        <input
-          type="text"
-          class="form-control"
-          id="namatoko"
-          placeholder="Masukkan Nama Toko"
-          v-model="stores.name"
-        />
-      </div>
-      <div class="form-group">
-        <label class="judul">Address</label>
-        <input
-          type="text"
-          class="form-control"
-          id="address"
-          placeholder="Masukkan Alamat Toko"
-          v-model="stores.address"
-        />
-      </div>
-      <button type="submit" @click="update(stores)" class="btn-save">
-        Update
-      </button>
-    </form>
   </div>
 </template>
 <style scoped>

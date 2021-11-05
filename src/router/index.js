@@ -15,6 +15,7 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import DetailTransaksi from '../views/DetailTransaksi.vue'
 
 //store
 import Store from '../views/Store/Store.vue'
@@ -111,6 +112,11 @@ const routes = [
     path: '/editstore/:id',
     name: 'EditStore',
     component: EditStore
+  },
+  {
+    path: '/DetailTransaksi',
+    name: 'DetailTransaksi',
+    component: DetailTransaksi
   },
   // {
   //   path: '/EditStore',

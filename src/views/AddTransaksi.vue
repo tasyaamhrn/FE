@@ -5,11 +5,7 @@
         <div class="col-md-6">
           <h3>TRANSAKSI</h3>
         </div>
-        <div class="col-md-6">
-          <div class="tambah">
-            <router-link to="AddProduct"><button type="button" class="button">+Tambah</button></router-link>
-          </div>
-        </div>
+        
       </div>
     </div>
     <div class="container">
@@ -25,45 +21,7 @@
             </select>
           </div>
         </div>
-        <!-- <div class="col-md-12" v-if="store_id">
-          <div class="form-group">
-            <label>Pilih Kategori</label>
-            <select
-              v-model="category_id"
-              class="form-control"
-              @change="getData"
-            >
-              <option value="">Pilih Kategori</option>
-              <option
-                :value="category.id"
-                v-for="(category, index) in categories"
-                :key="index"
-              >
-                {{ category.name }}
-              </option>
-            </select>
-          </div>
-        </div> -->
-        <!-- <div class="col-md-6">
-          <div class="cariproduk">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Cari Produk"
-              aria-label="First name"
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="carikategori">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Cari Kategori"
-              aria-label="Last name"
-            />
-          </div>
-        </div> -->
+        
       </div>
     </div>
     <div class="container">
@@ -82,13 +40,10 @@
                 <p class="makanan">{{ p.name }}</p>
                 <p class="makanan">{{ p.price }}</p>
                 <p class="makanan">Stock : {{ p.stock }}</p>
-                <router-link :to="{ name: 'EditProduct', params: { id: p.id } }">
-                   <i class="fas fa-edit blue" style="margin-left:35%;"  @click="edit(item)"></i>
-                  <!-- <button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
-                  Edit
-                </button> -->
+                <router-link :to="{ name: 'Pembelian' }">
+                   <i class="fas fa-shopping-cart" style="margin-left:40%;"  @click="edit(item)"></i>
                 </router-link>
-                 <i class="far fa-trash-alt" style="margin-left:10%; color:red;"  @click="deleteData(p.id)"></i>
+                 <!-- <i class="far fa-trash-alt" style="margin-left:10%; color:red;"  @click="deleteData(p.id)"></i> -->
                 <!-- <button type="button" style="width:50%;" class="btn btn-danger" @click="deleteData(p.id)">
                   Hapus
                 </button> -->

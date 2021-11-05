@@ -15,7 +15,7 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-
+import Pembelian from '../views/Pembelian.vue'
 //store
 import Store from '../views/Store/Store.vue'
 import AddStore from '../views/Store/AddStore.vue'
@@ -111,6 +111,11 @@ const routes = [
     path: '/editstore/:id',
     name: 'EditStore',
     component: EditStore
+  },
+  {
+    path: '/pembelian',
+    name: 'Pembelian',
+    component: Pembelian
   },
   // {
   //   path: '/EditStore',

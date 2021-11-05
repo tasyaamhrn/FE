@@ -93,7 +93,7 @@ const routes = [
     component: EditProduct
   },
   {
-    path: '/editcategory',
+    path: '/editcategory/:id',
     name: 'EditCategory',
     component: EditCategory
   },

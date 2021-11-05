@@ -29,18 +29,19 @@ import TheError from "../components/ErrorForm.vue";
 import Swal from "sweetalert2";
 
 export default {
-  name: "AddStore",
+  name: "EditCategory",
   components: { TheError },
   data() {
     return {
       form: {
-        user_id: this.$store.state.auth.user.id,
+        // user_id: this.$store.state.auth.user.id,
         name: "",
         store_id: "",
       },
+
       errors: [],
-      user: this.$store.state.auth.user,
-      store_id: this.$route.params.id,
+    //   user: this.$store.state.auth.user,
+      category_id: this.$route.params.id,
     };
   },
   mounted() {
@@ -49,13 +50,14 @@ export default {
   methods: {
     getData() {
       axios
-        .get("https://api-kasirin.jaggs.id/api/category/" + this.store_id, {
+        .get("https://api-kasirin.jaggs.id/api/category/" + this.category_id, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         })
         .then((res) => {
           this.form.name = res.data.data.name;
+          this.form.store_id = res.data.data.store_id
         
         })
         .catch((err) => {
@@ -64,8 +66,8 @@ export default {
     },
     update() {
       axios
-        .put(
-          "https://api-kasirin.jaggs.id/api/stores/" + this.store_id,
+        .post(
+          "https://api-kasirin.jaggs.id/api/category/edit/" + this.category_id,
           this.form,
           {
             headers: {
@@ -74,12 +76,12 @@ export default {
           }
         )
         .then((res) => {
-          this.$router.push({ name: "Store" });
+          this.$router.push({ name: "Category" });
           Swal.fire("Terupdate", res.data.message, "success");
         })
         .catch((err) => {
           this.errors = err.response.data;
-          Swal.fire("Gagal", "Store Anda Gagal diupdate", "warning");
+          Swal.fire("Gagal", "Kategori Anda Gagal diupdate", "warning");
         });
     },
     alertSuccess() {

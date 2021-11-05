@@ -43,9 +43,11 @@
         <tr v-for="item in categories" :key="item.id">
           <td>{{ item.name }}</td>
           <td>
-            <button type="button" class="btn btn-primary" @click="edit(item)">
+            <router-link :to="{ name: 'EditCategory', params: { id: item.id } }">
+            <button type="button" class="btn btn-primary" >
               Edit
             </button>
+            </router-link>
             <button
               type="button"
               class="btn btn-danger"
@@ -68,6 +70,7 @@
           v-model="form.name"
         />
       </div>
+      
       <button type="submit" @click="update(form)" class="btn-save">
         Update
       </button>
@@ -101,23 +104,6 @@ export default {
     };
   },
   methods: {
-    getStore() {
-        axios
-          .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
-            localStorage.getItem("id"), {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("access_token"),
-              },
-            }
-          )
-          .then((res) => {
-            this.stores = res.data.data;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
     load() {
       axios
         .get(
@@ -142,36 +128,36 @@ export default {
           console.log(err);
         });
     },
-    edit(item) {
-      this.updateSubmit = true;
-      this.form.id = item.id;
-      this.form.name = item.name;
-    },
-    update(form) {
-      axios
-        .post(
-          "https://api-kasirin.jaggs.id/api/category/edit/" + form.id,
-          {
-            name: this.form.name,
-            store_id: this.store_id,
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.access_token,
-            },
-          }
-        )
-        .then(() => {
-          this.load();
+    // edit(item) {
+    //   this.updateSubmit = true;
+    //   this.form.id = item.id;
+    //   this.form.name = item.name;
+    // },
+    // update(form) {
+    //   axios
+    //     .post(
+    //       "https://api-kasirin.jaggs.id/api/category/edit/" + form.id,
+    //       {
+    //         name: this.form.name,
+    //         store_id: this.store_id,
+    //       },
+    //       {
+    //         headers: {
+    //           Authorization: "Bearer " + localStorage.access_token,
+    //         },
+    //       }
+    //     )
+    //     .then(() => {
+    //       this.load();
 
-          this.form.name = "";
-          this.updateSubmit = false;
-          Swal.fire("Terupdate", "kategori Anda Sudah Terupdate", "success");
-        })
-        .catch(() => {
-          Swal.fire("Gagal", "Produk Anda Gagal diupdate", "warning");
-        });
-    },
+    //       this.form.name = "";
+    //       this.updateSubmit = false;
+    //       Swal.fire("Terupdate", "kategori Anda Sudah Terupdate", "success");
+    //     })
+    //     .catch(() => {
+    //       Swal.fire("Gagal", "Produk Anda Gagal diupdate", "warning");
+    //     });
+    // },
     deleteData(id) {
       Swal.fire({
         title: "Anda Yakin Ingin Menghapus Data Ini ?",

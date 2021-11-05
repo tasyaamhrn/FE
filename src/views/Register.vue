@@ -50,11 +50,11 @@
                       :errors="errors.gender"
                     >
                       <template v-slot:form>
-                        <input
-                          class="form-control"
-                          placeholder="Masukkan Jenis Kelamin Anda"
-                          v-model="form.gender"
-                        />
+                              <select class="form-control" v-model="form.gender">
+                                <option value="">Jenis Kelamin</option>
+                                <option> Male </option>
+                                <option> Female </option>
+                              </select>
                       </template>
                     </input-form>
                     <input-form
@@ -63,11 +63,7 @@
                       :errors="errors.avatar"
                     >
                       <template v-slot:form>
-                        <input
-                          type="file"
-                          class="form-control"
-                          placeholder="Masukkan Foto Anda"
-                        />
+                        <input type="file" accept="avatar/*" class="form-control" @change="onImageSelected" />
                       </template>
                     </input-form>
                     <input-form fa="fas fa-phone" :errors="errors.phone">
@@ -136,12 +132,47 @@
 }
 </style>
 <script>
-import axios from "axios";
-import InputForm from "../components/inputForm.vue";
-export default {
-  data() {
-    return {
-      form: {
+
+// import axios from "axios";
+// import InputForm from "../components/inputForm.vue";
+// export default {
+//   data() {
+//     return {
+//       form: {
+//         name: "",
+//         email: "",
+//         address: "",
+//         gender: "Male",
+//         avatar: "",
+//         phone: "",
+//         password: "",
+//       },
+//       errors: [],
+//     };
+//   },
+//   components: { InputForm },
+//   methods: {
+//     register() {
+//       axios
+//         .post("https://api-kasirin.jaggs.id/api/register", this.form)
+//         .then((res) => console.log(res));
+//         this.$router.push({
+//           name:'Login'
+//         })
+//         .catch((err) => {
+//           this.errors = err.response.data;
+//         });
+//     },
+//   },
+// };
+ import axios from "axios";
+  import InputForm from "../components/inputForm.vue";
+import Swal from 'sweetalert2';
+
+  export default {
+    data() {
+      return {
+        form: {
         name: "",
         email: "",
         address: "",
@@ -149,23 +180,43 @@ export default {
         avatar: "",
         phone: "",
         password: "",
-      },
-      errors: [],
-    };
-  },
-  components: { InputForm },
-  methods: {
-    register() {
-      axios
-        .post("https://api-kasirin.jaggs.id/api/register", this.form)
-        .then((res) => console.log(res));
-        this.$router.push({
-          name:'Login'
-        })
-        .catch((err) => {
-          this.errors = err.response.data;
-        });
+        },
+        errors: [],
+      };
     },
-  },
-};
+    components: {
+      InputForm
+    },
+    methods: {
+      onImageSelected(event) {
+        this.form.avatar = event.target.files[0];
+      },
+      register() {
+        let formData = new FormData();
+        formData.set("name", this.form.name);
+        formData.set("email", this.form.email);
+        formData.set("address", this.form.address);
+        formData.set("gender", this.form.gender);
+        formData.set("avatar", this.form.avatar);
+        formData.set("phone", this.form.phone);
+        formData.set("password", this.form.password);
+        axios
+          .post("https://api-kasirin.jaggs.id/api/register", formData)
+          .then((res) => {
+            Swal.fire("Berhasil", res.data.message, "success");
+            console.log(res);
+            this.$router.push({
+              name: "Login",
+            });
+          })
+          .catch((err) => {
+            this.errors = err.response.data;
+              Swal.fire("Gagal", err.data.message, "warning");
+          });
+      },
+    },
+    mounted() {
+      this.load()
+    },
+  };
 </script>

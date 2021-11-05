@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="kembali">
-                        <router-link to="product">
+                        <router-link to="AddTransaksi">
                             <button type="button">
                                 &#8592; Kembali
                             </button>
@@ -25,29 +25,26 @@
                 <input type="text" v-model="form.name" class="form-control" id="exampleProduct"
                     aria-describedby="emailHelp">
             </div>
-            <input type="file" accept="image/*" class="form-control" @change="onImageSelected" />
-            <!-- <label for="">test</label> -->
-            <!-- <div class="mb-3">
-                <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
-                <select class="form-control" v-model="form.category_id">
-                    <option selected>Pilih Kategori Produk..</option>
-                </select>
-            </div> -->
-            <!-- <div class="mb-3">
-                <label for="exampleInputPhotoProduct" class="form-label">Foto Produk</label>
-                <input type="file" class="form-control" id="examplePhotoProduct">
-            </div> -->
+            
             <div class="mb-3">
                 <label for="examplePriceProduct" class="form-label">Harga Produk</label>
                 <input type="text" class="form-control" v-model="form.price" id="examplePriceProduct">
             </div>
             <div class="mb-3">
-                <label for="exampleStockProduct" class="form-label">Stok Produk</label>
-                <input type="text" class="form-control" id="exampleStockProduct" v-model="form.stock">
+                <label for="examplePriceProduct" class="form-label">Jumlah Beli</label>
+                <input type="text" class="form-control" v-model="form.qty" id="examplePriceProduct">
             </div>
             <div class="mb-3">
-                <label for="exampleBarcodeProduct" class="form-label">Barcode</label>
-                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.barcode">
+                <label for="exampleStockProduct" class="form-label">Pembayaran</label>
+                <input type="text" class="form-control" id="exampleStockProduct" v-model="form.pay">
+            </div>
+            <div class="mb-3">
+                <label for="exampleBarcodeProduct" class="form-label">Diskon</label>
+                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.discount">
+            </div>
+            <div class="mb-3">
+                <label for="exampleBarcodeProduct" class="form-label">Kembalian</label>
+                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.change">
             </div>
         </div>
     </div>
@@ -59,16 +56,18 @@
 
 
     export default {
-        name: "EditProduct",
+        name: "Pembelian",
         data() {
             return {
                 form: {
                     name: "",
-                    category_id: "",
-                    image: "",
                     price: "",
-                    stock: "",
-                    barcode: "",
+                    pay: "",
+                    discount: "",
+                    change: "",
+                    product :[],
+                    qty:'',
+    
                 },
                 product_id: this.$route.params.id,
             }

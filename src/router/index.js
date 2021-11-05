@@ -15,7 +15,12 @@ import DetailProduct from '../views/DetailProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Pembelian from '../views/Pembelian.vue'
+<<<<<<< HEAD
+// import Pembelian from '../views/Pembelian.vue'
+=======
+// import DetailTransaksi from '../views/DetailTransaksi.vue'
+
+>>>>>>> db7e227bfa5d3b3995c00101d71cc0c37d624c97
 //store
 import Store from '../views/Store/Store.vue'
 import AddStore from '../views/Store/AddStore.vue'
@@ -112,11 +117,17 @@ const routes = [
     name: 'EditStore',
     component: EditStore
   },
-  {
-    path: '/pembelian',
-    name: 'Pembelian',
-    component: Pembelian
-  },
+//   {
+// <<<<<<< HEAD
+//     path: '/pembelian',
+//     name: 'Pembelian',
+//     component: Pembelian
+// =======
+//     path: '/DetailTransaksi',
+//     name: 'DetailTransaksi',
+//     component: DetailTransaksi
+// >>>>>>> db7e227bfa5d3b3995c00101d71cc0c37d624c97
+//   },
   // {
   //   path: '/EditStore',
   //   name: 'EditStore',

@@ -101,6 +101,23 @@ export default {
     };
   },
   methods: {
+    getStore() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.stores = res.data.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     load() {
       axios
         .get(

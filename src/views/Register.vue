@@ -46,9 +46,7 @@
                     </input-form>
                     <input-form
                       
-                      fa="fas fa-venus-mars"
-                      :errors="errors.gender"
-                    >
+                      fa="fas fa-venus-mars" :errors="errors.gender" >
                       <template v-slot:form>
                               <select class="form-control" v-model="form.gender">
                                 <option value="">Jenis Kelamin</option>
@@ -57,11 +55,7 @@
                               </select>
                       </template>
                     </input-form>
-                    <input-form
-                    
-                      fa="far fa-image"
-                      :errors="errors.avatar"
-                    >
+                    <input-form  fa="far fa-image" :errors="errors.avatar"  >
                       <template v-slot:form>
                         <input type="file" accept="avatar/*" class="form-control" @change="onImageSelected" />
                       </template>

@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <!-- <button type="button" @click="update" class="btn btn-success btn-lg">
-                        Edit Product
-                    </button> -->
+                    <button type="button" @click="update" class="btn btn-success btn-lg">
+                        Transaksi
+                    </button>
                     <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
                 <div class="col-md-6">
@@ -21,31 +21,38 @@
         </div>
         <div class="container">
             <div class="mb-3">
-                <label for="exampleInputProduct" class="form-label">Nama Produk</label>
-                <input type="text" v-model="form.name" class="form-control" id="exampleProduct"
-                    aria-describedby="emailHelp">
+                <label for="examplePriceProduct" class="form-label">Nama Produk</label>
+                <select class="form-control" v-model="form.product">
+                <option value="">Pilih Product</option>
+                <option
+                    v-for="item in product" :key="item.id"
+                    :value="item.id"
+                >
+                {{ item.name }}
+                </option>
+                </select>
             </div>
-            
             <div class="mb-3">
                 <label for="examplePriceProduct" class="form-label">Harga Produk</label>
                 <input type="text" class="form-control" v-model="form.price" id="examplePriceProduct">
             </div>
             <div class="mb-3">
-                <label for="examplePriceProduct" class="form-label">Jumlah Beli</label>
-                <input type="text" class="form-control" v-model="form.qty" id="examplePriceProduct">
+                <label for="exampleBarcodeProduct" class="form-label">Jumlah</label>
+                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.qty" placeholder="Masukkan Jumlah Barang">
             </div>
             <div class="mb-3">
-                <label for="exampleStockProduct" class="form-label">Pembayaran</label>
-                <input type="text" class="form-control" id="exampleStockProduct" v-model="form.pay">
+                <label for="exampleStockProduct" class="form-label">Bayar</label>
+                <input type="text" class="form-control" id="exampleStockProduct" v-model="form.pay" placeholder="Masukkan Nominal Pembayaran">
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Diskon</label>
-                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.discount">
+                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.discount" placeholder="Masukkan Potongan Harga">
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Kembalian</label>
-                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.change">
+                <input type="integer" class="form-control" id="exampleBarcode" v-model="form.change" placeholder="Kembalian Pelanggan">
             </div>
+            
         </div>
     </div>
 </template>
@@ -60,14 +67,12 @@
         data() {
             return {
                 form: {
-                    name: "",
+                    product: "",
+                    qty: "",
                     price: "",
                     pay: "",
                     discount: "",
                     change: "",
-                    product :[],
-                    qty:'',
-    
                 },
                 product_id: this.$route.params.id,
             }
@@ -76,22 +81,20 @@
             this.getData();
         },
         methods: {
-            onImageSelected(e) {
-                this.form.image = e.target.files[0];
-            },
             getData() {
                 axios
-                    .get("https://api-kasirin.jaggs.id/api/product/" + this.product_id, {
+                    .get("https://api-kasirin.jaggs.id/api/transaction/" + this.product_id, {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("access_token"),
                         },
                     })
                     .then((res) => {
-                        this.form.name = res.data.data.name;
+                        this.form.product = res.data.data.product;
+                        this.form.qty = res.data.data.qty;
                         this.form.price = res.data.data.price;
-                        this.form.stock = res.data.data.stock;
-                        this.form.barcode = res.data.data.barcode;
-                        this.form.category_id = res.data.data.category_id
+                        this.form.pay = res.data.data.pay;
+                        this.form.discount = res.data.data.discount
+                        this.form.change = res.data.data.change
                     })
                     .catch((err) => {
                         console.log(err);
@@ -99,16 +102,15 @@
             },
             update() {
                 let formData = new FormData();
-                formData.set("name", this.form.name);
-                formData.set("category_id", this.form.category_id);
-                formData.set("image", this.form.image);
+                formData.set("product", this.form.product);
+                formData.set("qty", this.form.qty);
                 formData.set("price", this.form.price);
-                formData.set("stock", this.form.stock);
-                formData.set("barcode", this.form.barcode);
-                console.log(formData.get('image'));
+                formData.set("pay", this.form.pay);
+                formData.set("discount", this.form.discount);
+                formData.set("change", this.form.change);
                 axios
                     .post(
-                        "https://api-kasirin.jaggs.id/api/product/edit/" + this.product_id,
+                        "https://api-kasirin.jaggs.id/api/transaction/" + this.product_id,
                         formData, {
                             headers: {
                                 "Content-Type": "multipart/form-data",
@@ -119,13 +121,13 @@
                     .then((res) => {
                         console.log(res)
                         this.$router.push({
-                            name: "Product"
+                            name: "AddTransaksi"
                         });
                         Swal.fire("Terupdate", res.data.message, "success");
                     })
                     .catch((err) => {
                         this.errors = err.response.data;
-                        Swal.fire("Gagal", "Product Anda Gagal diupdate", "warning");
+                        Swal.fire("Gagal", "Transaksi Anda Gagal diupdate", "warning");
                     });
             },
 

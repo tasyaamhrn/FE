@@ -16,10 +16,9 @@ import EditProduct from '../views/EditProduct.vue'
 import EditCategory from '../views/EditCategory.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-// <<<<<<< HEAD
-// // import Pembelian from '../views/Pembelian.vue'
-// =======
-// // import DetailTransaksi from '../views/DetailTransaksi.vue'
+
+import Pembelian from '../views/Pembelian.vue'
+
 
 //store
 import Store from '../views/Store/Store.vue'
@@ -96,6 +95,11 @@ const routes = [
     path: '/editcategory/:id',
     name: 'EditCategory',
     component: EditCategory
+  },
+  {
+    path: '/pembelian/:id',
+    name: 'Pembelian',
+    component: Pembelian
   },
   {
     path: '/',

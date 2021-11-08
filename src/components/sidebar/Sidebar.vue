@@ -25,6 +25,12 @@
             <span class="links_name">Toko</span>
           </router-link>
         </li>
+         <li>
+          <router-link :to="{ name: 'Karyawan' }">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Karyawan</span>
+          </router-link>
+        </li>
         <li>
           <router-link :to="{ name: 'Category' }">
             <i class="bx bx-plus"></i>

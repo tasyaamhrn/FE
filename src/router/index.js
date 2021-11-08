@@ -16,6 +16,9 @@ import EditProduct from '../views/EditProduct.vue'
 import EditCategory from '../views/EditCategory.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Karyawan from '../views/Karyawan/Karyawan.vue'
+import AddKaryawan from '../views/Karyawan/AddKaryawan.vue';
+import EditKaryawan from '../views/Karyawan/EditKaryawan.vue';
 
 import Pembelian from '../views/Pembelian.vue'
 
@@ -28,8 +31,7 @@ import EditStore from '../views/Store/EditStore.vue'
 Vue.use(VueRouter)
 
 
-const routes = [
-  {
+const routes = [{
     path: '/home',
     name: 'Home',
     component: Home,
@@ -87,7 +89,7 @@ const routes = [
     component: DetailProduct
   },
   {
-    path: '/editproduct',
+    path: '/editproduct/:id',
     name: 'EditProduct',
     component: EditProduct
   },
@@ -126,17 +128,32 @@ const routes = [
     name: 'EditStore',
     component: EditStore
   },
-//   {
-// <<<<<<< HEAD
-//     path: '/pembelian',
-//     name: 'Pembelian',
-//     component: Pembelian
-// =======
-//     path: '/DetailTransaksi',
-//     name: 'DetailTransaksi',
-//     component: DetailTransaksi
-// >>>>>>> db7e227bfa5d3b3995c00101d71cc0c37d624c97
-//   },
+  {
+    path: '/karyawan',
+    name: 'Karyawan',
+    component: Karyawan
+  },
+  {
+    path: '/addkaryawan',
+    name: 'AddKaryawan',
+    component: AddKaryawan
+  },
+  {
+    path: '/editkaryawan',
+    name: 'EditKaryawan',
+    component: EditKaryawan
+  },
+  //   {
+  // <<<<<<< HEAD
+  //     path: '/pembelian',
+  //     name: 'Pembelian',
+  //     component: Pembelian
+  // =======
+  //     path: '/DetailTransaksi',
+  //     name: 'DetailTransaksi',
+  //     component: DetailTransaksi
+  // >>>>>>> db7e227bfa5d3b3995c00101d71cc0c37d624c97
+  //   },
   {
     path: '/EditStore',
     name: 'EditStore',

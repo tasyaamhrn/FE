@@ -43,13 +43,9 @@
          Toko
       </p>
       <div class="form-group" style="margin-left:30px;">
-            <select class="form-control" v-model="store_id" @change="load">
+          <select v-model="store_id" class="form-control" @change="getCategory">
               <option value="">Pilih Toko</option>
-              <option
-                :value="store.store_id"
-                v-for="(store, index) in user_store"
-                :key="index"
-              >
+              <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                 {{ store.store.name }}
               </option>
             </select>
@@ -153,8 +149,7 @@
   import InputForm from "../components/inputForm.vue";
 import { mapGetters } from "vuex";
 import Swal from 'sweetalert2';
-
-  export default {
+export default {
      computed: {
     ...mapGetters({
       isLoggedIn: "isLoggedIn",
@@ -172,7 +167,7 @@ import Swal from 'sweetalert2';
           barcode: "",
         },
          store_id: "",
-         user_store: this.$store.state.auth.user.user_store,
+         stores: [],
         errors: [],
         categories:{},
       };
@@ -184,7 +179,24 @@ import Swal from 'sweetalert2';
       onImageSelected(event) {
         this.form.image = event.target.files[0];
       },
-       load(){
+       getStore() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.stores = res.data.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+       getCategory(){
          axios
         .get("https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id, {
           headers: {
@@ -225,7 +237,7 @@ import Swal from 'sweetalert2';
       },
     },
     mounted() {
-      this.load()
+      this.getStore();
     },
   };
 </script>

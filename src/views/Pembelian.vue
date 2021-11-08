@@ -20,17 +20,13 @@
             </div>
         </div>
         <div class="container">
-            <div class="mb-3">
-                <label for="examplePriceProduct" class="form-label">Nama Produk</label>
-                <select class="form-control" v-model="form.product">
-                <option value="">Pilih Product</option>
-                <option
-                    v-for="item in product" :key="item.id"
-                    :value="item.id"
-                >
-                {{ item.name }}
-                </option>
-                </select>
+           <div class="mb-3">
+                <label for="exampleProduct" class="form-label">Nama Produk</label>
+                <input type="text" class="form-control" v-model="form.name" id="examplePriceProduct">
+            </div>
+             <div class="mb-3">
+                <label for="exampleProduct" class="form-label">Nama Store</label>
+                <input type="text" class="form-control" v-model="form.name" id="exampleStoreName">
             </div>
             <div class="mb-3">
                 <label for="examplePriceProduct" class="form-label">Harga Produk</label>
@@ -67,7 +63,7 @@
         data() {
             return {
                 form: {
-                    product: "",
+                    store_id:"",
                     qty: "",
                     price: "",
                     pay: "",

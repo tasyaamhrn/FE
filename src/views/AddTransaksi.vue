@@ -40,7 +40,7 @@
                 <p class="makanan">{{ p.name }}</p>
                 <p class="makanan">{{ p.price }}</p>
                 <p class="makanan">Stock : {{ p.stock }}</p>
-                <router-link :to="{ name: 'Pembelian' }">
+                <router-link :to="{ name: 'Pembelian',params: { id: p.id } }">
                    <i class="fas fa-shopping-cart" style="margin-left:40%;"  @click="edit(item)"></i>
                 </router-link>
                  <!-- <i class="far fa-trash-alt" style="margin-left:10%; color:red;"  @click="deleteData(p.id)"></i> -->

@@ -3,14 +3,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <button type="button" @click="update" class="btn btn-success btn-lg">
+                    <button type="button" class="btn btn-success btn-lg">
                         Transaksi
                     </button>
                     <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
                 <div class="col-md-6">
                     <div class="kembali">
-                        <router-link to="AddTransaksi">
+                        <router-link  :to="{ name: 'AddTransaksi' }">
                             <button type="button">
                                 &#8592; Kembali
                             </button>
@@ -22,15 +22,17 @@
         <div class="container">
            <div class="mb-3">
                 <label for="exampleProduct" class="form-label">Nama Produk</label>
-                <input type="text" class="form-control" v-model="form.name" id="examplePriceProduct">
+                <input type="text" class="form-control" v-model="form.name" >
             </div>
-             <div class="mb-3">
-                <label for="exampleProduct" class="form-label">Nama Store</label>
-                <input type="text" class="form-control" v-model="form.name" id="exampleStoreName">
-            </div>
+            
             <div class="mb-3">
                 <label for="examplePriceProduct" class="form-label">Harga Produk</label>
-                <input type="text" class="form-control" v-model="form.price" id="examplePriceProduct">
+                <input type="text" class="form-control" v-model="form.price" >
+            </div>
+           
+             <div class="mb-3">
+                <label for="exampleProduct" class="form-label">Nama Toko</label>
+                <input type="text" class="form-control" v-model="form.store_id" id="exampleStoreName">
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Jumlah</label>
@@ -55,7 +57,7 @@
 
 <script>
     import axios from "axios";
-    import Swal from 'sweetalert2'
+    // import Swal from 'sweetalert2'
 
 
     export default {
@@ -63,9 +65,11 @@
         data() {
             return {
                 form: {
+                    name:"",
+                     price: "",
                     store_id:"",
+                    
                     qty: "",
-                    price: "",
                     pay: "",
                     discount: "",
                     change: "",
@@ -79,54 +83,23 @@
         methods: {
             getData() {
                 axios
-                    .get("https://api-kasirin.jaggs.id/api/transaction/" + this.product_id, {
+                    .get("https://api-kasirin.jaggs.id/api/product/" + this.product_id, {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("access_token"),
                         },
                     })
                     .then((res) => {
-                        this.form.product = res.data.data.product;
-                        this.form.qty = res.data.data.qty;
+                        this.form.name = res.data.data.name;
+                      
                         this.form.price = res.data.data.price;
-                        this.form.pay = res.data.data.pay;
-                        this.form.discount = res.data.data.discount
-                        this.form.change = res.data.data.change
+                          
+                      
                     })
                     .catch((err) => {
                         console.log(err);
                     });
             },
-            update() {
-                let formData = new FormData();
-                formData.set("product", this.form.product);
-                formData.set("qty", this.form.qty);
-                formData.set("price", this.form.price);
-                formData.set("pay", this.form.pay);
-                formData.set("discount", this.form.discount);
-                formData.set("change", this.form.change);
-                axios
-                    .post(
-                        "https://api-kasirin.jaggs.id/api/transaction/" + this.product_id,
-                        formData, {
-                            headers: {
-                                "Content-Type": "multipart/form-data",
-                                Authorization: "Bearer " + localStorage.access_token,
-                            },
-                        }
-                    )
-                    .then((res) => {
-                        console.log(res)
-                        this.$router.push({
-                            name: "AddTransaksi"
-                        });
-                        Swal.fire("Terupdate", res.data.message, "success");
-                    })
-                    .catch((err) => {
-                        this.errors = err.response.data;
-                        Swal.fire("Gagal", "Transaksi Anda Gagal diupdate", "warning");
-                    });
-            },
-
+           
         },
     }
 </script>

@@ -43,7 +43,7 @@
                 Toko
             </p>
             <div class="form-group" style="margin-left:30px;">
-                <select v-model="form.store_id" class="form-control" @change="getEmployee">
+                <select v-model="form.store_id" class="form-control">
                     <option value="">Pilih Toko</option>
                     <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                         {{ store.store.name }}

@@ -16,17 +16,12 @@
           <form @submit.prevent="save">
             <div class="form-group">
               <label>Pilih Toko</label>
-              <select class="form-control" v-model="form.store_id">
-                <option disabled selected>Pilih Store</option>
-                <option
-                  class="dropdown-item"
-                  v-for="(store, index) in user_store"
-                  :key="index"
-                  :value="store.store.id"
-                >
-                  {{ store.store.name }}
-                </option>
-              </select>
+              <select v-model="form.store_id" class="form-control">
+              <option value="">Pilih Toko</option>
+              <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                {{ store.store.name }}
+              </option>
+            </select>
             </div>
             <div class="form-group">
               <label>Nama Kategori</label>
@@ -101,11 +96,31 @@ export default {
         name: "",
         store_id: "",
       },
-      user_store: this.$store.state.auth.user.user_store,
       categories: [],
+      stores: [],
     };
   },
+  mounted() {
+    this.getStore();
+  },
   methods: {
+    getStore() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.stores = res.data.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     save() {
       axios
         .post(

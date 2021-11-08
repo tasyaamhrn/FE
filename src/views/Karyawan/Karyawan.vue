@@ -44,7 +44,7 @@
                     <td><img :src="item.avatar_url" style="width: 20%" alt="Product Image" /></td>
                     <td>{{ item.phone }}</td>
                     <td>
-                        <router-link :to="{ name: 'EditCategory', params: { id: item.id } }">
+                        <router-link :to="{ name: '', params: { id: item.id } }">
                             <button type="button" class="btn btn-primary">
                                 Edit
                             </button>

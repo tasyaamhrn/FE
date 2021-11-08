@@ -43,9 +43,9 @@
                 Toko
             </p>
             <div class="form-group" style="margin-left:30px;">
-                <select class="form-control" v-model="form.store_id" @change="load">
+                <select v-model="form.store_id" class="form-control" @change="getEmployee">
                     <option value="">Pilih Toko</option>
-                    <option :value="store.store_id" v-for="(store, index) in user_store" :key="index">
+                    <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                         {{ store.store.name }}
                     </option>
                 </select>
@@ -63,7 +63,7 @@
                     </select>
                 </template>
             </input-form>
-              <p class="judul">
+            <p class="judul">
                 Alamat
             </p>
             <input-form :errors="errors.price">
@@ -155,18 +155,9 @@
 <script>
     import axios from "axios";
     import InputForm from "../../components/inputForm.vue";
-    import {
-        mapGetters
-    } from "vuex";
     import Swal from 'sweetalert2';
 
     export default {
-        computed: {
-            ...mapGetters({
-                isLoggedIn: "isLoggedIn",
-                user: "user",
-            }),
-        },
         data() {
             return {
                 form: {
@@ -179,33 +170,35 @@
                     password: "",
                     store_id: "",
                 },
-                stores:{},
-                user_store: this.$store.state.auth.user.user_store,
+                stores: {},
                 errors: [],
             };
         },
         components: {
             InputForm
         },
+        mounted() {
+            this.getStore();
+        },
         methods: {
             onImageSelected(event) {
                 this.form.avatar = event.target.files[0];
             },
-            load() {
+            getStore() {
                 axios
-                    .get("https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id, {
-                        headers: {
-                            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                    .get(
+                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+                        localStorage.getItem("id"), {
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("access_token"),
+                            },
                         }
-                    })
-                    .then(({
-                        data
-                    }) => {
-                        this.stores = data.data;
-
+                    )
+                    .then((res) => {
+                        this.stores = res.data.data;
                     })
                     .catch((err) => {
-                        console.log(err)
+                        console.log(err);
                     });
             },
             karyawan() {
@@ -232,9 +225,6 @@
                         Swal.fire("Gagal", err.data.message, "warning");
                     });
             },
-        },
-        mounted() {
-            this.load()
         },
     };
 </script>

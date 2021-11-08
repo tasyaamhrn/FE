@@ -13,9 +13,9 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <select class="form-control" v-model="store_id" @change="load">
+                        <select v-model="store_id" class="form-control" @change="getEmployee">
                             <option value="">Pilih Toko</option>
-                            <option :value="store.store_id" v-for="(store, index) in user_store" :key="index">
+                            <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                                 {{ store.store.name }}
                             </option>
                         </select>
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered" v-show="!updateSubmit" :disabled="loading">
+        <table class="table table-bordered">
             <thead class="thead tbl">
                 <tr>
                     <th scope="col">Nama</th>
@@ -56,55 +56,45 @@
                 </tr>
             </tbody>
         </table>
-        <form v-show="updateSubmit">
-            <div class="form-group">
-                <label class="judul"> Nama Karyawan </label>
-                <input type="text" class="form-control" id="namakaryawan" placeholder="Masukkan Nama Karyawan"
-                    v-model="form.name" />
-            </div>
 
-            <button type="submit" @click="update(form)" class="btn-save">
-                Update
-            </button>
-        </form>
     </div>
 </template>
 
 <script>
     import axios from "axios";
     import Swal from "sweetalert2";
-    import {
-        mapGetters
-    } from "vuex";
 
     export default {
-        computed: {
-            ...mapGetters({
-                isLoggedIn: "isLoggedIn",
-                user: "user",
-            }),
-        },
         data() {
             return {
-                form: {
-                    name: "",
-                    email: "",
-                    address: "",
-                    gender: "",
-                    avatar: "",
-                    phone: "",
-                    password: "",
-                    store_id: "",
-                },
+                stores: [],
                 store_id: "",
                 employees: {},
-                user_store: this.$store.state.auth.user.user_store,
-                loading: false,
-                updateSubmit: false,
+
             };
         },
+        mounted() {
+            this.getStore()
+        },
         methods: {
-            load() {
+            getStore() {
+                axios
+                    .get(
+                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+                        localStorage.getItem("id"), {
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("access_token"),
+                            },
+                        }
+                    )
+                    .then((res) => {
+                        this.stores = res.data.data;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            },
+            getEmployee() {
                 axios
                     .get(
                         "https://api-kasirin.jaggs.id/api/karyawan?store_id=" + this.store_id, {
@@ -119,11 +109,6 @@
                     })
                     .catch((err) => {
                         this.employees = "";
-                        Swal.fire(
-                            "Anda Belum Mempunyai Karyawan",
-                            "Silahkan Tambahkan Karyawan Terlebih Dahulu",
-                            "warning"
-                        );
                         console.log(err);
                     });
             },
@@ -143,7 +128,7 @@
                             .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
                             .then((res) => {
                                 Swal.fire("Terhapus", "Produk Anda Sudah Terhapus", "success");
-                                this.load();
+                                this.getEmployee();
                                 console.log(res);
                             })
                             .catch((err) => {

@@ -95,6 +95,17 @@
                       </button>
                     </div>
                   </form>
+                  <div class="text-center">
+                    <p>
+                      Or
+                      <span
+                        style="color: #337ab7;text-decoration: none;"
+                        @click="toggleBtn"
+                      >
+                        Login
+                      </span>
+                    </p>
+                  </div>
                 </div>
                 <div
                   class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
@@ -152,6 +163,9 @@ export default {
     InputForm,
   },
   methods: {
+    toggleBtn() {
+      this.$parent.toggle = !this.$parent.toggle;
+    },
     onImageSelected(event) {
       this.form.avatar = event.target.files[0];
     },

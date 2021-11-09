@@ -34,7 +34,7 @@
             <label>Pilih Kategori</label>
             <select class="form-control">
               <option value="">Pilih Kategori</option>
-              <option v-for="item in categories" :key="item.id">
+              <option v-for="item in categories" :key="item.id" @change="getData">
                 {{ item.name }}
               </option>
             </select>
@@ -49,7 +49,8 @@
             <label>Pilih Produk</label>
             <select class="form-control" >
               <option value="">Pilih Produk</option>
-              <option >
+               <option v-for="item in products" :key="item.id">
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -105,7 +106,7 @@
       };
     },
     mounted() {
-      this.getStore();
+      this.load();
     },
     methods: {
       getStore() {

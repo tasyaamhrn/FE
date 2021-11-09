@@ -10,7 +10,6 @@
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                     Daftar
                   </p>
-
                   <form class="mx-1 mx-md-4">
                     <input-form fa="fas fa-user" :errors="errors.name">
                       <template v-slot:form>
@@ -44,20 +43,23 @@
                         />
                       </template>
                     </input-form>
-                    <input-form
-                      
-                      fa="fas fa-venus-mars" :errors="errors.gender" >
+                    <input-form fa="fas fa-venus-mars" :errors="errors.gender">
                       <template v-slot:form>
-                              <select class="form-control" v-model="form.gender">
-                                <option value="">Jenis Kelamin</option>
-                                <option> Male </option>
-                                <option> Female </option>
-                              </select>
+                        <select class="form-control" v-model="form.gender">
+                          <option value="">Jenis Kelamin</option>
+                          <option> Male </option>
+                          <option> Female </option>
+                        </select>
                       </template>
                     </input-form>
-                    <input-form  fa="far fa-image" :errors="errors.avatar"  >
+                    <input-form fa="far fa-image" :errors="errors.avatar">
                       <template v-slot:form>
-                        <input type="file" accept="avatar/*" class="form-control" @change="onImageSelected" />
+                        <input
+                          type="file"
+                          accept="avatar/*"
+                          class="form-control"
+                          @change="onImageSelected"
+                        />
                       </template>
                     </input-form>
                     <input-form fa="fas fa-phone" :errors="errors.phone">
@@ -80,7 +82,7 @@
                         />
                       </template>
                     </input-form>
-                    
+
                     <div
                       class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                     >
@@ -126,48 +128,15 @@
 }
 </style>
 <script>
+import axios from "axios";
+import InputForm from "../components/inputForm.vue";
+import Swal from "sweetalert2";
 
-// import axios from "axios";
-// import InputForm from "../components/inputForm.vue";
-// export default {
-//   data() {
-//     return {
-//       form: {
-//         name: "",
-//         email: "",
-//         address: "",
-//         gender: "Male",
-//         avatar: "",
-//         phone: "",
-//         password: "",
-//       },
-//       errors: [],
-//     };
-//   },
-//   components: { InputForm },
-//   methods: {
-//     register() {
-//       axios
-//         .post("https://api-kasirin.jaggs.id/api/register", this.form)
-//         .then((res) => console.log(res));
-//         this.$router.push({
-//           name:'Login'
-//         })
-//         .catch((err) => {
-//           this.errors = err.response.data;
-//         });
-//     },
-//   },
-// };
- import axios from "axios";
-  import InputForm from "../components/inputForm.vue";
-import Swal from 'sweetalert2';
-
-  export default {
-    data() {
-      return {
-        form: {
-        id: 2,  
+export default {
+  data() {
+    return {
+      form: {
+        id: 2,
         name: "",
         email: "",
         fcm_token: null,
@@ -176,43 +145,41 @@ import Swal from 'sweetalert2';
         avatar: "",
         phone: "",
         password: "",
-        },
-        errors: [],
-      };
-    },
-    components: {
-      InputForm
-    },
-    methods: {
-      onImageSelected(event) {
-        this.form.avatar = event.target.files[0];
       },
-      register() {
-        let formData = new FormData();
-        formData.set("name", this.form.name);
-        formData.set("email", this.form.email);
-        formData.set("address", this.form.address);
-        formData.set("gender", this.form.gender);
-        formData.set("avatar", this.form.avatar);
-        formData.set("phone", this.form.phone);
-        formData.set("password", this.form.password);
-        axios
-          .post("https://api-kasirin.jaggs.id/api/register", formData)
-          .then((res) => {
-            Swal.fire("Berhasil", res.data.message, "success");
-            console.log(res);
-            this.$router.push({
-              name: "Login",
-            });
-          })
-          .catch((err) => {
-            this.errors = err.response.data;
-              Swal.fire("Gagal", err.data.message, "warning");
+      errors: [],
+    };
+  },
+  components: {
+    InputForm,
+  },
+  methods: {
+    onImageSelected(event) {
+      this.form.avatar = event.target.files[0];
+    },
+    register() {
+      let formData = new FormData();
+      formData.set("name", this.form.name);
+      formData.set("email", this.form.email);
+      formData.set("address", this.form.address);
+      formData.set("gender", this.form.gender);
+      formData.set("avatar", this.form.avatar);
+      formData.set("phone", this.form.phone);
+      formData.set("password", this.form.password);
+      axios
+        .post("https://api-kasirin.jaggs.id/api/register", formData)
+        .then((res) => {
+          Swal.fire("Berhasil", res.data.message, "success");
+          console.log(res);
+          this.$router.push({
+            name: "Login",
           });
-      },
+          this.$parent.toggle = false;
+        })
+        .catch((err) => {
+          this.errors = err.response.data;
+          Swal.fire("Gagal", err.data.message, "warning");
+        });
     },
-    mounted() {
-      this.load()
-    },
-  };
+  },
+};
 </script>

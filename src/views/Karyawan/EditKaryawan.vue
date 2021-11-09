@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="kembali">
-                        <router-link to="product">
+                        <router-link to="Karyawan">
                             <button type="button">
                                 &#8592; Kembali
                             </button>
@@ -32,7 +32,11 @@
             </div>
             <div class="mb-3">
                 <label for="exampleStockProduct" class="form-label">Jenis Kelamin</label>
-                <input type="text" class="form-control" id="exampleStockProduct" v-model="form.gender">
+                <select class="form-control" v-model="form.gender">
+                        <option value="">Jenis Kelamin</option>
+                        <option> Male </option>
+                        <option> Female </option>
+                    </select>
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Telepon</label>

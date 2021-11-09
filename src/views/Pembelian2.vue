@@ -48,7 +48,7 @@
           <div class="form-group">
             <label>Pilih Produk</label>
             <select class="form-control" >
-              <option v-for="p in item.product" :key="p.id">{{p.name}}</option>
+              <option value="">Pilih Produk</option>
               <option >
               </option>
             </select>

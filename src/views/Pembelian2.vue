@@ -74,6 +74,7 @@
                CARI
               </button>
           </div>
+          
             <!-- <select class="form-control">
               <option value="">Pilih Produk</option>
               <option v-for="item in products" :key="item.id">
@@ -93,7 +94,7 @@
           <hr /> -->
           <div class="row">
             <div class="col-md-3" v-for="p in products" :key="p.id">
-              <div class="container-barang">
+              <div class="container-barang" data-toggle="modal" data-target="#myModal">
                 <center>
                   <img
                     :src="p.image_url"
@@ -109,7 +110,43 @@
           </div>
         </div>
       </div>
+          <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <h5 class="modal-title" id="exampleModalLabel">Kategori</h5> -->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" v-for="p in products" :key="p.id">
+                           <img :src="p.image_url" style="width: 20%" alt="Product Image" />
+                            <p class="makanan">{{ p.name }} <br> {{ p.price }}  <br> Stok:{{ p.stock }}</p>
+                            <div id="vue-counter">
+                    
+                                <p id="tambah"> 
+                                    <i class='bx bx-minus' @click="decrease"></i>
+
+                                    &nbsp;&nbsp;
+                                    {{ counter }}
+                                    &nbsp;&nbsp;
+                                    <i class='bx bx-plus' @click="increase"></i> 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
+                                    class='bx bx-minus-circle'>Batal</i></button>
+                            <router-link to="EditCategory"> <button type="button" id="edit"
+                                    class="btn btn-primary  btn-lg center-block"><i class='bx bx-check'>Pilih</i></button>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
+
   </div>
 </template>
 
@@ -117,7 +154,9 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export default {
+  name:"CreateTransaction",
   data() {
+    
     return {
       products: [],
       store_id: "",
@@ -125,6 +164,7 @@ export default {
       product_name: "",
       stores: [],
       categories: [],
+      counter: 0
     };
   },
   mounted() {
@@ -223,103 +263,140 @@ export default {
         }
       });
     },
+    increase(){
+            this.counter++;
+        },
+        decrease(){
+            this.counter--;
+        },
   },
 };
 </script>
 
-<style scoped>
-h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #4caf50;
-  font-size: 18px;
-  font-weight: bold;
-  padding-top: 75px;
-}
-
-p {
-  margin-bottom: 0px;
-}
-
-.col-md-6 {
-  padding-left: 0px;
-}
-
-.makanan {
-  font-weight: bold;
-  color: #4caf50;
-  text-align: center;
-}
-
-hr {
-  border: none;
-  height: 3px;
-  color: white;
-  background-color: white;
-}
-#cari{
-  margin-top: 20px;
-}
-h6 {
-  font-size: 20px;
-  margin-top: 5px;
-  margin-bottom: 0px;
-  margin-left: 20px;
-  font-family: sans-serif;
-  font-weight: bold;
-  color: white;
-}
-
-label {
-  color: #4caf50;
-}
-
-.button {
-  margin-top: 90px;
-  border-radius: 15px;
-  background-color: #4caf50;
-  width: 150px;
-  height: 30px;
-  color: white;
-  border-color: transparent;
-}
-
-.tambah {
-  text-align: right;
-}
-
-.row {
-  padding-top: 0px;
-  margin: auto;
-}
-
-.container {
-  padding-left: 0px;
-}
-
-.container-product2 {
-  margin-top: 20px;
-  padding-top: 40px;
-  padding-right: 50px;
-  padding-left: 50px;
-  width: 98%;
-  height: 80%;
-  border-radius: 15px;
-  background-color: #4caf50;
-}
-
-img {
-  width: 70px;
-  height: 70px;
-  margin-top: 10px;
-}
-
-.container-barang {
-  margin-top: 12px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  width: 130px;
-  height: 170px;
-  background-color: white;
-  z-index: 1;
-}
+<style scoped> 
+    #tambah { 
+        padding-top: 30px; 
+    } 
+ 
+    #edit { 
+        margin-right: 150px; 
+        background-color: #4CAF50; 
+    } 
+ 
+    #hapus { 
+        margin-left: 120px; 
+        background-color: #FD7B7B; 
+ 
+    } 
+ 
+    .modal-body { 
+        color: #4CAF50; 
+        font-weight: bold; 
+        font-size: 16px; 
+        text-align: center; 
+ 
+    } 
+ 
+    .modal-body .makanan { 
+        float: left; 
+    } 
+ 
+    .modal-body img { 
+        float: left; 
+    } 
+ 
+    h3 { 
+        font-family: Arial, Helvetica, sans-serif; 
+        color: #4caf50; 
+        font-size: 18px; 
+        font-weight: bold; 
+        padding-top: 75px; 
+    } 
+ 
+    p { 
+        margin-bottom: 0px; 
+    } 
+ 
+    .col-md-6 { 
+        padding-left: 0px; 
+    } 
+ 
+    .makanan { 
+        font-weight: bold; 
+        color: #4caf50; 
+        text-align: center; 
+    } 
+ 
+    hr { 
+        border: none; 
+        height: 3px; 
+        color: white; 
+        background-color: white; 
+    } 
+ 
+    h6 { 
+        font-size: 20px; 
+        margin-top: 5px; 
+        margin-bottom: 0px; 
+        margin-left: 20px; 
+        font-family: sans-serif; 
+        font-weight: bold; 
+        color: white; 
+    } 
+ 
+    label { 
+        color: #4caf50; 
+    } 
+ 
+    .button { 
+        margin-top: 90px; 
+        border-radius: 15px; 
+        background-color: #4caf50; 
+        width: 150px; 
+        height: 30px; 
+        color: white; 
+        border-color: transparent; 
+    } 
+ 
+    .tambah { 
+        text-align: right; 
+    } 
+ 
+    .row { 
+        padding-top: 0px; 
+        margin: auto; 
+    } 
+ 
+    .container { 
+        padding-left: 0px; 
+    } 
+ #cari{
+   margin-top:20px;
+ }
+    .container-product2 { 
+        margin-top: 20px; 
+        padding-top: 40px; 
+        padding-right: 50px; 
+        padding-left: 50px; 
+        width: 98%; 
+        height: 80%; 
+        border-radius: 15px; 
+        background-color: #4caf50; 
+    } 
+ 
+    img { 
+        width: 70px; 
+        height: 70px; 
+        margin-top: 10px; 
+    } 
+ 
+    .container-barang { 
+        margin-top: 12px; 
+        margin-bottom: 20px; 
+        border-radius: 10px; 
+        width: 130px; 
+        height: 170px; 
+        background-color: white; 
+        z-index: 1; 
+    } 
 </style>

@@ -20,6 +20,12 @@
           </router-link>
         </li>
         <li>
+          <router-link :to="{ name: 'Pembelian2' }">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Tambah Transaksi2</span>
+          </router-link>
+        </li>
+        <li>
           <router-link :to="{ name: 'Store' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Toko</span>

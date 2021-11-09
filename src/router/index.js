@@ -21,6 +21,7 @@ import AddKaryawan from '../views/Karyawan/AddKaryawan.vue';
 import EditKaryawan from '../views/Karyawan/EditKaryawan.vue';
 
 import Pembelian from '../views/Pembelian.vue'
+import Pembelian2 from '../views/Pembelian2.vue'
 
 
 //store
@@ -158,6 +159,11 @@ const routes = [{
     path: '/EditStore',
     name: 'EditStore',
     component: EditStore
+  },
+  {
+    path: '/Pembelian2',
+    name: 'Pembelian2',
+    component: Pembelian2
   },
 ]
 

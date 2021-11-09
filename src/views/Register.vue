@@ -136,7 +136,6 @@ export default {
   data() {
     return {
       form: {
-        id: 2,
         name: "",
         email: "",
         fcm_token: null,

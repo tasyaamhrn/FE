@@ -67,17 +67,19 @@
         <div class="col-md-12">
           <div class="form-group">
             <label>Pilih Produk</label>
-            <select class="form-control">
+             <input class="form-control" type="text" placeholder="Masukkan Nama Barang"
+            v-model="product_name" @change="getData"/>
+            <!-- <select class="form-control">
               <option value="">Pilih Produk</option>
               <option v-for="item in products" :key="item.id">
                 {{ item.name }}
               </option>
-            </select>
+            </select> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" v-if="product_name">
       <div class="container-product2">
         <div class="col-makan">
           <!-- <div>
@@ -135,6 +137,7 @@ export default {
       products: [],
       store_id: "",
       category_id: "",
+      product_name: "",
       stores: [],
       categories: [],
     };
@@ -148,6 +151,9 @@ export default {
       if (!this.category_id) {
         this.store_id = "";
       }
+        if (!this.product_name) {
+          this.product_name = "";
+        }
     }
   },
   methods: {
@@ -171,13 +177,10 @@ export default {
     },
     getData() {
       axios
-        .get("https://api-kasirin.jaggs.id/api/product", {
+        .get("https://api-kasirin.jaggs.id/api/product?name=" + this.product_name + "&category_id=" + this.category_id, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-          params: {
-            category_id: this.category_id,
-          },
+          }
         })
         .then(({ data }) => (this.products = data.data))
         .catch((err) => {

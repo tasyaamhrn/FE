@@ -139,7 +139,7 @@ const routes = [{
     component: AddKaryawan
   },
   {
-    path: '/editkaryawan',
+    path: '/editkaryawan/:id',
     name: 'EditKaryawan',
     component: EditKaryawan
   },

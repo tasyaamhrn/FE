@@ -44,7 +44,7 @@
                     <td><img :src="item.avatar_url" style="width: 20%" alt="Product Image" /></td>
                     <td>{{ item.phone }}</td>
                     <td>
-                        <router-link :to="{ name: '', params: { id: item.id } }">
+                        <router-link :to="{ name: 'EditKaryawan', params: { id: item.id } }">
                             <button type="button" class="btn btn-primary">
                                 Edit
                             </button>
@@ -109,6 +109,11 @@
                     })
                     .catch((err) => {
                         this.employees = "";
+                        Swal.fire(
+                            "Anda Belum Mempunyai Karyawan",
+                            "Silahkan Tambahkan Karyawan Terlebih Dahulu",
+                            "warning"
+                        );
                         console.log(err);
                     });
             },
@@ -127,16 +132,16 @@
                         axios
                             .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
                             .then((res) => {
-                                Swal.fire("Terhapus", "Produk Anda Sudah Terhapus", "success");
+                                Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
                                 this.getEmployee();
                                 console.log(res);
                             })
                             .catch((err) => {
-                                Swal.fire("Gagal", "Produk Anda Gagal Terhapus", "warning");
+                                Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
                                 console.log(err);
                             });
                     } else {
-                        Swal.fire("Gagal", "Produk Anda Gagal Terhapus", "warning");
+                        Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
                     }
                 });
             },

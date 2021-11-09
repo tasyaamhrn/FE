@@ -166,8 +166,8 @@ import Swal from 'sweetalert2';
   export default {
     data() {
       return {
-        form: {
-        id: 2,  
+        form: {       
+        id: 2,    
         name: "",
         email: "",
         fcm_token: null,

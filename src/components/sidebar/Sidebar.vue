@@ -13,16 +13,11 @@
             <span class="links_name">Beranda</span>
           </router-link>
         </li>
-         <li>
-          <router-link :to="{ name: 'AddTransaksi' }">
-            <i class="bx bx-plus"></i>
-            <span class="links_name">Tambah Transaksi</span>
-          </router-link>
-        </li>
+        
         <li>
           <router-link :to="{ name: 'Pembelian2' }">
             <i class="bx bx-plus"></i>
-            <span class="links_name">Tambah Transaksi2</span>
+            <span class="links_name">Tambah Transaksi</span>
           </router-link>
         </li>
         <li>

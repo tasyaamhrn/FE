@@ -115,12 +115,16 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <label class="keranjang">KERANJANG</label>
               
+              <label class="keranjang" style="margin-left:37%;">KERANJANG</label>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body" >
-              
-           
+              <img src="../assets/mie.jpg" alt=""><br><p class="makanan">&nbsp;&nbsp;Mie  20.000 </p><br><br><br><br>
+             <img src="../assets/bakso.jpg" alt=""><br><p class="makanan">&nbsp;&nbsp;Bakso 15.000 </p><br><br><br><br>
+             <h1>Total Harga: 35.000</h1>
               <!-- <div id="vue-counter">
 
                 <p id="tambah">
@@ -134,10 +138,10 @@
               </div> -->
             </div>
             <div class="modal-footer">
-              <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
-                  class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button>
+              <!-- <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
+                  class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button> -->
               <button type="button" id="edit"
-                  class="btn btn-primary  btn-lg center-block" ><i class='bx bx-check' >Pilih</i></button>
+                  class="btn btn-primary  btn-lg center-block" style="margin-right:43%;" ><i class='bx bx-check' >Bayar</i></button>
             </div>
           </div>
         </div>
@@ -287,6 +291,7 @@
 </script>
 
 <style scoped>
+ 
   .keranjang{
     margin: auto;
     font-size: 20px;

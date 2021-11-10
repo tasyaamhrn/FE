@@ -116,14 +116,12 @@
           <div class="modal-content">
             <div class="modal-header">
               <label class="keranjang">KERANJANG</label>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              
             </div>
-            <div class="modal-body" v-for="p in products" :key="p.id">
-              <img :src="p.image_url" style="width: 20%" alt="Product Image" />
-              <p class="makanan">{{ p.name }} <br> {{ p.price }} <br> Stok:{{ p.stock }}</p>
-              <div id="vue-counter">
+            <div class="modal-body" >
+              
+           
+              <!-- <div id="vue-counter">
 
                 <p id="tambah">
                   <i class='bx bx-minus' @click="decrease"></i>
@@ -133,13 +131,13 @@
                   &nbsp;&nbsp;
                   <i class='bx bx-plus' @click="increase" v-if="p.stock > counter"></i>
                 </p>
-              </div>
+              </div> -->
             </div>
             <div class="modal-footer">
               <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
                   class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button>
               <button type="button" id="edit"
-                  class="btn btn-primary  btn-lg center-block" data-toggle="modal" data-target="#myModal"><i class='bx bx-check' >Pilih</i></button>
+                  class="btn btn-primary  btn-lg center-block" ><i class='bx bx-check' >Pilih</i></button>
             </div>
           </div>
         </div>

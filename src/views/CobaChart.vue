@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-6">
           <div class="tambah" >
-            <button type="button" class="button" >
+            <button type="button" class="button" data-toggle="modal" data-target="#myModal2" >
                 Item
               </button>
           </div>
@@ -116,6 +116,9 @@
           <div class="modal-content">
             <div class="modal-header">
               <label class="keranjang">KERANJANG</label>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body" v-for="p in products" :key="p.id">
               <img :src="p.image_url" style="width: 20%" alt="Product Image" />

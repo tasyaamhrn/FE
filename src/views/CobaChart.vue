@@ -3,7 +3,7 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-6">
-          <h3>PRODUK</h3>
+          <h3>TRANSAKSI</h3>
         </div>
         <div class="col-md-6">
           <div class="tambah">
@@ -56,13 +56,6 @@
                 CARI
               </button>
             </div>
-
-            <!-- <select class="form-control">
-              <option value="">Pilih Produk</option>
-              <option v-for="item in products" :key="item.id">
-                {{ item.name }}
-              </option>
-            </select> -->
           </div>
         </div>
       </div>
@@ -70,10 +63,6 @@
     <div class="container" v-if="product_name">
       <div class="container-product2">
         <div class="col-makan">
-          <!-- <div>
-            <h6>{{ item.name }}</h6>
-          </div>
-          <hr /> -->
           <div class="row">
             <div class="col-md-3" v-for="p in products" :key="p.id">
               <div class="container-barang" data-toggle="modal" data-target="#myModal">
@@ -93,7 +82,6 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <!-- <h5 class="modal-title" id="exampleModalLabel">Kategori</h5> -->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -116,9 +104,41 @@
             <div class="modal-footer">
               <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
                   class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button>
-              <router-link to="EditCategory"> <button type="button" id="edit"
-                  class="btn btn-primary  btn-lg center-block"><i class='bx bx-check'>Pilih</i></button>
-              </router-link>
+              <button type="button" id="edit"
+                  class="btn btn-primary  btn-lg center-block" data-toggle="modal" data-target="#myModal2"><i class='bx bx-check' >Pilih</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" v-for="p in products" :key="p.id">
+              <img :src="p.image_url" style="width: 20%" alt="Product Image" />
+              <p class="makanan">{{ p.name }} <br> {{ p.price }} <br> Stok:{{ p.stock }}</p>
+              <div id="vue-counter">
+
+                <p id="tambah">
+                  <i class='bx bx-minus' @click="decrease"></i>
+
+                  &nbsp;&nbsp;
+                  {{ counter }}
+                  &nbsp;&nbsp;
+                  <i class='bx bx-plus' @click="increase" v-if="p.stock > counter"></i>
+                </p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
+                  class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button>
+              <button type="button" id="edit"
+                  class="btn btn-primary  btn-lg center-block" data-toggle="modal" data-target="#myModal"><i class='bx bx-check' >Pilih</i></button>
             </div>
           </div>
         </div>

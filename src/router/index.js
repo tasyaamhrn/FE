@@ -22,6 +22,7 @@ import EditKaryawan from '../views/Karyawan/EditKaryawan.vue';
 
 import Pembelian from '../views/Pembelian.vue'
 import Pembelian2 from '../views/Pembelian2.vue'
+import CobaChart from '../views/CobaChart.vue'
 
 
 //store
@@ -164,6 +165,11 @@ const routes = [{
     path: '/Pembelian2',
     name: 'Pembelian2',
     component: Pembelian2
+  },
+  {
+    path: '/CobaChart',
+    name: 'CobaChart',
+    component: CobaChart
   },
 ]
 

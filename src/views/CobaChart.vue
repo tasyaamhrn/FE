@@ -6,10 +6,10 @@
           <h3>TRANSAKSI</h3>
         </div>
         <div class="col-md-6">
-          <div class="tambah">
-            <router-link to="AddProduct"><button type="button" class="button">
-                +Tambah
-              </button></router-link>
+          <div class="tambah" >
+            <button type="button" class="button" >
+                Item
+              </button>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
               <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
                   class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button>
               <button type="button" id="edit"
-                  class="btn btn-primary  btn-lg center-block" data-toggle="modal" data-target="#myModal2"><i class='bx bx-check' >Pilih</i></button>
+                  class="btn btn-primary  btn-lg center-block" data-dismiss="modal"><i class='bx bx-check' >Pilih</i></button>
             </div>
           </div>
         </div>
@@ -115,9 +115,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <label class="keranjang">KERANJANG</label>
             </div>
             <div class="modal-body" v-for="p in products" :key="p.id">
               <img :src="p.image_url" style="width: 20%" alt="Product Image" />
@@ -288,6 +286,10 @@
 </script>
 
 <style scoped>
+  .keranjang{
+    margin: auto;
+    font-size: 20px;
+  }
   #tambah {
     padding-top: 30px;
   }

@@ -184,13 +184,17 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <div class="form-group">
           <label for="exampleBarcodeProduct" class="form-label">Jumlah</label>
-          <input
+          <input type="number" v-model="counter" class="form-control">
+          </div>
+          <!-- {{ counter }} -->
+          <!-- <input
             type="integer"
             class="form-control"
             id="exampleBarcode"
             placeholder="Masukkan Jumlah Barang"
-          />
+          /> -->
         </div>
       </div>
     </div>
@@ -333,8 +337,8 @@ export default {
     },
     load() {
       this.getStore();
-      this.getCategory();
-      this.getData();
+      // this.getCategory();
+      // this.getData();
     },
     deleteData(id) {
       Swal.fire({

@@ -15,7 +15,7 @@
         </li>
         
         <li>
-          <router-link :to="{ name: 'CobaChart' }">
+          <router-link :to="{ name: 'Pembelian2' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tambah Transaksi </span>
           </router-link>

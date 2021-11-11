@@ -20,7 +20,7 @@
           <div class="form-group">
             <label>Pilih Toko</label>
             <select
-              v-model="store_id"
+              v-model="form.store_id"
               class="form-control"
               @change="getCategory"
             >
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="container" v-if="store_id">
+    <div class="container" v-if="form.store_id">
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
@@ -235,7 +235,7 @@
             type="text"
             class="form-control"
             @input="kembalian"
-            v-model="pay"
+            v-model="form.pay"
             id="exampleStockProduct"
             placeholder="Masukkan Nominal Pembayaran"
           />
@@ -259,8 +259,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <button type="button" id="add" class="button">Tambah Transaksi</button> -->
     <button @click="save" type="button" class="btn btn-success">
       Tambah Transaksi
     </button>
@@ -275,7 +273,6 @@ export default {
   data() {
     return {
       products: [],
-      store_id: "",
       category_id: "",
       product_name: "",
       stock: "",
@@ -283,14 +280,19 @@ export default {
       categories: [],
       counter: 0,
       total: 0,
-      after_discount: 0,
-      discount: 0,
-      price: "",
-      pay: 0,
       change: 0,
-      product_form: {
-        product_id: "",
-        qty: "",
+      form: {
+        price: 0,
+        pay: 0,
+        discount: 0,
+        change: 0,
+        store_id: "",
+        products: [
+          {
+            product_id: "",
+            qty: "",
+          },
+        ],
       },
     };
   },
@@ -298,10 +300,10 @@ export default {
     this.load();
   },
   updated() {
-    if (!this.store_id) {
+    if (!this.form.store_id) {
       this.category_id = "";
       if (!this.category_id) {
-        this.store_id = "";
+        this.form.store_id = "";
       }
       if (!this.product_name) {
         this.product_name = "";
@@ -355,7 +357,7 @@ export default {
     getCategory() {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id,
+          "https://api-kasirin.jaggs.id/api/category?store_id=" + this.form.store_id,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -403,54 +405,35 @@ export default {
     },
     increase(harga, id) {
       this.counter++;
-      this.price = harga;
-      this.product_form.product_id = id;
-      this.product_form.qty = this.counter;
-      this.total = this.price * this.counter;
+      this.form.price = harga;
+      this.form.products[0].product_id = id;
+      this.form.products[0].qty = this.counter;
+      this.total = this.form.price * this.counter;
     },
     decrease(harga, id) {
       if (this.counter <= 0) {
         Swal.fire("Angka Tidak Valid", "", "warning");
       } else {
         this.counter--;
-        this.price = harga;
-        this.product_form.product_id = id;
-        this.product_form.qty = this.counter;
-        this.total = this.price * this.counter;
+        this.form.price = harga;
+        this.form.products[0].product_id = id;
+        this.form.products[0].qty = this.counter;
+        this.total = this.form.price * this.counter;
       }
     },
     hitung() {
       this.after_discount = this.total - this.discount;
     },
     kembalian() {
-      this.change = this.pay - this.after_discount;
+      this.form.change = this.form.pay - this.after_discount;
     },
     save() {
-      let formData = new FormData();
-      formData.set("price", this.price);
-      formData.set("pay", this.pay);
-      formData.set("discount", this.discount);
-      formData.set("change", this.change);
-      for (let index = 0; index < this.product_form.length; index++) {
-        formData.set("products", this.product_form[index]);
-      }
       axios
-        .post(
-          "https://api-kasirin.jaggs.id/api/transaction",
-          {
-            price: this.price,
-            pay: this.pay,
-            discount: this.discount,
-            change: this.change,
-            store_id: this.store_id,
-            products: this.product_form,
+        .post("https://api-kasirin.jaggs.id/api/transaction", this.form, {
+          headers: {
+            Authorization: "Bearer " + localStorage.access_token,
           },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.access_token,
-            },
-          }
-        )
+        })
         .then(() => {
           this.alertSuccess();
           this.$router.push({

@@ -7,9 +7,9 @@
         </div>
         <div class="col-md-6">
           <div class="tambah">
-            <router-link to="AddProduct">
+            <!-- <router-link to="AddProduct">
               <button type="button" class="button">+Tambah</button>
-            </router-link>
+            </router-link> -->
           </div>
         </div>
       </div>
@@ -131,14 +131,14 @@
               </p>
               <div id="vue-counter">
                 <p id="tambah">
-                  <i class="bx bx-minus" @click="decrease(p.price)"></i>
+                  <i class="bx bx-minus" @click="decrease(p.price, p.id)"></i>
 
                   &nbsp;&nbsp;
                   {{ counter }}
                   &nbsp;&nbsp;
                   <i
                     class="bx bx-plus"
-                    @click="increase(p.price)"
+                    @click="increase(p.price, p.id)"
                     v-if="p.stock > counter"
                   ></i>
                 </p>
@@ -234,6 +234,8 @@
           <input
             type="text"
             class="form-control"
+            @input="kembalian"
+            v-model="pay"
             id="exampleStockProduct"
             placeholder="Masukkan Nominal Pembayaran"
           />
@@ -251,11 +253,17 @@
             type="integer"
             class="form-control"
             id="exampleBarcode"
+            v-model="change"
             placeholder="Kembalian Pelanggan"
           />
         </div>
       </div>
     </div>
+
+    <!-- <button type="button" id="add" class="button">Tambah Transaksi</button> -->
+    <button @click="save" type="button" class="btn btn-success">
+      Tambah Transaksi
+    </button>
   </div>
 </template>
 
@@ -278,6 +286,12 @@ export default {
       after_discount: 0,
       discount: 0,
       price: "",
+      pay: 0,
+      change: 0,
+      product_form: {
+        product_id: "",
+        qty: "",
+      },
     };
   },
   mounted() {
@@ -387,22 +401,81 @@ export default {
         }
       });
     },
-    increase(harga) {
+    increase(harga, id) {
       this.counter++;
       this.price = harga;
+      this.product_form.product_id = id;
+      this.product_form.qty = this.counter;
       this.total = this.price * this.counter;
     },
-    decrease(harga) {
+    decrease(harga, id) {
       if (this.counter <= 0) {
         Swal.fire("Angka Tidak Valid", "", "warning");
       } else {
         this.counter--;
         this.price = harga;
+        this.product_form.product_id = id;
+        this.product_form.qty = this.counter;
         this.total = this.price * this.counter;
       }
     },
     hitung() {
       this.after_discount = this.total - this.discount;
+    },
+    kembalian() {
+      this.change = this.pay - this.after_discount;
+    },
+    save() {
+      let formData = new FormData();
+      formData.set("price", this.price);
+      formData.set("pay", this.pay);
+      formData.set("discount", this.discount);
+      formData.set("change", this.change);
+      for (let index = 0; index < this.product_form.length; index++) {
+        formData.set("products", this.product_form[index]);
+      }
+      axios
+        .post(
+          "https://api-kasirin.jaggs.id/api/transaction",
+          {
+            price: this.price,
+            pay: this.pay,
+            discount: this.discount,
+            change: this.change,
+            store_id: this.store_id,
+            products: this.product_form,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.access_token,
+            },
+          }
+        )
+        .then(() => {
+          this.alertSuccess();
+          this.$router.push({
+            name: "Pembelian2",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    alertSuccess() {
+      // Use sweetalert2
+      this.$swal({
+        type: "success",
+        title: "Success",
+        text: "Transaksi berhasil ditambahkan",
+      });
+    },
+    alertError() {
+      // Use sweetalert2
+      this.$swal({
+        type: "error",
+        title: "Oops...",
+        text: "Transaksi gagal ditambahkan, silahkan coba lagi",
+      });
     },
   },
 };
@@ -419,6 +492,10 @@ export default {
 #edit {
   margin-right: 150px;
   background-color: #4caf50;
+}
+.btn-success {
+  margin-left: 80px;
+  margin-top: 10px;
 }
 
 #hapus {

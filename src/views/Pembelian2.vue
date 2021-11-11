@@ -126,9 +126,9 @@
     </div>
     <div class="container" id="hargaproduk">
     <div class="row">  
-    <div class="col-md-12">
+    <div class="col-md-12" v-for="p in products" :key="p.id">
       <label for="examplePriceProduct" class="form-label">Harga Produk</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" v-model="p.price">
     </div>
     </div>
     </div>

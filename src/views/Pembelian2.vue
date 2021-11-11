@@ -8,9 +8,7 @@
         <div class="col-md-6">
           <div class="tambah">
             <router-link to="AddProduct">
-              <button type="button" class="button">
-                +Tambah
-              </button>
+              <button type="button" class="button">+Tambah</button>
             </router-link>
           </div>
         </div>
@@ -44,10 +42,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <label>Pilih Kategori</label>
-            <select
-              class="form-control"
-              v-model="category_id"
-            >
+            <select class="form-control" v-model="category_id">
               <option value="">Pilih Kategori</option>
               <option
                 v-for="item in categories"
@@ -136,14 +131,14 @@
               </p>
               <div id="vue-counter">
                 <p id="tambah">
-                  <i class="bx bx-minus" @click="decrease"></i>
+                  <i class="bx bx-minus" @click="decrease(p.price)"></i>
 
                   &nbsp;&nbsp;
                   {{ counter }}
                   &nbsp;&nbsp;
                   <i
                     class="bx bx-plus"
-                    @click="increase"
+                    @click="increase(p.price)"
                     v-if="p.stock > counter"
                   ></i>
                 </p>
@@ -153,19 +148,18 @@
               <button
                 type="button"
                 id="hapus"
-                class="btn btn-danger  btn-lg center-block"
+                class="btn btn-danger btn-lg center-block"
               >
                 <i class="bx bx-minus-circle" data-dismiss="modal">Batal</i>
               </button>
-              <router-link to="EditCategory">
-                <button
-                  type="button"
-                  id="edit"
-                  class="btn btn-primary  btn-lg center-block"
-                >
-                  <i class="bx bx-check">Pilih</i>
-                </button>
-              </router-link>
+
+              <button
+                type="button"
+                id="edit"
+                class="btn btn-primary btn-lg center-block"
+              >
+                <i class="bx bx-check" data-dismiss="modal">Pilih</i>
+              </button>
             </div>
           </div>
         </div>
@@ -185,16 +179,51 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-          <label for="exampleBarcodeProduct" class="form-label">Jumlah</label>
-          <input type="number" v-model="counter" class="form-control">
+            <label for="exampleBarcodeProduct" class="form-label">Jumlah</label>
+            <input type="number" v-model="counter" class="form-control" />
           </div>
-          <!-- {{ counter }} -->
-          <!-- <input
-            type="integer"
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="exampleBarcodeProduct" class="form-label"
+              >Total Harga</label
+            >
+            <input
+              type="number"
+              v-model="total"
+              class="form-control"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <label for="exampleBarcodeProduct" class="form-label">Diskon</label>
+          <input
+            type="number"
             class="form-control"
             id="exampleBarcode"
-            placeholder="Masukkan Jumlah Barang"
-          /> -->
+            v-model.number="discount"
+            @input="hitung"
+            placeholder="Masukkan Potongan Harga"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <label for="exampleBarcodeProduct" class="form-label">
+            Setelah Diskon</label
+          >
+          <input type="number" class="form-control" v-model="after_discount" />
         </div>
       </div>
     </div>
@@ -211,19 +240,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <label for="exampleBarcodeProduct" class="form-label">Diskon</label>
-          <input
-            type="integer"
-            class="form-control"
-            id="exampleBarcode"
-            placeholder="Masukkan Potongan Harga"
-          />
-        </div>
-      </div>
-    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -257,6 +274,10 @@ export default {
       stores: [],
       categories: [],
       counter: 0,
+      total: 0,
+      after_discount: 0,
+      discount: 0,
+      price: "",
     };
   },
   mounted() {
@@ -337,8 +358,6 @@ export default {
     },
     load() {
       this.getStore();
-      // this.getCategory();
-      // this.getData();
     },
     deleteData(id) {
       Swal.fire({
@@ -368,15 +387,22 @@ export default {
         }
       });
     },
-    increase() {
+    increase(harga) {
       this.counter++;
+      this.price = harga;
+      this.total = this.price * this.counter;
     },
-    decrease() {
+    decrease(harga) {
       if (this.counter <= 0) {
         Swal.fire("Angka Tidak Valid", "", "warning");
       } else {
         this.counter--;
+        this.price = harga;
+        this.total = this.price * this.counter;
       }
+    },
+    hitung() {
+      this.after_discount = this.total - this.discount;
     },
   },
 };

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="container mt-5">
+    <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <h3>PRODUK</h3>
+        <div class="col-md-8">
+          <h1>PRODUK</h1>
         </div>
-        <div class="col-md-6">
-          <div class="tambah">
-            <router-link to="AddProduct"><button type="button" class="button">+Tambah</button></router-link>
+        <div class="col-md-4">
+          <div class="add">
+            <router-link to="AddProduct"><button type="button" id="btn-add" class="button">+Tambah</button></router-link>
           </div>
         </div>
       </div>
@@ -207,7 +207,14 @@
 </script>
 
 <style scoped>
-  h3 {
+  /* h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #4caf50;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 75px;
+  } */
+  h1 {
     font-family: Arial, Helvetica, sans-serif;
     color: #4caf50;
     font-size: 18px;
@@ -260,10 +267,24 @@
     border-color: transparent;
   }
 
-  .tambah {
-    text-align: right;
+  .add {
+    /* margin-top: 65px; */
+    float: right;
+    text-align: center;
+    
+    padding-bottom: 10px;
+    
   }
 
+  #btn-add {
+    background-color: #4caf50;
+    border-color: transparent;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+    font-weight: bold;
+  }
   .row {
     padding-top: 0px;
     margin: auto;

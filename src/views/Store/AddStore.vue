@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container mt-5">
+    <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <h3>TAMBAH TOKO</h3>
+        <div class="col-md-8">
+          <h1>TAMBAH TOKO</h1>
         </div>
       </div>
       <div class="form-group">
@@ -101,7 +101,7 @@ button {
 .kembali {
   text-align: right;
 }
-h3 {
+h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: #4caf50;
   font-size: 18px;

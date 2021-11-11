@@ -2,11 +2,15 @@
     <div>
         <div class="container">
             <div class="row">
+                <div class="col-md-8">
+                    <h1>TAMBAH KARYAWAN</h1>
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col-md-6">
                     <button @click="karyawan" type="button" class="btn btn-success btn-lg">
                         Tambah
                     </button>
-                    <!-- <label>TAMBAH PRODUK</label> -->
                 </div>
                 <div class="col-md-6">
                     <div class="kembali">
@@ -17,91 +21,160 @@
                         </router-link>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="container">
-            <p class="judul1">
-                Nama Karyawan
-            </p>
-            <input-form :errors="errors.name">
-                <template v-slot:form>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Nama Karyawan</label>
                     <input class="form-control" id="namakaryawan" type="text" placeholder="Masukkan Nama Karyawan"
                         v-model="form.name" />
-                </template>
-            </input-form>
-
-            <p class="judul">
-                Foto Karyawan
-            </p>
-            <input-form :errors="errors.image">
-                <template v-slot:form>
+                </div>
+                <!-- <p class="judul1">
+                        Nama Karyawan
+                    </p>
+                    <input-form :errors="errors.name">
+                        <template v-slot:form>
+                            <input class="form-control" id="namakaryawan" type="text"
+                                placeholder="Masukkan Nama Karyawan" v-model="form.name" />
+                        </template>
+                    </input-form> -->
+                <div class="form-group">
+                    <label>Foto Karyawan</label>
                     <input type="file" accept="avatar/*" class="form-control" @change="onImageSelected" />
-                </template>
-                <select class="form-control"></select>
-            </input-form>
-            <p class="judul">
-                Toko
-            </p>
-            <div class="form-group" style="margin-left:30px;">
-                <select v-model="form.store_id" class="form-control">
-                    <option value="">Pilih Toko</option>
-                    <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
-                        {{ store.store.name }}
-                    </option>
-                </select>
-            </div>
-            <p class="judul">
-                Jenis Kelamin
-            </p>
-            <input-form>
-                <template v-slot:form>
-
+                </div>
+                <!-- <p class="judul">
+                    Foto Karyawan
+                </p>
+                <input-form :errors="errors.image">
+                    <template v-slot:form>
+                        <input type="file" accept="avatar/*" class="form-control" @change="onImageSelected" />
+                    </template>
+                    <select class="form-control"></select>
+                </input-form> -->
+                <div class="form-group">
+                    <label>Toko</label>
+                    <select v-model="form.store_id" class="form-control">
+                        <option value="">Pilih Toko</option>
+                        <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                            {{ store.store.name }}
+                        </option>
+                    </select>
+                </div>
+                <!-- <p class="judul">
+                    Toko
+                </p>
+                <div class="form-group" style="margin-left:30px;">
+                    <select v-model="form.store_id" class="form-control">
+                        <option value="">Pilih Toko</option>
+                        <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                            {{ store.store.name }}
+                        </option>
+                    </select>
+                </div> -->
+                <div class="form-group">
+                    <label>Jenis Kelamin</label>
                     <select class="form-control" v-model="form.gender">
                         <option value="">Jenis Kelamin</option>
                         <option> Male </option>
                         <option> Female </option>
                     </select>
-                </template>
-            </input-form>
-            <p class="judul">
-                Alamat
-            </p>
-            <input-form :errors="errors.price">
-                <template v-slot:form>
+                </div>
+                <!-- <p class="judul">
+                    Jenis Kelamin
+                </p>
+                <input-form>
+                    <template v-slot:form>
+
+                        <select class="form-control" v-model="form.gender">
+                            <option value="">Jenis Kelamin</option>
+                            <option> Male </option>
+                            <option> Female </option>
+                        </select>
+                    </template>
+                </input-form> -->
+                <div class="form-group">
+                    <label>Alamat</label>
                     <input class="form-control" id="address" type="text" placeholder="Masukkan Alamat"
                         v-model="form.address" />
-                </template>
-            </input-form>
-            <p class="judul">
-                Telepon
-            </p>
-            <input-form :errors="errors.price">
-                <template v-slot:form>
+                </div>
+                <!-- <p class="judul">
+                    Alamat
+                </p>
+                <input-form :errors="errors.price">
+                    <template v-slot:form>
+                        <input class="form-control" id="address" type="text" placeholder="Masukkan Alamat"
+                            v-model="form.address" />
+                    </template>
+                </input-form> -->
+                <div class="form-group">
+                    <label>Telepon</label>
                     <input class="form-control" id="phone" type="text" placeholder="Masukkan Telepon"
                         v-model="form.phone" />
-                </template>
-            </input-form>
-            <p class="judul">
-                Email
-            </p>
-            <input-form :errors="errors.email">
-                <template v-slot:form>
+                </div>
+
+                <!-- <p class="judul">
+                    Telepon
+                </p>
+                <input-form :errors="errors.price">
+                    <template v-slot:form>
+                        <input class="form-control" id="phone" type="text" placeholder="Masukkan Telepon"
+                            v-model="form.phone" />
+                    </template>
+                </input-form> -->
+                <div class="form-group">
+                    <label>Email</label>
                     <input type="email" placeholder="Masukkan Email" v-model="form.email" class="form-control" />
-                </template>
-            </input-form>
-            <p class="judul">
-                Password
-            </p>
-            <input-form :errors="errors.password">
-                <template v-slot:form>
+                </div>
+                <!-- <p class="judul">
+                    Email
+                </p>
+                <input-form :errors="errors.email">
+                    <template v-slot:form>
+                        <input type="email" placeholder="Masukkan Email" v-model="form.email" class="form-control" />
+                    </template>
+                </input-form> -->
+                <div class="form-group">
+                    <label>Password</label>
                     <input type="password" placeholder="Masukkan Password" v-model="form.password"
                         class="form-control" />
-                </template>
-            </input-form>
+                </div>
+                <!-- <p class="judul">
+                    Password
+                </p>
+                <input-form :errors="errors.password">
+                    <template v-slot:form>
+                        <input type="password" placeholder="Masukkan Password" v-model="form.password"
+                            class="form-control" />
+                    </template>
+                </input-form> -->
+                <button @click="karyawan" type="button" name="button" class="sv">
+                    Tambah
+                </button>
+            </div>
         </div>
     </div>
 </template>
 <style scoped>
+    .sv {
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #4caf50;
+        float: right;
+        /* height: 30px; */
+        color: white;
+        border-color: transparent;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #4caf50;
+        font-size: 18px;
+        font-weight: bold;
+        padding-top: 75px;
+    }
+
     .col-md-6 {
         padding-left: 45px;
     }
@@ -111,12 +184,7 @@
     }
 
     label {
-        padding-top: 90px;
-        margin-bottom: 15px;
         color: #4caf50;
-        font-size: 20px;
-        font-weight: bold;
-        font-family: sans-serif;
     }
 
     button {
@@ -154,7 +222,7 @@
 </style>
 <script>
     import axios from "axios";
-    import InputForm from "../../components/inputForm.vue";
+    // import InputForm from "../../components/inputForm.vue";
     import Swal from 'sweetalert2';
 
     export default {
@@ -175,7 +243,7 @@
             };
         },
         components: {
-            InputForm
+            // InputForm
         },
         mounted() {
             this.getStore();

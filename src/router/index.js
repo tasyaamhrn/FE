@@ -101,7 +101,7 @@ const routes = [{
     component: EditCategory
   },
   {
-    path: '/pembelian/:id',
+    path: '/pembelian',
     name: 'Pembelian',
     component: Pembelian
   },

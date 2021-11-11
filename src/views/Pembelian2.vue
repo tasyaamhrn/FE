@@ -114,8 +114,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i
-                  class='bx bx-minus-circle' data-dismiss="modal">Batal</i></button>
+              <button type="button" id="hapus" class="btn btn-danger  btn-lg center-block"><i class='bx bx-minus-circle'
+                  data-dismiss="modal">Batal</i></button>
               <router-link to="EditCategory"> <button type="button" id="edit"
                   class="btn btn-primary  btn-lg center-block"><i class='bx bx-check'>Pilih</i></button>
               </router-link>
@@ -123,6 +123,50 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container" id="hargaproduk">
+    <div class="row">  
+    <div class="col-md-12">
+      <label for="examplePriceProduct" class="form-label">Harga Produk</label>
+      <input type="text" class="form-control">
+    </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">  
+    <div class="col-md-12">
+      <label for="exampleBarcodeProduct" class="form-label">Jumlah</label>
+      <input type="integer" class="form-control" id="exampleBarcode" 
+        placeholder="Masukkan Jumlah Barang">
+    </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">  
+    <div class="col-md-12">
+      <label for="exampleStockProduct" class="form-label">Bayar</label>
+      <input type="text" class="form-control" id="exampleStockProduct"
+        placeholder="Masukkan Nominal Pembayaran">
+    </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">  
+    <div class="col-md-12">
+      <label for="exampleBarcodeProduct" class="form-label">Diskon</label>
+      <input type="integer" class="form-control" id="exampleBarcode"
+        placeholder="Masukkan Potongan Harga">
+    </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">  
+    <div class="col-md-12">
+      <label for="exampleBarcodeProduct" class="form-label">Kembalian</label>
+      <input type="integer" class="form-control" id="exampleBarcode"
+        placeholder="Kembalian Pelanggan">
+    </div>
+    </div>
     </div>
 
   </div>
@@ -140,7 +184,7 @@
         store_id: "",
         category_id: "",
         product_name: "",
-        stock:"",
+        stock: "",
         stores: [],
         categories: [],
         counter: 0
@@ -186,12 +230,12 @@
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
               }
             })
-         .then((res) => {
-          this.products = res.data.data;
-          this.stock = res.data.data.stock;
-          console.log(res)
-        
-        })
+          .then((res) => {
+            this.products = res.data.data;
+            this.stock = res.data.data.stock;
+            console.log(res)
+
+          })
           .catch((err) => {
             console.log(err);
           });
@@ -247,27 +291,30 @@
         });
       },
       increase() {
-        
+
         this.counter++;
-        
+
       },
       decrease() {
         if (this.counter <= 0) {
-         Swal.fire(
-              "Angka Tidak Valid",
-              "",
-              "warning"
-            );
-        }else{
-        this.counter--;
+          Swal.fire(
+            "Angka Tidak Valid",
+            "",
+            "warning"
+          );
+        } else {
+          this.counter--;
         }
-        
+
       },
     },
   };
 </script>
 
 <style scoped>
+  #hargaproduk{
+    padding-top: 20px;
+  }
   #tambah {
     padding-top: 30px;
   }

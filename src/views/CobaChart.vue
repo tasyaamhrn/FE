@@ -122,9 +122,9 @@
               </button>
             </div>
             <div class="modal-body" >
-              <img src="../assets/mie.jpg" alt=""><br><p class="makanan">&nbsp;&nbsp;Mie  20.000 </p><br><br><br><br>
-             <img src="../assets/bakso.jpg" alt=""><br><p class="makanan">&nbsp;&nbsp;Bakso 15.000 </p><br><br><br><br>
-             <h1>Total Harga: 35.000</h1>
+              <img src="../assets/nasigoreng.jpg" alt=""><br><p class="makanan">&nbsp;&nbsp;Nasi Goreng 10.000 </p><br><br><br><br>
+             <img src="../assets/bihun.jpeg" alt=""><br><p class="makanan">&nbsp;&nbsp;Bihun 10.000 </p><br><br><br><br>
+             <h1>Total Harga: 20.000</h1>
               <!-- <div id="vue-counter">
 
                 <p id="tambah">

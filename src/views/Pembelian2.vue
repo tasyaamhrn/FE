@@ -281,6 +281,7 @@ export default {
       counter: 0,
       total: 0,
       change: 0,
+      after_discount:0,
       form: {
         price: 0,
         pay: 0,
@@ -425,7 +426,7 @@ export default {
       this.after_discount = this.total - this.discount;
     },
     kembalian() {
-      this.form.change = this.form.pay - this.after_discount;
+      this.change = this.form.pay - this.after_discount;
     },
     save() {
       axios

@@ -259,7 +259,7 @@
         </div>
       </div>
     </div>
-    <button @click="save" type="button" class="btn btn-success">
+    <button @click="save(); sisa();" type="button" class="btn btn-success">
       Tambah Transaksi
     </button>
   </div>
@@ -282,6 +282,7 @@ export default {
       total: 0,
       change: 0,
       after_discount:0,
+      after_transaksi:0,
       form: {
         price: 0,
         pay: 0,
@@ -428,6 +429,9 @@ export default {
     kembalian() {
       this.change = this.form.pay - this.after_discount;
     },
+    sisa(){
+      this.after_transaksi = this.stock - this.counter;
+    },
     save() {
       axios
         .post("https://api-kasirin.jaggs.id/api/transaction", this.form, {
@@ -437,8 +441,10 @@ export default {
         })
         .then(() => {
           this.alertSuccess();
+         
           this.$router.push({
             name: "Pembelian2",
+            
           });
         })
         .catch((err) => {

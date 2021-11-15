@@ -27,9 +27,9 @@
             <thead class="thead tbl">
                 <tr>
                     <th scope="col">Tanggal Transaksi</th>
-                    <th scope="col">Produk</th>
+                    <!-- <th scope="col">Produk</th> -->
                     <th scope="col">Harga</th>
-                    <th scope="col">Jumlah</th>
+                    <!-- <th scope="col">Jumlah</th> -->
                     <th scope="col">Diskon</th>
                     <th scope="col">Bayar</th>
                     <th scope="col">Kembalian</th>
@@ -37,12 +37,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in transaction" :key="item.id">
-                    <td>{{ item.created_at}}</td>
-                    
-                    <td>{{ item.product_id }}</td>
+                <tr v-for="(item) in transaction" :key="item.id">
+                    <td>{{ new Date(item.created_at).toLocaleDateString()}}</td>
+                    <!-- <td >{{ item.product_id }} </td> -->
                     <td>{{ item.price }}</td>
-                    <td>{{ item.qty}}</td>
+                    <!-- <td>{{ item.qty }}</td> -->
                     <td>{{ item.discount}}</td>
                     <td>{{ item.pay}}</td>
                     <td>{{ item.change}}</td>
@@ -78,7 +77,8 @@
                 discount: "",
                 change: "",
                 counter:"",
-             tanggal:"",
+                tanggal:"",
+                detail_transactions:{},
                 products: [{
                     product_id: "",
                     qty: "",
@@ -89,6 +89,7 @@
         mounted() {
             this.getStore()
             this.getTransaksi()
+            this.getDetailTransaksi()
         },
         methods: {
             getStore() {
@@ -128,6 +129,23 @@
                             "Silahkan Tambahkan Transaksi Terlebih Dahulu",
                             "warning"
                         );
+                        console.log(err);
+                    });
+            },
+            getDetailTransaksi() {
+                axios
+                    .get(
+                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=" +
+                        localStorage.getItem("id"), {
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("access_token"),
+                            },
+                        }
+                    )
+                    .then((res) => {
+                        this.detail_transactions = res.data.data;
+                    })
+                    .catch((err) => {
                         console.log(err);
                     });
             },

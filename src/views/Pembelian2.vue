@@ -262,6 +262,11 @@
     <button @click="save(); sisa(); refresh();" type="button" class="btn btn-success">
       Tambah Transaksi
     </button>
+    <router-link :to="{ name: 'tampil_transaksi' }">
+                            <button type="button" class="btn btn-success" id="tampiltransaksi">
+                                Tampil Transaksi
+                            </button>
+    </router-link>
   </div>
 </template>
 
@@ -481,6 +486,9 @@ this.counter=""
 </script>
 
 <style scoped>
+#tampiltransaksi{
+  margin-left: 17px;
+}
 #hargaproduk {
   padding-top: 20px;
 }

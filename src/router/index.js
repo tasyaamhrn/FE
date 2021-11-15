@@ -23,7 +23,7 @@ import EditKaryawan from '../views/Karyawan/EditKaryawan.vue';
 import Pembelian from '../views/Pembelian.vue'
 import Pembelian2 from '../views/Pembelian2.vue'
 import CobaChart from '../views/CobaChart.vue'
-
+import TampilTransaksi from '../views/tampil_transaksi.vue'
 
 //store
 import Store from '../views/Store/Store.vue'
@@ -43,6 +43,11 @@ const routes = [{
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/tampil_transaksi',
+    name: 'TampilTransaksi',
+    component: TampilTransaksi
   },
   {
     path: '/product',

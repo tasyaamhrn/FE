@@ -259,7 +259,7 @@
         </div>
       </div>
     </div>
-    <button @click="save(); sisa();" type="button" class="btn btn-success">
+    <button @click="save(); sisa(); refresh();" type="button" class="btn btn-success">
       Tambah Transaksi
     </button>
   </div>
@@ -450,6 +450,15 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    refresh(){
+this.change = "",
+this.form.pay = "",
+this.after_discount="",
+this.discount="",
+this.total="",
+this.p.price="",
+this.counter=""
     },
     alertSuccess() {
       // Use sweetalert2

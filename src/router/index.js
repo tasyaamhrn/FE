@@ -24,6 +24,7 @@ import Pembelian from '../views/Pembelian.vue'
 import Pembelian2 from '../views/Pembelian2.vue'
 import CobaChart from '../views/CobaChart.vue'
 import TampilTransaksi from '../views/tampil_transaksi.vue'
+import Home2 from '../views/Home2.vue'
 
 //store
 import Store from '../views/Store/Store.vue'
@@ -175,6 +176,12 @@ const routes = [{
     path: '/CobaChart',
     name: 'CobaChart',
     component: CobaChart
+  },
+  {
+    path: '/Home2',
+    name: 'Home2',
+    component: Home2,
+
   },
 ]
 

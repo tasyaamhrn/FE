@@ -46,19 +46,80 @@
                     <td>{{ item.pay}}</td>
                     <td>{{ item.change}}</td>
                     <td>
-                        <router-link :to="{ name: 'EditKaryawan', params: { id: item.id } }">
+                        <!-- <router-link :to="{ name: 'EditKaryawan', params: { id: item.id } }"> -->
                             <button type="button" class="btn btn-primary">
-                                Edit
+                                <div class="detailtransaksi" data-toggle="modal" data-target="#myModal">
+                                    Detail Transaksi
+                                </div>    
                             </button>
-                        </router-link>
-                        <button type="button" class="btn btn-danger" @click="deleteData(item.id)">
-                            Hapus
-                        </button>
+                        <!-- </router-link> -->
                     </td>
                 </tr>
             </tbody>
         </table>
+    <div
+        class="modal fade"
+        id="myModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        data-backdrop="false"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" v-for="p in detail_transaction" :key="p.id">
+              <img :src="p.image_url" style="width: 20%" alt="Product Image" />
+              <p class="makanan">
+                {{ p.name }} <br />
+                {{ p.price }} <br />
 
+                <!-- Stok:{{ p.stock }} -->
+              </p>
+              <!-- <div id="vue-counter">
+                <p id="tambah">
+                  <i class="bx bx-minus" @click="decrease(p.price, p.id)"></i>
+
+                  &nbsp;&nbsp;
+                  {{ counter }}
+                  &nbsp;&nbsp;
+                  <i
+                    class="bx bx-plus"
+                    @click="increase(p.price, p.id)"
+                    v-if="p.stock > counter"
+                  ></i>
+                </p>
+              </div> -->
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="hapus"
+                class="btn btn-danger btn-lg center-block"
+              >
+                <i class="bx bx-minus-circle" data-dismiss="modal">Batal</i>
+              </button>
+
+              <button
+                type="button"
+                id="edit"
+                class="btn btn-primary btn-lg center-block"
+              >
+                <i class="bx bx-check" data-dismiss="modal">Pilih</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -70,15 +131,18 @@
         data() {
             return {
                 stores: [],
-                transaction:{},
+                transaction: {},
                 store_id: "",
                 price: "",
                 pay: "",
                 discount: "",
                 change: "",
-                counter:"",
-                tanggal:"",
-                detail_transactions:{},
+                counter: "",
+                tanggal: "",
+                detail_transaction: [{
+                    product_id:"",
+                    qty:"",
+                }],
                 products: [{
                     product_id: "",
                     qty: "",
@@ -112,7 +176,8 @@
             getTransaksi() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this.store_id, {
+                        "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this
+                        .store_id, {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
                             },
@@ -143,7 +208,7 @@
                         }
                     )
                     .then((res) => {
-                        this.detail_transactions = res.data.data;
+                        this.detail_transaction = res.data.data;
                     })
                     .catch((err) => {
                         console.log(err);

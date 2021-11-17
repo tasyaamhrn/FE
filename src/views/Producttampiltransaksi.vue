@@ -68,14 +68,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="container-makanan2 text-center">
+                        <div class="container-makanan2 text-center" v-for="item in detail_transaction" :key="item.id" >
 
-                            <img id="detail" src="../assets/beras.png" align="middle" alt="">
+                            <img id="detail" src= "../assets/nasigoreng.jpg" align="middle" alt="">
 
                             <p class="makanan2">
-                                Beras
+                                {{item.product.name}}
                                 <br>
-                                Stock : 98</p>
+                                Quantity : {{item.qty}}</p>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -101,7 +101,9 @@
         data() {
             return {
                 stores: [],
-                transaction: {},
+                transaction: [{
+                    id:"",
+                }],
                 store_id: "",
                 price: "",
                 pay: "",
@@ -110,16 +112,14 @@
                 counter: "",
                 tanggal: "",
                 detail_transaction: [{
-                    transaction_id: "",
-                    product_id: "",
-                    qty: "",
-
+                    product_id:"",
+                    qty:"",
+                    transaction_id:"",
+                    product:[{
+                        name:"",
+                        image_url:"",
+                    }]
                 }],
-                products: [{
-                    product_id: "",
-                    qty: "",
-                }, ],
-
             };
         },
         mounted() {
@@ -172,7 +172,7 @@
             getDetailTransaksi() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=" +
+                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=" + 1 , 
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),

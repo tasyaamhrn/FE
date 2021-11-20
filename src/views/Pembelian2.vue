@@ -262,7 +262,7 @@
     <button @click="save(); sisa(); refresh();" type="button" class="btn btn-success">
       Tambah Transaksi
     </button>
-    <router-link :to="{ name: 'TampilTransaksi' }">
+    <router-link :to="{ name: 'Producttampiltransaksi' }">
                             <button type="button" class="btn btn-success" id="tampiltransaksi">
                                 Tampil Transaksi
                             </button>

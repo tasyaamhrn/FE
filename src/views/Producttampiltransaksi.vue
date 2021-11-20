@@ -27,9 +27,9 @@
             <thead class="thead tbl">
                 <tr>
                     <th scope="col">Tanggal Transaksi</th>
-                    <!-- <th scope="col">Produk</th> -->
+                    <th scope="col">Produk</th>
                     <th scope="col">Harga</th>
-                    <!-- <th scope="col">Jumlah</th> -->
+                    <th scope="col">Jumlah</th>
                     <th scope="col">Diskon</th>
                     <th scope="col">Bayar</th>
                     <th scope="col">Kembalian</th>
@@ -39,9 +39,9 @@
             <tbody>
                 <tr v-for="(item) in transaction" :key="item.id">
                     <td>{{ new Date(item.created_at).toLocaleDateString()}}</td>
-                    <!-- <td >{{ item.product_id }} </td> -->
+                    <td v-for="(item) in detail_transaction" :key="item.id" >{{ item.product.name}} </td>
                     <td>{{ item.price }}</td>
-                    <!-- <td>{{ item.qty }}</td> -->
+                    <td v-for="(item) in detail_transaction" :key="item.id">{{ item.qty }}</td>
                     <td>{{ item.discount}}</td>
                     <td>{{ item.pay}}</td>
                     <td>{{ item.change}}</td>
@@ -49,7 +49,7 @@
                         <!-- <router-link :to="{ name: 'EditKaryawan', params: { id: item.id } }"> -->
                         <button type="button" class="btn btn-primary">
                             <div class="detailtransaksi" data-toggle="modal" data-target="#myModal">
-                                Detail Transaksi
+                                Detail Produk
                             </div>
                         </button>
                         <!-- </router-link> -->
@@ -70,12 +70,12 @@
                     <div class="modal-body">
                         <div class="container-makanan2 text-center" v-for="item in detail_transaction" :key="item.id" >
 
-                            <img id="detail" src= "../assets/nasigoreng.jpg" align="middle" alt="">
+                            <img :src="item.product.image_url"  align="middle" alt="">
 
                             <p class="makanan2">
                                 {{item.product.name}}
                                 <br>
-                                Quantity : {{item.qty}}</p>
+                                Stock : {{item.product.stock}}</p>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -118,6 +118,7 @@
                     product:[{
                         name:"",
                         image_url:"",
+                        stock:"",
                     }]
                 }],
             };
@@ -172,7 +173,7 @@
             getDetailTransaksi() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=" + 1 , 
+                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=72", 
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -181,6 +182,7 @@
                     )
                     .then((res) => {
                         this.detail_transaction = res.data.data;
+                        this.transaction_id = res.data.data
                     })
                     .catch((err) => {
                         console.log(err);

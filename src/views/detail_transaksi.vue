@@ -5,28 +5,17 @@
       <div class="daftar-produk">
         <label>Daftar Produk Dibeli</label>
         <div class="list-group produk">
-
-          <router-link to="/detail_transaksi">
-            <li class="list-group-item list-group-item-action"><img src="../assets/telur.jpg"><span
-                class="nama">Telur</span>
-              <br /> <span class="jml">Rp15.000</span>
-              <span class="jml-produk">1 item</span>
-            </li>
-          </router-link>
-          <router-link to="/detail_transaksi">
-            <li class="list-group-item list-group-item-action"><img src="../assets/beras.png"><span
-                class="nama">Beras</span>
-              <br /> <span class="jml">Rp60.000</span>
-              <span class="jml-produk">1 item</span>
-            </li>
-          </router-link>
-          <router-link to="/detail_transaksi">
-            <li class="list-group-item list-group-item-action"><img src="../assets/minyak.jpg"><span class="nama">Minyak
-                Goreng</span>
-              <br /> <span class="jml">Rp25.000</span>
-              <span class="jml-produk">1 item</span>
-            </li>
-          </router-link>
+          <li class="list-group-item list-group-item-action" v-for="item in detail_transaction" :key="item.id">
+            <img :src="item.product.image_url" />
+            <span class="nama">
+              {{ item.product.name }}
+            </span>
+            <br />
+            <span class="jml">{{
+              item.product.price
+            }}</span>
+            <span class="jml-produk">{{ item.qty }} item</span>
+          </li>
         </div>
         <label>Transaksi</label>
         <div class="container">
@@ -47,26 +36,154 @@
             </div>
             <div class="col-md-8">
               <span>
-                <p class="transaksi">Rp.100.000</p>
+                <p class="transaksi">{{ total }}</p>
               </span><br />
               <span>
-                <p class="transaksi">Rp.100.000</p>
+                <p class="transaksi">{{ total }}</p>
               </span><br />
               <span>
                 <p class="transaksi">Rp.0</p>
               </span><br />
               <span>
-                <p class="transaksi">9:43,12 Oktober 2021</p>
+                <p class="transaksi"></p>
               </span><br />
-              <button type="button" class="btn btn-success btn-lg">Cetak Struk</button>
+              <button type="button" class="btn btn-success btn-lg">
+                Cetak Struk
+              </button>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+  import axios from "axios";
+  import Swal from "sweetalert2";
+  export default {
+    data() {
+      return {
+        stores: [],
+        total: 0,
+        transaction: [{
+          id: "",
+        }],
+        store_id: "",
+        price: "",
+        pay: "",
+        discount: "",
+        change: "",
+        counter: "",
+        tanggal: "",
+        detail_transaction: [{
+          product_id: "",
+          qty: "",
+          transaction_id: "",
+          product: [{
+            name: "",
+            image_url: "",
+            stock: "",
+          }, ],
+        }, ],
+      };
+    },
+    mounted() {
+      // this.getStore()
+      this.getDetailTransaksi();
+      this.getTransaksi();
+      this.getStore();
+    },
+    methods: {
+      getStore() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.stores = res.data.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      getTransaksi() {
+                axios
+                    .get(
+                        "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this
+                        .store_id, {
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("access_token"),
+                            },
+                        }
+                    )
+                    .then((res) => {
+                        console.log(res);
+                        this.transaction = res.data.data;
+                    })
+                    .catch((err) => {
+                        this.transaction = "";
+                        Swal.fire(
+                            "Anda Belum Mempunyai Transaksi",
+                            "Silahkan Tambahkan Transaksi Terlebih Dahulu",
+                            "warning"
+                        );
+                        console.log(err);
+                    });
+            },
+      getDetailTransaksi() {
+        const url = `https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=${this.$route.params.id}`;
+        axios
+          .get(url, localStorage.getItem("id"), {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          })
+          .then((res) => {
+            this.detail_transaction = res.data.data;
+            this.detail_transaction.forEach(e => {
+              this.total += e.qty * e.product.price;
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      deleteData(id) {
+        Swal.fire({
+          title: "Anda Yakin Ingin Menghapus Data Ini ?",
+          text: "Klik Batal untuk Membatalkan Penghapusan",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Batal",
+          confirmButtonText: "Hapus",
+        }).then((result) => {
+          if (result.value) {
+            axios
+              .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
+              .then((res) => {
+                Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
+                this.getEmployee();
+                console.log(res);
+              })
+              .catch((err) => {
+                Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
+                console.log(err);
+              });
+          } else {
+            Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
+          }
+        });
+      },
+    },
+  };
+</script>
 <style scoped>
   .col-md-4 {
     padding-left: 0px;
@@ -79,7 +196,7 @@
 
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4CAF50;
+    color: #4caf50;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
@@ -91,7 +208,7 @@
   }
 
   .produk i {
-    color: #4CAF50;
+    color: #4caf50;
     font-size: 18px;
     font-weight: bold;
   }

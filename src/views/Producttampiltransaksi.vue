@@ -173,7 +173,7 @@
             getDetailTransaksi() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=72", 
+                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=73", 
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),

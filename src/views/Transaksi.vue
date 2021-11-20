@@ -22,6 +22,16 @@
             </div>
           </div>
         </div>
+        <div class="col-md-12" id="toko">
+          <div class="form-group">
+            <select v-model="store_id" class="form-control" @change="getTransaksi">
+              <option value="">Pilih Toko</option>
+              <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                {{ store.store.name }}
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="container">
         <div class="row">
@@ -48,21 +58,27 @@
         <div class="list-transaksi">
           <div class="list-group">
 
-            <router-link to="/detail_transaksi">
-              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span class="jml">Rp100.000</span>
-              <span class="waktu">10.00</span>
-              <p>3 item</p></li>
+            <router-link v-for="(item) in transaction" :key="item.id" :to="`/detail_transaksi/${item.id}`">
+              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span
+                  class="jml">{{item.price}}</span>
+                  <!-- new Date(item.created_at).toLocaleDateString() -->
+                <span class="waktu">{{ new Date(item.created_at).toLocaleString() }}</span>
+              </li>
+            </router-link>
+            <!-- <router-link to="">
+              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'> </i><span
+                  class="jml">Rp25.000</span>
+                <span class="waktu">13.00</span>
+                <p>1 item</p>
+              </li>
             </router-link>
             <router-link to="">
-              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'> </i><span class="jml">Rp25.000</span>
-               <span class="waktu">13.00</span>
-              <p>1 item</p></li>
-            </router-link>
-            <router-link to="">
-              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'> </i><span class="jml">Rp10.000</span>
-               <span class="waktu">13.10</span>
-              <p>1 item</p></li>
-            </router-link>
+              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'> </i><span
+                  class="jml">Rp10.000</span>
+                <span class="waktu">13.10</span>
+                <p>1 item</p>
+              </li>
+            </router-link> -->
 
           </div>
 
@@ -72,8 +88,126 @@
   </div>
 </template>
 <script>
+  import axios from "axios";
+  import Swal from "sweetalert2";
   export default {
+    data() {
+      return {
+        stores: [],
+        transaction: [{
+          id: "",
+        }],
+        store_id: "",
+        price: "",
+        pay: "",
+        discount: "",
+        change: "",
+        counter: "",
+        tanggal: "",
+        detail_transaction: [{
+          product_id: "",
+          qty: "",
+          transaction_id: "",
+          product: [{
+            name: "",
+            image_url: "",
+            stock: "",
+          }]
+        }],
+      };
+    },
+    mounted() {
+      this.getStore()
+      this.getTransaksi()
+      this.getDetailTransaksi()
+    },
     methods: {
+      getStore() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.stores = res.data.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      getTransaksi() {
+        axios
+          .get(
+            `https://api-kasirin.jaggs.id/api/transaction?tanggal=${this.tanggal}&store_id=${this.store_id}`, {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+            this.transaction = res.data.data;
+          })
+          .catch((err) => {
+            this.transaction = "";
+            Swal.fire(
+              "Anda Belum Mempunyai Transaksi",
+              "Silahkan Tambahkan Transaksi Terlebih Dahulu",
+              "warning"
+            );
+            console.log(err);
+          });
+      },
+      getDetailTransaksi() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=72",
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.detail_transaction = res.data.data;
+            this.transaction_id = res.data.data
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      deleteData(id) {
+        Swal.fire({
+          title: "Anda Yakin Ingin Menghapus Data Ini ?",
+          text: "Klik Batal untuk Membatalkan Penghapusan",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Batal",
+          confirmButtonText: "Hapus",
+        }).then((result) => {
+          if (result.value) {
+            axios
+              .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
+              .then((res) => {
+                Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
+                this.getEmployee();
+                console.log(res);
+              })
+              .catch((err) => {
+                Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
+                console.log(err);
+              });
+          } else {
+            Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
+          }
+        });
+      },
       currentDateTime() {
         const current = new Date();
         const date = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
@@ -101,11 +235,15 @@
         var bulan = n;
         return bulan;
       }
-    }
+    },
   };
 </script>
 
 <style scoped>
+  #toko {
+    padding-top: 20px;
+  }
+
   .search {
 
     border-radius: 10px;
@@ -116,25 +254,31 @@
     color: white;
     border-color: transparent;
   }
-.list-transaksi{
-  padding-top:20px;
-}
-.list-transaksi i{
-     color: #4CAF50;
-     font-size: 18px;
-     font-weight: bold;
-}
-.list-transaksi p{
-  color: gray;
-}
-.list-transaksi .jml{
-  color: black;
-  font-weight: bold;
 
-}
-.list-transaksi .waktu{
-  float:right;
-}
+  .list-transaksi {
+    padding-top: 20px;
+  }
+
+  .list-transaksi i {
+    color: #4CAF50;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .list-transaksi p {
+    color: gray;
+  }
+
+  .list-transaksi .jml {
+    color: black;
+    font-weight: bold;
+
+  }
+
+  .list-transaksi .waktu {
+    float: right;
+  }
+
   h2 {
     color: grey;
     font-size: 18px;

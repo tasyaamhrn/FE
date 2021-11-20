@@ -2,17 +2,30 @@
   <div class="container">
     <div class="home">
       <h1>BERANDA</h1>
+      <div class="choose-store mt-2">
+    <div class="col-md-12">
+                    <div class="form-group">
+                        <select v-model="store_id" class="form-control" @change="getChartData()">
+                            <option value="">Pilih Toko</option>
+                            <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                                {{ store.store.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+  </div>
       <div class="btn-filter">
 
         <button type="button" class="btn btn-outline-primary">Hari Ini</button>
         <button type="button" class="btn btn-outline-primary">Minggu Ini</button>
         <button type="button" class="btn btn-outline-primary">Bulan Ini</button>
       </div>
+ 
       <div class="container hasil">
         <div class="row hsl">
           <div class="col-md-6">
             <p class="omset">Omset</p>
-            <p class="pendapatan"> Rp.1. 234.567,00</p>
+            <p class="pendapatan"> {{omset}}</p>
             <p class="transaksi">123 Transaksi</p>
           </div>
           <div class="col-md-6">
@@ -47,23 +60,82 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
   import CategoryChart from './Chart/CategoryChart.vue'
   import TransactionChart from './Chart/TransactionChart.vue'
   import ProductChart from './Chart/ProductChart.vue'
   export default {
+      data() {
+            return {
+              tanggal: "2021-11-18",
+                stores: [],
+                store_id: "",
+                omset:0
+            };
+        },
     components: {
       CategoryChart,
       TransactionChart,
       ProductChart
     },
+     mounted() {
+        this.getStore();
+        
+      },
     methods: {
+      getChartData() {
+        this.$root.$refs.productchart.getProduct(this.tanggal, this.store_id);
+         this.$root.$refs.categorychart.getCategory(this.tanggal, this.store_id);
+         this.getOmset();
+      },
       currentDateTime() {
         const current = new Date();
         const date = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
         const dateTime = date;
 
         return dateTime;
-      }
+      },
+       getOmset() {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/stats/income?tanggal="+ this.tanggal +"&store_id=" + this.store_id,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          // const { data } = res.data;
+          // const data = res.data.data;
+          this.omset = res.data.data;
+          
+          
+
+         
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+      getStore() {
+                axios
+                    .get(
+                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+                        localStorage.getItem("id"), {
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("access_token"),
+                            },
+                        }
+                    )
+                    .then((res) => {
+                      console.log(res)
+                        this.stores = res.data.data;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            },
     }
   };
 </script>

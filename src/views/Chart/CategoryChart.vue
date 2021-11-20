@@ -1,13 +1,12 @@
 <script>
   import { Bar } from 'vue-chartjs'
-
+import axios from "axios";
   export default {
     extends: Bar,
     data() {
       return {
         chartData: {
-          labels: ["Minuman", "Elektronik", "Alat Rumah Tangga"
-          ],
+          labels: [],
           datasets: [{
             label: 'Category',
             borderWidth: 1,
@@ -40,7 +39,7 @@
               'rgba(255, 159, 64, 1)'
             ],
             pointBorderColor: '#2554FF',
-            data: [3, 3, 1]
+            data: []
           }]
         },
         options: {
@@ -66,6 +65,39 @@
           maintainAspectRatio: false
         }
       }
+    },
+    created() {
+    this.$root.$refs.categorychart = this;
+  },
+    methods:{
+ getCategory(tanggal,StoreID) {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/stats/category?tanggal="+ tanggal +"&store_id=" + StoreID
+          ,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          const { data } = res.data;
+          // const data = res.data.data;
+          console.log(data)
+          this.chartData.labels = [];
+          this.chartData.datasets[0].data = [];
+          data.forEach(item => {
+            this.chartData.labels.push(item.name);
+            this.chartData.datasets[0].data.push(item.Dibeli);
+          });
+
+          this.renderChart(this.chartData, this.options);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     },
     mounted() {
       this.renderChart(this.chartData, this.options)

@@ -68,11 +68,11 @@
     </div>
     <div class="col-md-5 float-right">
       
-      <table class="table table-bordered">
+      <table class="table">
        
           <thead>
             <tr>
-              <th scope="col">No</th>
+            
               <th scope="col">Produk</th>
               <th scope="col">Jumlah</th>
               <th scope="col">Harga</th>
@@ -81,27 +81,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Sapu</td>
-              <td>2</td>
-              <td>20.000</td>
-              <td>40.000</td>
+            <tr  v-for="cart in form.products " :key="cart.id">
+            
+              <td>{{ cart.product_name }}</td>
+              <td>{{ cart.qty }}</td>
+              <td>{{cart.price}}</td>
+              <td>{{ cart.price * cart.qty }}</td>
               <td>
-              <button type="button" class="btn btn-danger" @click="deleteData(item.id)">
+              <button type="button" class="btn btn-danger" @click="RemoveCarts(index)">
                            Batal
-                        </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Tempat Sampah</td>
-              <td>1</td>
-              <td>15.000</td>
-              <td>15.000</td>
-                <td>
-              <button type="button" class="btn btn-danger" @click="deleteData(item.id)">
-                            Batal
                         </button>
               </td>
             </tr>
@@ -109,8 +97,8 @@
           </tbody>
           <tfoot>
                 <tr>
-                    <td colspan="4" class="text-right font-weight-bold">Total =</td>
-                    <td class="text-right"> 55.000/-</td>
+                    <td colspan="3" class="text-right font-weight-bold">Total =</td>
+                    <td class="text-right">{{ this.form.price }}/-</td>
                    
                 </tr>
             </tfoot>
@@ -122,7 +110,7 @@
       </div> -->
      
         <button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-success">CHECKOUT</button>
-         <button type="button"  style=" margin-left: 17px; margin-top:10px;" class="btn btn-danger">CLEAR</button>
+         <button   type="button"  style=" margin-left: 17px; margin-top:10px;" class="btn btn-danger" @click="DeleteCart(index)">CLEAR</button>
     </div>
     <div class="col-md-7">
         <div id="makanannn">
@@ -177,7 +165,7 @@
         <label for="exampleBarcodeProduct" class="form-label"
           >Total Harga</label
         >
-        <input type="number" v-model="total" class="form-control" readonly />
+        <input type="number" v-model="form.price" class="form-control" readonly />
       </div>
       <div class="form-group">
         <label for="exampleBarcodeProduct" class="form-label">Diskon</label>
@@ -185,7 +173,7 @@
           type="number"
           class="form-control"
           id="exampleBarcode"
-          v-model.number="discount"
+          v-model.number="form.discount"
           @input="hitung"
           placeholder="Masukkan Potongan Harga"
         />
@@ -213,7 +201,7 @@
           type="integer"
           class="form-control"
           id="exampleBarcode"
-          v-model="change"
+          v-model="form.change"
           placeholder="Kembalian Pelanggan"
         />
       </div>
@@ -227,10 +215,11 @@
                   <i class="bx bx-minus-circle" data-dismiss="modal">Batal</i>
                 </button>
 
-                <button
+                <button @click="save(); sisa(); refresh();"
                   type="button"
                   id="edit"
                   class="btn btn-primary btn-lg center-block"
+                  
                 >
                   <i class="bx bx-check" data-dismiss="modal">Bayar</i>
                 </button>
@@ -273,15 +262,15 @@
                 </p>
                 <div id="vue-counter">
                   <p id="tambah">
-                    <i class="bx bx-minus" @click="decrease(p.price, p.id)"></i>
+                    <i class="bx bx-minus" @click="decrease(p.price, p.id, p.name)"></i>
 
                     &nbsp;&nbsp;
-                    {{ counter }}
+                    {{ product_temp.qty }}
                     &nbsp;&nbsp;
                     <i
                       class="bx bx-plus"
-                      @click="increase(p.price, p.id)"
-                      v-if="p.stock > counter"
+                      @click="increase(p.price, p.id, p.name)"
+                      v-if="p.stock > product_temp.qty"
                     ></i>
                   </p>
                 </div>
@@ -300,7 +289,7 @@
                   id="edit"
                   class="btn btn-primary btn-lg center-block"
                 >
-                  <i class="bx bx-check" data-dismiss="modal">Pilih</i>
+                  <i class="bx bx-check" @click="AddCarts" data-dismiss="modal">Pilih</i>
                 </button>
               </div>
             </div>
@@ -319,28 +308,29 @@ export default {
   data() {
     return {
       products: [],
+      product_temp: {
+        product_id: null,
+        product_name: "",
+        price: 0,
+        qty: 0,
+      },
       category_id: "",
       product_name: "",
       stock: "",
       stores: [],
       categories: [],
       counter: 0,
-      total: 0,
-      change: 0,
       after_discount: 0,
       after_transaksi: 0,
+    
       form: {
         price: 0,
         pay: 0,
         discount: 0,
         change: 0,
         store_id: "",
-        products: [
-          {
-            product_id: "",
-            qty: "",
-          },
-        ],
+        
+        products: [],
       },
     };
   },
@@ -421,6 +411,30 @@ export default {
           console.log(err);
         });
     },
+    AddCarts(){
+      this.product_temp.price = this.products[0].price;
+      this.form.products.push(this.product_temp);
+      this.form.price += this.product_temp.qty * this.product_temp.price
+      this.product_temp = {
+        product_id: null,
+        product_name: "",
+        qty: 0,
+        price: 0,
+      }
+    },
+    RemoveCarts(index){     
+      const data = this.form.products[0];
+      const total = data.qty * data.price;
+      this.form.price -= total;
+
+      // this.form.price -= this.form.products[index].qty * this.form.products[index].price;
+      this.form.products.splice(index,1)
+  
+    },
+    DeleteCart(index){
+  this.form.products.splice(index)
+   this.form.price = 0
+    },
     load() {
       this.getStore();
     },
@@ -452,32 +466,30 @@ export default {
         }
       });
     },
-    increase(harga, id) {
-      this.counter++;
-      this.form.price = harga;
-      this.form.products[0].product_id = id;
-      this.form.products[0].qty = this.counter;
-      this.total = this.form.price * this.counter;
+    increase(harga, id, nama) {
+      this.product_temp.product_name = nama;
+      this.product_temp.product_id = id;
+      this.product_temp.price = harga;
+      this.product_temp.qty++;
     },
-    decrease(harga, id) {
-      if (this.counter <= 0) {
+    decrease(harga, id, nama) {
+      if (this.product_temp.qty <= 0) {
         Swal.fire("Angka Tidak Valid", "", "warning");
       } else {
-        this.counter--;
-        this.form.price = harga;
-        this.form.products[0].product_id = id;
-        this.form.products[0].qty = this.counter;
-        this.total = this.form.price * this.counter;
+        this.product_temp.product_name = nama;
+        this.product_temp.product_id = id;
+        this.product_temp.price = harga;
+        this.product_temp.qty--;
       }
     },
     hitung() {
-      this.after_discount = this.total - this.discount;
+      this.after_discount = this.form.price - this.form.discount;
     },
     kembalian() {
-      this.change = this.form.pay - this.after_discount;
+      this.form.change = this.form.pay - this.after_discount;
     },
     sisa() {
-      this.after_transaksi = this.stock - this.counter;
+      this.after_transaksi = this.stock - this.product_temp.qty;
     },
     save() {
       axios
@@ -487,24 +499,23 @@ export default {
           },
         })
         .then(() => {
-          this.alertSuccess();
-
+          console.log(this.form);
+          this.alertSuccess()
           this.$router.push({
-            name: "Pembelian2",
+            name: "Pembelian",
           });
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response);
         });
     },
     refresh() {
       (this.change = ""),
         (this.form.pay = ""),
         (this.after_discount = ""),
-        (this.discount = ""),
-        (this.total = ""),
-        (this.p.price = ""),
-        (this.counter = "");
+        (this.form.discount = ""),
+        (this.form.price = "");
+        // (this.counter = 0);
     },
     alertSuccess() {
       // Use sweetalert2

@@ -56,6 +56,12 @@
             <span class="links_name">Transaksi</span>
           </router-link>
         </li>
+         <li>
+          <router-link :to="{ name: 'Langganan' }">
+            <i class="bx bx-plus"></i>
+            <span class="links_name">Langganan</span>
+          </router-link>
+        </li>
         <li>
           <router-link :to="{ name: 'About' }">
             <i class="bx bx-plus"></i>

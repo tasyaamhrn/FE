@@ -27,6 +27,10 @@ import TampilTransaksi from '../views/tampil_transaksi.vue'
 
 import Producttampiltransaksi from '../views/Producttampiltransaksi.vue'
 
+//langganan
+import Langganan from '../views/Langganan/Langganan.vue'
+import AddLangganan from '../views/Langganan/AddLangganan.vue'
+
 //store
 import Store from '../views/Store/Store.vue'
 import AddStore from '../views/Store/AddStore.vue'
@@ -152,6 +156,16 @@ const routes = [{
     name: 'EditKaryawan',
     component: EditKaryawan
   },
+  {
+    path: '/langganan',
+    name: 'Langganan',
+    component: Langganan
+  },
+  {
+    path: '/addlangganan/:id',
+    name: 'AddLangganan',
+    component: AddLangganan
+  },
   //   {
   // <<<<<<< HEAD
   //     path: '/pembelian',
@@ -163,11 +177,6 @@ const routes = [{
   //     component: DetailTransaksi
   // >>>>>>> db7e227bfa5d3b3995c00101d71cc0c37d624c97
   //   },
-  {
-    path: '/EditStore',
-    name: 'EditStore',
-    component: EditStore
-  },
   {
     path: '/Pembelian2',
     name: 'Pembelian2',

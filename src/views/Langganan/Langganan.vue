@@ -5,6 +5,13 @@
         <div class="col-md-8">
           <h1>Langganan</h1>
         </div>
+        <div class="col-md-4" style="visibility:hidden;">
+          <div class="add">
+            <router-link to=""
+              ><button type="button" id="btn-add">+ Tambah</button>
+            </router-link>
+          </div>
+        </div>
         <div class="card-body">
           <table
             class="table table-bordered"
@@ -13,25 +20,26 @@
           >
             <thead class="tbl">
               <tr>
-                <th>Store Name</th>
-                <th>Address</th>
-                <th>Action</th>
+                <th>Jenis Langganan</th>
+                <th>Deskripsi</th>
+                <!-- <th>Image</th> -->
+                <th>Harga</th>
+                <th>Durasi</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in stores" :key="item.id">
-                <td>{{ item.store.name }}</td>
-                <td>{{ item.store.address }}</td>
-                <td>
-                  <router-link
-                    :to="{ name: 'EditStore', params: { id: item.store.id } }"
-                  >
-                    <i class="fas fa-edit blue" style="padding-right: 10px"></i>
-                  </router-link>
-                  <a @click="deleteData(item.store.id)" class="text-danger">
-                    <i class="fas fa-trash-alt red"></i
-                  ></a>
-                </td>
+              <tr v-for="item in subscription" :key="item.id">
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <!-- <td><img :src="item.image_url" style="width: 20%" alt="Subscription Image" /></td> -->
+                <td>Rp. {{ item.price }}</td>
+                <td>{{ item.duration }} hari</td>
+               <router-link :to="{ name: 'AddLangganan', params: { id: item.id } }">
+              <button type="button" class="btn btn-primary">
+                Daftar
+              </button>
+            </router-link>
               </tr>
             </tbody>
           </table>
@@ -83,7 +91,6 @@ h1 {
 <script>
 import axios from "axios";
 
-import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
 
 export default {
@@ -95,11 +102,7 @@ export default {
   },
   data() {
     return {
-      stores: {
-        id: "",
-        name: "",
-        address: "",
-      },
+      subscription: {},
       updateSubmit: false,
       loading: false,
     };
@@ -108,8 +111,7 @@ export default {
     load() {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
-            localStorage.getItem("id"),
+          "https://api-kasirin.jaggs.id/api/subscription",
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -117,37 +119,11 @@ export default {
           }
         )
         .then(({ data }) => {
-          this.stores = data.data;
+          this.subscription = data.data;
         })
         .catch((err) => {
           console.log(err);
         });
-    },
-    deleteData(id) {
-      Swal.fire({
-        title: "Anda Yakin Ingin Menghapus Store Ini ?",
-        text: "Klik Batal untuk Membatalkan Penghapusan",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        cancelButtonText: "Batal",
-        confirmButtonText: "Hapus",
-      }).then((result) => {
-        if (result.value) {
-          axios
-            .delete("https://api-kasirin.jaggs.id/api/stores/" + id)
-            .then(() => {
-              Swal.fire("Terhapus", "Store Anda Sudah Terhapus", "success");
-              this.load();
-            })
-            .catch(() => {
-              Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");
-            });
-        } else {
-          Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");
-        }
-      });
     },
   },
   mounted() {

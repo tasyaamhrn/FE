@@ -68,7 +68,7 @@ import axios from 'axios'
   export default {
       data() {
             return {
-              tanggal: "2021-11-18",
+              tanggal: "2021-11-22",
                 stores: [],
                 store_id: "",
                 omset:0

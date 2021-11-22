@@ -215,7 +215,7 @@
                   <i class="bx bx-minus-circle" data-dismiss="modal">Batal</i>
                 </button>
 
-                <button @click="save(); sisa(); refresh();"
+                <button @click="save(); sisa(); refresh(); DeleteCart(index);"
                   type="button"
                   id="edit"
                   class="btn btn-primary btn-lg center-block"
@@ -514,7 +514,9 @@ export default {
         (this.form.pay = ""),
         (this.after_discount = ""),
         (this.form.discount = ""),
-        (this.form.price = "");
+        (this.form.price = ""),
+        this.form.kembalian="",
+        this.product_name="";
         // (this.counter = 0);
     },
     alertSuccess() {

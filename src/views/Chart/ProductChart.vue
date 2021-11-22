@@ -100,7 +100,7 @@ export default {
             this.chartData.labels.push(item.name);
             this.chartData.datasets[0].data.push(item.Dibeli);
           });
-
+console.log(data)
           this.renderChart(this.chartData, this.options);
         })
         .catch((err) => {

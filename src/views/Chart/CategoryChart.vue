@@ -70,10 +70,10 @@ import axios from "axios";
     this.$root.$refs.categorychart = this;
   },
     methods:{
- getCategory(tanggal,StoreID) {
+ getCategory(tanggal,storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/category?tanggal="+ tanggal +"&store_id=" + StoreID
+          "https://api-kasirin.jaggs.id/api/stats/category?tanggal="+ tanggal +"&store_id=" + storeId
           ,
           {
             headers: {
@@ -100,7 +100,7 @@ import axios from "axios";
     },
     },
     mounted() {
-      this.renderChart(this.chartData, this.options)
+    
     }
   }
 </script>

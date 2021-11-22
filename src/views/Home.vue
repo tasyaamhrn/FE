@@ -26,12 +26,13 @@
           <div class="col-md-6">
             <p class="omset">Omset</p>
             <p class="pendapatan"> {{omset}}</p>
-            <p class="transaksi">123 Transaksi</p>
+            <p class="transaksi">4 Transaksi</p>
           </div>
           <div class="col-md-6">
             <div class="app">
               <p class="tanggal">
                 {{currentDateTime()}}
+                
               </p>
             </div>
           </div>

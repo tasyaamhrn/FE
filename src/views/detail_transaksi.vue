@@ -25,6 +25,9 @@
                 <p class="transaksi2">Total Pembelian</p>
               </span><br />
               <span>
+                <p class="transaksi2">Diskon</p>
+              </span><br />
+              <span>
                 <p class="transaksi2">Bayar</p>
               </span><br />
               <span>
@@ -39,13 +42,17 @@
                 <p class="transaksi">{{ total }}</p>
               </span><br />
               <span>
-                <p class="transaksi">{{ total }}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.discount}}</p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in transaction" :key="item.id">{{item.change}}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.pay}}</p>
               </span><br />
               <span>
-                <p class="transaksi">{{ moment(detail_transaction[0].created_at).locale('id').format('DD MMMM YYYY HH:mm:ss') }}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.change}}</p>
+              </span><br />
+              <span>
+                <p class="transaksi">
+                  {{ moment(detail_transaction[0].created_at).locale('id').format('DD MMMM YYYY HH:mm:ss') }}</p>
               </span><br />
               <button type="button" class="btn btn-success btn-lg">
                 Cetak Struk
@@ -70,22 +77,22 @@
           id: "",
         }],
         store_id: "",
-        price: "",
-        pay: "",
-        discount: "",
-        change: "",
         counter: "",
         tanggal: "",
         detail_transaction: [{
           product_id: "",
           qty: "",
           transaction_id: "",
+          price: "",
+          pay: "",
+          discount: "",
+          change: "",
           product: [{
             name: "",
             image_url: "",
             stock: "",
-          }, ],
-        }, ],
+          }],
+        }],
       };
     },
     mounted() {
@@ -114,29 +121,29 @@
           });
       },
       getTransaksi() {
-                axios
-                    .get(
-                        "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this
-                        .store_id, {
-                            headers: {
-                                Authorization: "Bearer " + localStorage.getItem("access_token"),
-                            },
-                        }
-                    )
-                    .then((res) => {
-                        console.log(res);
-                        this.transaction = res.data.data;
-                    })
-                    .catch((err) => {
-                        this.transaction = "";
-                        Swal.fire(
-                            "Anda Belum Mempunyai Transaksi",
-                            "Silahkan Tambahkan Transaksi Terlebih Dahulu",
-                            "warning"
-                        );
-                        console.log(err);
-                    });
-            },
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this
+            .store_id, {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+            this.transaction = res.data.data;
+          })
+          .catch((err) => {
+            this.transaction = "";
+            Swal.fire(
+              "Anda Belum Mempunyai Transaksi",
+              "Silahkan Tambahkan Transaksi Terlebih Dahulu",
+              "warning"
+            );
+            console.log(err);
+          });
+      },
       getDetailTransaksi() {
         const url = `https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=${this.$route.params.id}`;
         axios

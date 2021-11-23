@@ -213,7 +213,7 @@ import axios from 'axios'
 
   }
 #filter:focus{
-background-color: #1E6E22;
+background-color: #0870ca;
 color:#fff;
 }
   .home button {

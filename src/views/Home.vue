@@ -16,9 +16,9 @@
   </div>
       <div class="btn-filter">
 
-        <button type="button" class="btn btn-outline-primary">Hari Ini</button>
-        <button type="button" class="btn btn-outline-primary">Minggu Ini</button>
-        <button type="button" class="btn btn-outline-primary">Bulan Ini</button>
+        <button type="button" id="filter" class="btn btn-outline-primary">Hari Ini</button>
+        <button type="button" id="filter" class="btn btn-outline-primary">Minggu Ini</button>
+        <button type="button" id="filter" class="btn btn-outline-primary" @click="getChartData()">Bulan Ini</button>
       </div>
  
       <div class="container hasil">
@@ -94,6 +94,7 @@ import axios from 'axios'
          this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
          this.getOmset();
       },
+    
       currentDateTime() {
         const current = new Date();
         const date = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
@@ -211,7 +212,10 @@ import axios from 'axios'
     /* margin-left:10px; */
 
   }
-
+#filter:focus{
+background-color: #1E6E22;
+color:#fff;
+}
   .home button {
     margin-left: 5px;
     border-radius: 10px;

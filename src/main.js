@@ -41,3 +41,4 @@ store.dispatch('get_user', token)
     console.error(error);
   })
 
+ 

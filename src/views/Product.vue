@@ -81,7 +81,7 @@
                   <img :src="p.image_url" style="width: 20%" alt="Product Image" />
                 </center>
                 <p class="makanan">{{ p.name }}</p>
-                <p class="makanan">{{ p.price }}</p>
+                <p class="makanan">Rp {{ formatPrice(p.price) }}</p>
                 <p class="makanan">Stock : {{ p.stock }}</p>
                 <router-link :to="{ name: 'EditProduct', params: { id: p.id } }">
                   <i class="fas fa-edit blue" style="margin-left:35%;" @click="edit(item)"></i>
@@ -119,6 +119,10 @@
       this.getStore();
     },
     methods: {
+        formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
       getStore() {
         axios
           .get(

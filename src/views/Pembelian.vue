@@ -63,8 +63,8 @@
 
             <td>{{ cart.product_name }}</td>
             <td>{{ cart.qty }}</td>
-            <td>{{cart.price}}</td>
-            <td>{{ cart.price * cart.qty }}</td>
+            <td>Rp. {{formatPrice(cart.price)}}</td>
+            <td>Rp. {{ formatPrice(cart.price * cart.qty) }}</td>
             <td>
               <button type="button" class="btn btn-danger" @click="RemoveCarts(index)">
                 Batal
@@ -76,7 +76,7 @@
         <tfoot>
           <tr>
             <td colspan="3" class="text-right font-weight-bold">Total =</td>
-            <td class="text-right">{{ this.form.price }}/-</td>
+            <td class="text-right">Rp. {{ formatPrice(this.form.price) }}/-</td>
 
           </tr>
         </tfoot>
@@ -103,7 +103,7 @@
                       <img :src="p.image_url" style="width: 20%" alt="Product Image" />
                     </center>
                     <p class="makanan">{{ p.name }}</p>
-                    <p class="makanan">{{ p.price }}</p>
+                    <p class="makanan">Rp. {{ formatPrice(p.price) }}</p>
                     <p class="makanan">Stock : {{ p.stock }}</p>
                   </div>
                 </div>
@@ -174,7 +174,7 @@
                   <img :src="p.image_url" style="width: 20%" alt="Product Image" />
                   <p class="makanan">
                     {{ p.name }} <br />
-                    {{ p.price }} <br />
+                    Rp. {{ formatPrice(p.price) }} <br />
                     Stok:{{ p.stock }}
                   </p>
                   <div id="vue-counter">
@@ -255,6 +255,10 @@
       }
     },
     methods: {
+        formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
       getStore() {
         axios
           .get(
@@ -515,7 +519,7 @@
 
   .makanan {
     font-weight: bold;
-    color: #5D9EFE;
+    color: black;
     text-align: center;
   }
 
@@ -542,7 +546,7 @@
 
   .button {
     margin-top: 90px;
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: #5D9EFE;
     width: 150px;
     height: 30px;

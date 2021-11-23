@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="aplikasi">
     <div class="detail">
       <h1>DETAIL TRANSAKSI</h1>
       <div class="daftar-produk">
@@ -68,8 +68,6 @@
   import axios from "axios";
   import Swal from "sweetalert2";
   import moment from 'moment';
-  import html2canvas from 'html2canvas';
-  import jsPDF from 'jspdf';
   export default {
     data() {
       return {
@@ -192,19 +190,16 @@
           }
         });
       },
-      makePDF(){
-        window.html2canvas = html2canvas;
-        var doc = new jsPDF("p", "pt", "a4");
-        doc.html(document.querySelector("#aplikasi"), {
-          callback: function(pdf){
-            pdf.save("mypdf.pdf");
-          }
-        });
-      }
+      
     },
   };
 </script>
 <style scoped>
+    #app{
+        font-family: Arial, Helvetica, sans-serif;
+        height: 11in;
+        width: 8.5in;
+    }
   .col-md-4 {
     padding-left: 0px;
     padding-top: 10px;

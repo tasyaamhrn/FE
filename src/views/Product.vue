@@ -18,7 +18,7 @@
           <div class="form-group">
             <label>Pilih Toko</label>
             <select v-model="store_id" class="form-control" @change="getCategory">
-              <option value="">Pilih Toko</option>
+              <option value="" disabled>Pilih Toko</option>
               <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                 {{ store.store.name }}
               </option>
@@ -209,14 +209,14 @@
 <style scoped>
   /* h3 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #4A87FE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
   } */
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #4A87FE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
@@ -232,7 +232,7 @@
 
   .makanan {
     font-weight: bold;
-    color: #4caf50;
+    color: #4A87FE;
     text-align: center;
   }
 
@@ -254,13 +254,13 @@
   }
 
   label {
-    color: #4caf50;
+    color: #4A87FE;
   }
 
   .button {
     margin-top: 90px;
     border-radius: 15px;
-    background-color: #4caf50;
+    background-color: #4A87FE;
     width: 150px;
     height: 30px;
     color: white;
@@ -277,7 +277,7 @@
   }
 
   #btn-add {
-    background-color: #4caf50;
+    background-color: #4A87FE;
     border-color: transparent;
     color: white;
     border-radius: 10px;
@@ -302,7 +302,7 @@
     width: 98%;
     height: 80%;
     border-radius: 15px;
-    background-color: #4caf50;
+    background-color: #4A87FE;
   }
 
   img {

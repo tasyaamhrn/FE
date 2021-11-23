@@ -18,7 +18,7 @@
 <style scoped>
     h1{
         font-family: Arial, Helvetica, sans-serif;
-        color: #4CAF50;
+        color: #4A87FE;
         font-size: 18px;
         font-weight: bold;
         padding-top: 75px;

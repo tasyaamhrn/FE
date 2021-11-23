@@ -19,12 +19,12 @@
             <span class="links_name">Tambah Transaksi </span>
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link :to="{ name: 'Producttampiltransaksi' }">
             <i class="bx bx-plus"></i>
             <span class="links_name">Tampil Transaksi </span>
           </router-link>
-        </li>
+        </li> -->
         <li>
           <router-link :to="{ name: 'Store' }">
             <i class="bx bx-plus"></i>

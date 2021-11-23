@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <select v-model="store_id" class="form-control" @change="getEmployee">
-                            <option value="">Pilih Toko</option>
+                            <option value="" disabled>Pilih Toko</option>
                             <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                                 {{ store.store.name }}
                             </option>
@@ -151,14 +151,14 @@
 <style scoped>
     h1 {
         font-family: Arial, Helvetica, sans-serif;
-        color: #4caf50;
+        color: #4A87FE;
         font-size: 18px;
         font-weight: bold;
         padding-top: 75px;
     }
 
     .tbl {
-        background-color: #4caf50;
+        background-color: #4A87FE;
         color: white;
     }
 
@@ -171,7 +171,7 @@
     .btn-save {
         margin-top: 20px;
         border-radius: 10px;
-        background-color: #4caf50;
+        background-color: #4A87FE;
         float: right;
         font-weight: bold;
         color: white;
@@ -181,7 +181,7 @@
     }
 
     #btn-add {
-        background-color: #4caf50;
+        background-color: #4A87FE;
         border-color: transparent;
         color: white;
         border-radius: 10px;
@@ -196,7 +196,7 @@
 
     #edit {
         margin-right: 150px;
-        background-color: #4caf50;
+        background-color: #4A87FE;
     }
 
     #hapus {
@@ -205,19 +205,19 @@
     }
 
     .modal-body {
-        color: #4caf50;
+        color: #4A87FE;
         font-weight: bold;
         font-size: 16px;
         text-align: center;
     }
 
     .close {
-        color: #4caf50;
+        color: #4A87FE;
         font-weight: bold;
         font-size: 24px;
     }
 
     .list-group li {
-        border-bottom: 4px solid #4caf50;
+        border-bottom: 4px solid #4A87FE;
     }
 </style>

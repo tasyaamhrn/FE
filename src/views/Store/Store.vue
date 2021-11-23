@@ -50,7 +50,7 @@
 <style scoped>
 h1 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #4caf50;
+  color: #4A87FE;
   font-size: 18px;
   font-weight: bold;
   padding-top: 75px;
@@ -62,13 +62,13 @@ h1 {
   text-align: center;
 }
 .tbl {
-  background-color: #4caf50;
+  background-color: #4A87FE;
   color: white;
 }
 .btn-save {
   margin-top: 20px;
   border-radius: 10px;
-  background-color: #4caf50;
+  background-color: #4A87FE;
   float: right;
   font-weight: bold;
   color: white;
@@ -78,7 +78,7 @@ h1 {
 }
 
 #btn-add {
-  background-color: #4caf50;
+  background-color: #4A87FE;
   border-color: transparent;
   color: white;
   border-radius: 10px;

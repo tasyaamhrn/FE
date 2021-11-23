@@ -9,7 +9,7 @@
             class="form-control"
             @change="getCategory"
           >
-            <option value="">Pilih Toko</option>
+            <option value="" disabled>Pilih Toko</option>
             <option
               :value="store.store.id"
               v-for="(store, index) in stores"
@@ -25,7 +25,7 @@
               <div class="form-group">
                 <label>Pilih Kategori</label>
                 <select class="form-control" v-model="category_id">
-                  <option value="">Pilih Kategori</option>
+                  <option value="" disabled>Pilih Kategori</option>
                   <option
                     v-for="item in categories"
                     :key="item.id"
@@ -551,13 +551,13 @@ export default {
   padding-top: 30px;
 }
 .tbl {
-  background-color: #4caf50;
+  background-color: #4A87FE;
   color: white;
 }
 
 #edit {
   margin-right: 150px;
-  background-color: #4caf50;
+  background-color: #4A87FE;
 }
 
 .btn-success {
@@ -573,7 +573,7 @@ export default {
 margin-top:0%;
 }
 .modal-body {
-  color: #4caf50;
+  color: #4A87FE;
   font-weight: bold;
   font-size: 16px;
   text-align: center;
@@ -589,7 +589,7 @@ margin-top:0%;
 
 h3 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #4caf50;
+  color: #4A87FE;
   font-size: 18px;
   font-weight: bold;
   padding-top: 75px;
@@ -609,7 +609,7 @@ p {
 
 .makanan {
   font-weight: bold;
-  color: #4caf50;
+  color: #4A87FE;
   text-align: center;
 }
 
@@ -631,13 +631,13 @@ h6 {
 }
 
 label {
-  color: #4caf50;
+  color: #4A87FE;
 }
 
 .button {
   margin-top: 90px;
   border-radius: 15px;
-  background-color: #4caf50;
+  background-color: #4A87FE;
   width: 150px;
   height: 30px;
   color: white;
@@ -669,7 +669,7 @@ label {
   width: 60%;
   height: 80%;
   border-radius: 15px;
-  background-color: #4caf50;
+  background-color: #4A87FE;
 }
 
 img {

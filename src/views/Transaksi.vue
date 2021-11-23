@@ -36,7 +36,7 @@
       <div class="col-md-12" id="toko">
           <div class="form-group">
             <select v-model="store_id" class="form-control" @change="getTransaksi">
-              <option value="">Pilih Toko</option>
+              <option value="" disabled>Pilih Toko</option>
               <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                 {{ store.store.name }}
               </option>
@@ -265,7 +265,7 @@
   .search {
 
     border-radius: 10px;
-    background-color: #4CAF50;
+    background-color: #4A87FE;
     width: 35%;
 
     height: 30px;
@@ -278,7 +278,7 @@
   }
 
   .list-transaksi i {
-    color: #4CAF50;
+    color: #4A87FE;
     font-size: 18px;
     font-weight: bold;
   }
@@ -308,7 +308,7 @@
 
   .filter {
     margin-top: 15px;
-    color: #4CAF50;
+    color: #4A87FE;
     font-weight: bold;
   }
 
@@ -320,7 +320,7 @@
 
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4CAF50;
+    color: #4A87FE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;

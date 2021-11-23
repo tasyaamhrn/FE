@@ -91,8 +91,8 @@
     methods: {
       getChartData() {
         this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
-        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
-        this.getOmset();
+         this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+         this.getOmsetMonthly();
       },
 
       currentDateTime() {
@@ -122,29 +122,29 @@
 
         return years;
       },
-      getOmset() {
-        axios
-          .get(
-            "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this
-            .getYear() + "&month=" + this.getMonth() + "", {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("access_token"),
-              },
-            }
-          )
-          .then((res) => {
-            // const { data } = res.data;
-            // const data = res.data.data;
-            this.omset = res.data.data;
+       getOmsetMonthly() {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this.getYear() + "&month="+ this.getMonth() +"",
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          // const { data } = res.data;
+          // const data = res.data.data;
+          this.omset = res.data.data;
+          
+          
 
-
-
-
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
+         
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
       getStore() {
         axios
           .get(

@@ -2,8 +2,7 @@
   <div>
     <div class="sidebar open" style="overflow-y: scroll;">
       <div class="logo-details">
-        <img src="../../assets/logo-kasirin.png" />
-        <div class="logo_name">Kasirin Toko</div>
+        <img src="../../assets/logo-pelaris-09.png" />
       </div>
       <ul class="nav-list">
         <label>{{ user.name }}</label>
@@ -140,6 +139,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .sidebar {
@@ -148,7 +148,7 @@ export default {
   top: 0;
   height: 100%;
   width: 78px;
-  background: #4caf50;
+  background: linear-gradient(to top right, #4A87FE,#4D8AFE, #82CCFE);
 
   padding: 6px 14px;
   z-index: 99;
@@ -168,7 +168,7 @@ export default {
 }
 
 .sidebar .logo-details img {
-  width: 40%;
+  width: 100%;
   border-radius: 10px;
 }
 
@@ -328,7 +328,7 @@ export default {
   align-items: center;
   text-decoration: none;
   transition: all 0.4s ease;
-  background: #4caf50;
+  background: #5D9EFE;
   padding-top: 5px;
   border: 1px solid #fff;
 }

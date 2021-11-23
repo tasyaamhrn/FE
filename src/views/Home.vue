@@ -192,7 +192,7 @@ import axios from 'axios'
 } */
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4CAF50;
+    color: #4A87FE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
@@ -215,21 +215,21 @@ import axios from 'axios'
   .home button {
     margin-left: 5px;
     border-radius: 10px;
-    border: 1px solid #4CAF50;
-    color: #1E6E22;
+    border: 1px solid #4A87FE;
+    color: #0870ca;
     /* margin: auto; */
 
   }
 
   .home button:hover {
-    background-color: #1E6E22;
+    background-color: #0870ca;
     color: #fff;
   }
 
   .home .container .hsl {
     /* width:650px;
   height:150px; */
-    background-color: #1E6E22;
+    background-color: #0870ca;
     margin-top: 20px;
     border-radius: 25px;
     /* margin-left:10px; */

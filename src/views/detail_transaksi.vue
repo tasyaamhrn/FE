@@ -42,10 +42,10 @@
                 <p class="transaksi">{{ total }}</p>
               </span><br />
               <span>
-                <p class="transaksi">Rp.0</p>
+                <p class="transaksi" v-for="(item) in transaction" :key="item.id">{{item.change}}</p>
               </span><br />
               <span>
-                <p class="transaksi"></p>
+                <p class="transaksi">{{ moment(detail_transaction[0].created_at).locale('id').format('DD MMMM YYYY HH:mm:ss') }}</p>
               </span><br />
               <button type="button" class="btn btn-success btn-lg">
                 Cetak Struk
@@ -60,6 +60,7 @@
 <script>
   import axios from "axios";
   import Swal from "sweetalert2";
+  import moment from 'moment';
   export default {
     data() {
       return {
@@ -94,6 +95,7 @@
       this.getStore();
     },
     methods: {
+      moment: moment,
       getStore() {
         axios
           .get(

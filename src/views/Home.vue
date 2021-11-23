@@ -3,24 +3,24 @@
     <div class="home">
       <h1>BERANDA</h1>
       <div class="choose-store mt-2">
-    <div class="col-md-12">
-                    <div class="form-group">
-                        <select v-model="store_id" class="form-control" >
-                            <option value="" disabled>Pilih Toko</option>
-                            <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
-                                {{ store.store.name }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-  </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <select v-model="store_id" class="form-control">
+              <option value="" disabled>Pilih Toko</option>
+              <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                {{ store.store.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="btn-filter">
 
         <button type="button" id="filter" class="btn btn-outline-primary">Hari Ini</button>
         <button type="button" id="filter" class="btn btn-outline-primary">Minggu Ini</button>
         <button type="button" id="filter" class="btn btn-outline-primary" @click="getChartData()">Bulan Ini</button>
       </div>
- 
+
       <div class="container hasil">
         <div class="row hsl">
           <div class="col-md-6">
@@ -32,8 +32,8 @@
             <div class="app">
               <p class="tanggal">
                 {{currentDateTime()}}
-              <!-- {{getMonth()}} -->
-              <!-- {{getYear()}} -->
+                <!-- {{getMonth()}} -->
+                <!-- {{getYear()}} -->
                 <!-- {{ getTanggal() }} -->
               </p>
             </div>
@@ -63,38 +63,38 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+  import axios from 'axios'
   import CategoryChart from './Chart/CategoryChart.vue'
   import TransactionChart from './Chart/TransactionChart.vue'
   import ProductChart from './Chart/ProductChart.vue'
   export default {
-      data() {
-            return {
-              // tanggal: "2021-11-23",
-                stores: [],
-                store_id: "",
-                omset:0,
-                // year:"2021",
-                // month:"11"
+    data() {
+      return {
+        // tanggal: "2021-11-23",
+        stores: [],
+        store_id: "",
+        omset: 0,
+        // year:"2021",
+        // month:"11"
 
-            };
-        },
+      };
+    },
     components: {
       CategoryChart,
       TransactionChart,
       ProductChart
     },
-     mounted() {
-        this.getStore();
-        
-      },
+    mounted() {
+      this.getStore();
+
+    },
     methods: {
       getChartData() {
         this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
-         this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
-         this.getOmset();
+        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+        this.getOmset();
       },
-    
+
       currentDateTime() {
         const current = new Date();
         const date = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
@@ -109,60 +109,60 @@ import axios from 'axios'
 
         return dateTime;
       },
-      getMonth(){
+      getMonth() {
         const current = new Date();
-        const month =  (current.getMonth() + 1);
+        const month = (current.getMonth() + 1);
         const monthly = month;
         return monthly;
       },
-      getYear(){
+      getYear() {
         const current = new Date();
-        const year =  current.getFullYear();
+        const year = current.getFullYear();
         const years = year;
 
         return years;
       },
-       getOmset() {
-      axios
-        .get(
-          "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this.getYear() + "&month="+ this.getMonth() +"",
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then((res) => {
-          // const { data } = res.data;
-          // const data = res.data.data;
-          this.omset = res.data.data;
-          
-          
+      getOmset() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this
+            .getYear() + "&month=" + this.getMonth() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.omset = res.data.data;
 
-         
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
       getStore() {
-                axios
-                    .get(
-                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
-                        localStorage.getItem("id"), {
-                            headers: {
-                                Authorization: "Bearer " + localStorage.getItem("access_token"),
-                            },
-                        }
-                    )
-                    .then((res) => {
-                      console.log(res)
-                        this.stores = res.data.data;
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            },
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            localStorage.getItem("id"), {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res)
+            this.stores = res.data.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     }
   };
 </script>
@@ -193,7 +193,7 @@ import axios from 'axios'
 } */
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4A87FE;
+    color: #5D9EFE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
@@ -212,14 +212,16 @@ import axios from 'axios'
     /* margin-left:10px; */
 
   }
-#filter:focus{
-background-color: #0870ca;
-color:#fff;
-}
+
+  #filter:focus {
+    background-color: #0870ca;
+    color: #fff;
+  }
+
   .home button {
     margin-left: 5px;
     border-radius: 10px;
-    border: 1px solid #4A87FE;
+    border: 1px solid #5D9EFE;
     color: #0870ca;
     /* margin: auto; */
 

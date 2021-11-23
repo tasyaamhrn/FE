@@ -29,6 +29,7 @@ import Producttampiltransaksi from '../views/Producttampiltransaksi.vue'
 
 //langganan
 import Langganan from '../views/Langganan/Langganan.vue'
+import ListLangganan from '../views/Langganan/ListLangganan.vue'
 import AddLangganan from '../views/Langganan/AddLangganan.vue'
 
 //store
@@ -160,6 +161,11 @@ const routes = [{
     path: '/langganan',
     name: 'Langganan',
     component: Langganan
+  },
+  {
+    path: '/listlangganan',
+    name: 'ListLangganan',
+    component: ListLangganan
   },
   {
     path: '/addlangganan/:id',

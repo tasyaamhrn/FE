@@ -70,7 +70,7 @@
           name: "",
           store_id: "",
         },
-        stores:[],
+        stores: [],
         store_id: "",
         categories: {},
         loading: false,
@@ -185,14 +185,14 @@
 <style scoped>
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #5D9EFE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
   }
 
   .tbl {
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     color: white;
   }
 
@@ -205,7 +205,7 @@
   .btn-save {
     margin-top: 20px;
     border-radius: 10px;
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     float: right;
     font-weight: bold;
     color: white;
@@ -215,7 +215,7 @@
   }
 
   #btn-add {
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     border-color: transparent;
     color: white;
     border-radius: 10px;
@@ -230,7 +230,7 @@
 
   #edit {
     margin-right: 150px;
-    background-color: #4caf50;
+    background-color: #5D9EFE;
   }
 
   #hapus {
@@ -239,19 +239,19 @@
   }
 
   .modal-body {
-    color: #4caf50;
+    color: #5D9EFE;
     font-weight: bold;
     font-size: 16px;
     text-align: center;
   }
 
   .close {
-    color: #4caf50;
+    color: #5D9EFE;
     font-weight: bold;
     font-size: 24px;
   }
 
   .list-group li {
-    border-bottom: 4px solid #4caf50;
+    border-bottom: 4px solid #5D9EFE;
   }
 </style>

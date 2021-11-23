@@ -7,7 +7,8 @@
         </div>
         <div class="col-md-4">
           <div class="add">
-            <router-link to="AddProduct"><button type="button" id="btn-add" class="button">+Tambah</button></router-link>
+            <router-link to="AddProduct"><button type="button" id="btn-add" class="button">+Tambah</button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -18,7 +19,7 @@
           <div class="form-group">
             <label>Pilih Toko</label>
             <select v-model="store_id" class="form-control" @change="getCategory">
-              <option value="">Pilih Toko</option>
+              <option value="" disabled>Pilih Toko</option>
               <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                 {{ store.store.name }}
               </option>
@@ -83,12 +84,12 @@
                 <p class="makanan">{{ p.price }}</p>
                 <p class="makanan">Stock : {{ p.stock }}</p>
                 <router-link :to="{ name: 'EditProduct', params: { id: p.id } }">
-                   <i class="fas fa-edit blue" style="margin-left:35%;"  @click="edit(item)"></i>
+                  <i class="fas fa-edit blue" style="margin-left:35%;" @click="edit(item)"></i>
                   <!-- <button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
                   Edit
                 </button> -->
                 </router-link>
-                 <i class="far fa-trash-alt" style="margin-left:10%; color:red;"  @click="deleteData(p.id)"></i>
+                <i class="far fa-trash-alt" style="margin-left:10%; color:red;" @click="deleteData(p.id)"></i>
                 <!-- <button type="button" style="width:50%;" class="btn btn-danger" @click="deleteData(p.id)">
                   Hapus
                 </button> -->
@@ -170,38 +171,38 @@
           });
       },
       load() {
-      this.getStore();
-      this.getCategory();
-      this.getData();
-    },
+        this.getStore();
+        this.getCategory();
+        this.getData();
+      },
       deleteData(id) {
-      Swal.fire({
-        title: "Anda Yakin Ingin Menghapus Store Ini ?",
-        text: "Klik Batal untuk Membatalkan Penghapusan",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        cancelButtonText: "Batal",
-        confirmButtonText: "Hapus",
-      }).then((result) => {
-        if (result.value) {
-          axios
-            .delete("https://api-kasirin.jaggs.id/api/product/delete/" + id)
-            .then((res) => {
-              Swal.fire("Terhapus", res.data.message, "success");
-              this.load();
-              console.log(res);
-            })
-            .catch((err) => {
-              Swal.fire("Gagal", err.data.message, "warning");
-              console.log(err);
-            });
-        } else {
-          Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");
-        }
-      });
-    },
+        Swal.fire({
+          title: "Anda Yakin Ingin Menghapus Store Ini ?",
+          text: "Klik Batal untuk Membatalkan Penghapusan",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Batal",
+          confirmButtonText: "Hapus",
+        }).then((result) => {
+          if (result.value) {
+            axios
+              .delete("https://api-kasirin.jaggs.id/api/product/delete/" + id)
+              .then((res) => {
+                Swal.fire("Terhapus", res.data.message, "success");
+                this.load();
+                console.log(res);
+              })
+              .catch((err) => {
+                Swal.fire("Gagal", err.data.message, "warning");
+                console.log(err);
+              });
+          } else {
+            Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");
+          }
+        });
+      },
     },
   };
 </script>
@@ -209,14 +210,14 @@
 <style scoped>
   /* h3 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #5D9EFE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
   } */
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #5D9EFE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
@@ -232,7 +233,7 @@
 
   .makanan {
     font-weight: bold;
-    color: #4caf50;
+    color: #5D9EFE;
     text-align: center;
   }
 
@@ -254,13 +255,13 @@
   }
 
   label {
-    color: #4caf50;
+    color: #5D9EFE;
   }
 
   .button {
     margin-top: 90px;
     border-radius: 15px;
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     width: 150px;
     height: 30px;
     color: white;
@@ -271,13 +272,13 @@
     /* margin-top: 65px; */
     float: right;
     text-align: center;
-    
+
     padding-bottom: 10px;
-    
+
   }
 
   #btn-add {
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     border-color: transparent;
     color: white;
     border-radius: 10px;
@@ -285,6 +286,7 @@
     height: 40px;
     font-weight: bold;
   }
+
   .row {
     padding-top: 0px;
     margin: auto;
@@ -302,7 +304,7 @@
     width: 98%;
     height: 80%;
     border-radius: 15px;
-    background-color: #4caf50;
+    background-color: #5D9EFE;
   }
 
   img {

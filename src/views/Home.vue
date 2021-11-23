@@ -16,9 +16,9 @@
       </div>
       <div class="btn-filter">
 
-        <button type="button" id="filter" class="btn btn-outline-primary">Hari Ini</button>
-        <button type="button" id="filter" class="btn btn-outline-primary">Minggu Ini</button>
-        <button type="button" id="filter" class="btn btn-outline-primary" @click="getChartData()">Bulan Ini</button>
+        <button type="button" id="filter" class="btn btn-outline-primary" @click="getChartDataDaily()">Hari Ini</button>
+        <button type="button" id="filter" class="btn btn-outline-primary" @click="getChartDataWeekly()">Minggu Ini</button>
+        <button type="button" id="filter" class="btn btn-outline-primary" @click="getChartDataMonthly()">Bulan Ini</button>
       </div>
 
       <div class="container hasil">
@@ -70,13 +70,9 @@
   export default {
     data() {
       return {
-        // tanggal: "2021-11-23",
         stores: [],
         store_id: "",
-        omset: 0,
-        // year:"2021",
-        // month:"11"
-
+        omset: 0
       };
     },
     components: {
@@ -89,12 +85,21 @@
 
     },
     methods: {
-      getChartData() {
+      getChartDataMonthly() {
         this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
-         this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
-         this.getOmsetMonthly();
+        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+        this.getOmsetMonthly();
       },
-
+ getChartDataWeekly() {
+        this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
+        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+        this.getOmsetWeekly();
+      },
+       getChartDataDaily() {
+        this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
+        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+        this.getOmsetDaily();
+      },
       currentDateTime() {
         const current = new Date();
         const date = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
@@ -122,29 +127,69 @@
 
         return years;
       },
-       getOmsetMonthly() {
-      axios
-        .get(
-          "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this.getYear() + "&month="+ this.getMonth() +"",
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then((res) => {
-          // const { data } = res.data;
-          // const data = res.data.data;
-          this.omset = res.data.data;
-          
-          
+      getOmsetMonthly() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.omset = res.data.data;
 
-         
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      getOmsetWeekly(){
+          axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/income/weekly?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.omset = res.data.data;
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+        getOmsetDaily(){
+          axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/income/daily?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.omset = res.data.data;
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
       getStore() {
         axios
           .get(

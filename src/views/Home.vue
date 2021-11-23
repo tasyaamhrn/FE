@@ -118,19 +118,6 @@
 
         return dateTime;
       },
-      getMonth() {
-        const current = new Date();
-        const month = (current.getMonth() + 1);
-        const monthly = month;
-        return monthly;
-      },
-      getYear() {
-        const current = new Date();
-        const year = current.getFullYear();
-        const years = year;
-
-        return years;
-      },
       getOmsetMonthly() {
         axios
           .get(

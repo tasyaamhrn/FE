@@ -32,7 +32,9 @@
             <div class="app">
               <p class="tanggal">
                 {{currentDateTime()}}
-                
+              <!-- {{getMonth()}} -->
+              <!-- {{getYear()}} -->
+                <!-- {{ getTanggal() }} -->
               </p>
             </div>
           </div>
@@ -68,10 +70,13 @@ import axios from 'axios'
   export default {
       data() {
             return {
-              tanggal: "2021-11-22",
+              // tanggal: "2021-11-23",
                 stores: [],
                 store_id: "",
-                omset:0
+                omset:0,
+                // year:"2021",
+                // month:"11"
+
             };
         },
     components: {
@@ -85,8 +90,8 @@ import axios from 'axios'
       },
     methods: {
       getChartData() {
-        this.$root.$refs.productchart.getProduct(this.tanggal, this.store_id);
-         this.$root.$refs.categorychart.getCategory(this.tanggal, this.store_id);
+        this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
+         this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
          this.getOmset();
       },
       currentDateTime() {
@@ -96,10 +101,30 @@ import axios from 'axios'
 
         return dateTime;
       },
+      getTanggal() {
+        const current = new Date();
+        const date = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+        const dateTime = date;
+
+        return dateTime;
+      },
+      getMonth(){
+        const current = new Date();
+        const month =  (current.getMonth() + 1);
+        const monthly = month;
+        return monthly;
+      },
+      getYear(){
+        const current = new Date();
+        const year =  current.getFullYear();
+        const years = year;
+
+        return years;
+      },
        getOmset() {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/income?tanggal="+ this.tanggal +"&store_id=" + this.store_id,
+          "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this.getYear() + "&month="+ this.getMonth() +"",
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),

@@ -2,11 +2,11 @@
   <div class="container">
     <div class="home">
       <h1>TRANSAKSI</h1>
-      <div class="container hasil">
+      <!-- <div class="container hasil">
         <div class="row hsl">
           <div class="col-md-6">
             <p class="omset">Omset</p>
-            <p class="pendapatan">Rp. 110.000</p>
+            <p class="pendapatan">{{omset}}</p>
             <p class="transaksi">5 Transaksi</p>
             <p class="omset-bulanan">Total omset bulan
               {{myFunction()}} :
@@ -16,7 +16,7 @@
           <div class="col-md-6">
             <div class="app">
               <p class="tanggal">
-                {{currentDateTime()}} 
+                {{currentDateTime()}}
               </p>
               <p class="total-omset"> Rp. 110.000</p>
             </div>
@@ -32,7 +32,17 @@
             </select>
           </div>
         </div>
-      </div>
+      </div> -->
+      <div class="col-md-12" id="toko">
+          <div class="form-group">
+            <select v-model="store_id" class="form-control" @change="getTransaksi">
+              <option value="">Pilih Toko</option>
+              <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+                {{ store.store.name }}
+              </option>
+            </select>
+          </div>
+        </div>
       <div class="container">
         <div class="row">
           <div class="col-md-5">
@@ -61,7 +71,7 @@
             <router-link v-for="(item) in transaction" :key="item.id" :to="`/detail_transaksi/${item.id}`">
               <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span
                   class="jml">{{item.price}}</span>
-                  <!-- new Date(item.created_at).toLocaleDateString() -->
+                <!-- new Date(item.created_at).toLocaleDateString() -->
                 <span class="waktu">{{ new Date(item.created_at).toLocaleString() }}</span>
               </li>
             </router-link>
@@ -94,16 +104,17 @@
     data() {
       return {
         stores: [],
-        transaction: [{
-          id: "",
-        }],
         store_id: "",
+        omset: 0 ,
         price: "",
         pay: "",
         discount: "",
         change: "",
         counter: "",
         tanggal: "",
+        transaction: [{
+          id: "",
+        }],
         detail_transaction: [{
           product_id: "",
           qty: "",
@@ -120,6 +131,7 @@
       this.getStore()
       this.getTransaksi()
       this.getDetailTransaksi()
+      this.getOmset()
     },
     methods: {
       getStore() {
@@ -180,34 +192,6 @@
             console.log(err);
           });
       },
-      deleteData(id) {
-        Swal.fire({
-          title: "Anda Yakin Ingin Menghapus Data Ini ?",
-          text: "Klik Batal untuk Membatalkan Penghapusan",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Batal",
-          confirmButtonText: "Hapus",
-        }).then((result) => {
-          if (result.value) {
-            axios
-              .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
-              .then((res) => {
-                Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
-                this.getEmployee();
-                console.log(res);
-              })
-              .catch((err) => {
-                Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
-                console.log(err);
-              });
-          } else {
-            Swal.fire("Gagal", "Karyawan Anda Gagal Terhapus", "warning");
-          }
-        });
-      },
       currentDateTime() {
         const current = new Date();
         const date = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
@@ -234,7 +218,41 @@
         var n = month[d.getMonth()];
         var bulan = n;
         return bulan;
-      }
+      },
+      getMonth() {
+        const current = new Date();
+        const month = (current.getMonth() + 1);
+        const monthly = month;
+        return monthly;
+      },
+      getYear() {
+        const current = new Date();
+        const year = current.getFullYear();
+        const years = year;
+
+        return years;
+      },
+      getOmset() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this
+            .getYear() + "&month=" + this.getMonth() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.omset = res.data.data;
+            console.log(res)
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     },
   };
 </script>

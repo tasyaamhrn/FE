@@ -6,7 +6,7 @@
     <div class="col-md-12">
                     <div class="form-group">
                         <select v-model="store_id" class="form-control" @change="getChartData()">
-                            <option value="">Pilih Toko</option>
+                            <option value="" disabled>Pilih Toko</option>
                             <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                                 {{ store.store.name }}
                             </option>

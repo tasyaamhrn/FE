@@ -25,7 +25,7 @@
         <div class="row hsl">
           <div class="col-md-6">
             <p class="omset">Omset</p>
-            <p class="pendapatan">Rp. {{omset}}</p>
+            <p class="pendapatan">Rp. {{formatPrice(omset)}}</p>
             <p class="transaksi">4 Transaksi</p>
           </div>
           <div class="col-md-6">
@@ -85,6 +85,10 @@
 
     },
     methods: {
+        formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
       getChartDataMonthly() {
         this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);

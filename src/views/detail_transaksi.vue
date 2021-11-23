@@ -11,9 +11,7 @@
               {{ item.product.name }}
             </span>
             <br />
-            <span class="jml">{{
-              item.product.price
-            }}</span>
+            <span class="jml">Rp. {{formatPrice(item.product.price)}}</span>
             <span class="jml-produk">{{ item.qty }} item</span>
           </li>
         </div>
@@ -39,16 +37,18 @@
             </div>
             <div class="col-md-8">
               <span>
-                <p class="transaksi">{{ total }}</p>
+                <p class="transaksi">Rp. {{ formatPrice(total) }}</p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.discount}}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">Rp. {{formatPrice(item.transactions.discount)}}
+                </p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.pay}}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">Rp. {{formatPrice(item.transactions.pay)}}</p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.change}}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">Rp. {{formatPrice(item.transactions.change)}}
+                </p>
               </span><br />
               <span>
                 <p class="transaksi">
@@ -103,6 +103,10 @@
     },
     methods: {
       moment: moment,
+      formatPrice(value) {
+        let val = (value / 1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      },
       getStore() {
         axios
           .get(

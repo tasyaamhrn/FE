@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>TENTANG KAMI</h1>
-        <p class="awal">Aplikasi Kasirin Toko adalah aplikasi diperuntukan untuk kasir bagi toko yang sedang
+        <p class="awal">Aplikasi Plaris adalah aplikasi diperuntukan untuk kasir bagi toko yang sedang
             membutuhkan pencatatan dalam setiap transaksi. Aplikasi ini dilengkapi dengan potongan pertransaksi
             dan stok untuk produk, sehingga anda bisa mudah memonitor produk-produk anda. Aplikasi dikembangkan oleh
             Dokter Apps

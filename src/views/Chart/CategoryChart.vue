@@ -73,7 +73,7 @@ import axios from "axios";
  getCategory(tanggal,storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/category?tanggal="+ tanggal +"&store_id=" + storeId
+          "https://api-kasirin.jaggs.id/api/stats/category/daily?tanggal="+ tanggal +"&store_id=" + storeId
           ,
           {
             headers: {

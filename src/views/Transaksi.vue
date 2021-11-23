@@ -70,7 +70,7 @@
 
             <router-link v-for="(item) in transaction" :key="item.id" :to="`/detail_transaksi/${item.id}`">
               <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span
-                  class="jml">{{item.price}}</span>
+                  class="jml">Rp. {{formatPrice(item.price)}}</span>
                 <!-- new Date(item.created_at).toLocaleDateString() -->
                 <span class="waktu">{{ new Date(item.created_at).toLocaleString() }}</span>
               </li>
@@ -134,6 +134,10 @@
       this.getOmset()
     },
     methods: {
+        formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
       getStore() {
         axios
           .get(
@@ -275,7 +279,7 @@
 
   .list-transaksi {
     padding-top: 20px;
-  }
+  } 
 
   .list-transaksi i {
     color: #5D9EFE;

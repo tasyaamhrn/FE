@@ -210,17 +210,8 @@
   import axios from "axios";
   // import InputForm from "../components/inputForm.vue";
   import TheError from "../components/ErrorForm.vue";
-  import {
-    mapGetters
-  } from "vuex";
   import Swal from 'sweetalert2';
   export default {
-    computed: {
-      ...mapGetters({
-        isLoggedIn: "isLoggedIn",
-        user: "user",
-      }),
-    },
     data() {
       return {
         form: {
@@ -292,7 +283,6 @@
           .then((res) => {
             Swal.fire("Berhasil", res.data.message, "success");
             console.log(res);
-            this.alertSuccess();
             this.$router.push({
               
               name: "Product",
@@ -303,22 +293,6 @@
             Swal.fire("Gagal", err.data.message, "warning");
           });
       },
-      alertSuccess() {
-      // Use sweetalert2
-      this.$swal({
-        type: "success",
-        title: "Success",
-        text: "Toko berhasil ditambahkan",
-      });
-    },
-    alertError() {
-      // Use sweetalert2
-      this.$swal({
-        type: "error",
-        title: "Oops...",
-        text: "Toko gagal ditambahkan, silahkan coba lagi",
-      });
-    },
     },
     mounted() {
       this.getStore();

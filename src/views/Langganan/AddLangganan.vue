@@ -41,7 +41,7 @@
         console.log(formData.get('foto_struk'));
         console.log(formData.get('subscription_id'));
         axios
-          .post("https://api-kasirin.jaggs.id/api/subscriber/edit/" + this.$route.params.id, formData, {
+          .post("https://api-kasirin.jaggs.id/api/subscriber/edit/" +  localStorage.getItem("id"), formData, {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: "Bearer " + localStorage.getItem("access_token"),

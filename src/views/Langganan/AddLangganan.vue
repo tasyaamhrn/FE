@@ -43,7 +43,7 @@
         axios
           .post("https://api-kasirin.jaggs.id/api/subscriber/edit/" + this.$route.params.id, formData, {
             headers: {
-              "Content-Type": "multipart/form-data",  
+              "Content-Type": "multipart/form-data",
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
           })
@@ -66,7 +66,7 @@
 </script>
 <style scoped>
   label {
-    color: #4caf50;
+    color: #5D9EFE;
   }
 
   button {
@@ -85,7 +85,7 @@
 
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #5D9EFE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
@@ -94,7 +94,7 @@
   .sv {
     margin-top: 20px;
     border-radius: 10px;
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     float: right;
     /* height: 30px; */
     color: white;

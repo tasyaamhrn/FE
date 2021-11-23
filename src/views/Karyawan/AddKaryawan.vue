@@ -159,7 +159,7 @@
     .sv {
         margin-top: 20px;
         border-radius: 10px;
-        background-color: #4caf50;
+        background-color: #5D9EFE;
         float: right;
         /* height: 30px; */
         color: white;
@@ -169,7 +169,7 @@
 
     h1 {
         font-family: Arial, Helvetica, sans-serif;
-        color: #4caf50;
+        color: #5D9EFE;
         font-size: 18px;
         font-weight: bold;
         padding-top: 75px;
@@ -184,7 +184,7 @@
     }
 
     label {
-        color: #4caf50;
+        color: #5D9EFE;
     }
 
     button {
@@ -205,7 +205,7 @@
 
     .judul {
         padding-left: 28px;
-        color: #4caf50;
+        color: #5D9EFE;
         font-family: sans-serif;
         font-size: 18px;
         margin-bottom: 5px;
@@ -214,7 +214,7 @@
     .judul1 {
         padding-left: 28px;
         padding-top: 20px;
-        color: #4caf50;
+        color: #5D9EFE;
         font-family: sans-serif;
         font-size: 18px;
         margin-bottom: 5px;

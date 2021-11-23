@@ -144,7 +144,7 @@
     }
 
     label {
-        color: #4caf50;
+        color: #5D9EFE;
         font-family: sans-serif;
         font-size: 16px;
         padding-top: 10px;
@@ -167,7 +167,7 @@
     }
 
     .form-label {
-        color: #4caf50;
+        color: #5D9EFE;
         font-family: sans-serif;
         font-size: 16px;
         padding-top: 10px;

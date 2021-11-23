@@ -33,10 +33,10 @@
             <div class="mb-3">
                 <label for="exampleStockProduct" class="form-label">Jenis Kelamin</label>
                 <select class="form-control" v-model="form.gender">
-                        <option value="">Jenis Kelamin</option>
-                        <option> Male </option>
-                        <option> Female </option>
-                    </select>
+                    <option value="">Jenis Kelamin</option>
+                    <option> Male </option>
+                    <option> Female </option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleBarcodeProduct" class="form-label">Telepon</label>
@@ -135,7 +135,7 @@
     }
 
     label {
-        color: #4caf50;
+        color: #5D9EFE;
         font-family: sans-serif;
         font-size: 16px;
         padding-top: 10px;
@@ -158,7 +158,7 @@
     }
 
     .form-label {
-        color: #4caf50;
+        color: #5D9EFE;
         font-family: sans-serif;
         font-size: 16px;
         padding-top: 10px;

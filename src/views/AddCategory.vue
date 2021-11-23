@@ -17,7 +17,7 @@
             <div class="form-group">
               <label>Pilih Toko</label>
               <select v-model="form.store_id" class="form-control">
-                <option value="">Pilih Toko</option>
+                <option value="" disabled>Pilih Toko</option>
                 <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                   {{ store.store.name }}
                 </option>
@@ -40,14 +40,14 @@
 <style scoped>
   h1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #4caf50;
+    color: #5D9EFE;
     font-size: 18px;
     font-weight: bold;
     padding-top: 75px;
   }
 
   label {
-    color: #4caf50;
+    color: #5D9EFE;
   }
 
   button {
@@ -66,7 +66,7 @@
   }
 
   .judul {
-    color: #4caf50;
+    color: #5D9EFE;
     font-family: sans-serif;
     font-size: 18px;
     padding-top: 10px;
@@ -76,7 +76,7 @@
   .sv {
     margin-top: 20px;
     border-radius: 10px;
-    background-color: #4caf50;
+    background-color: #5D9EFE;
     float: right;
     /* height: 30px; */
     color: white;

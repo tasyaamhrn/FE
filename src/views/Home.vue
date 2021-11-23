@@ -92,7 +92,7 @@ import axios from 'axios'
       getChartData() {
         this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
          this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
-         this.getOmset();
+         this.getOmsetMonthly();
       },
     
       currentDateTime() {
@@ -122,7 +122,7 @@ import axios from 'axios'
 
         return years;
       },
-       getOmset() {
+       getOmsetMonthly() {
       axios
         .get(
           "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this.getYear() + "&month="+ this.getMonth() +"",

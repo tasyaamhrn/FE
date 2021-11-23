@@ -6,8 +6,8 @@
         <div class="row hsl">
           <div class="col-md-6">
             <p class="omset">Omset</p>
-            <p class="pendapatan"> Rp.1. 234.567,00</p>
-            <p class="transaksi">123 Transaksi</p>
+            <p class="pendapatan">Rp. 110.000</p>
+            <p class="transaksi">5 Transaksi</p>
             <p class="omset-bulanan">Total omset bulan
               {{myFunction()}} :
             </p>
@@ -16,9 +16,9 @@
           <div class="col-md-6">
             <div class="app">
               <p class="tanggal">
-                {{currentDateTime()}}
+                {{currentDateTime()}} 
               </p>
-              <p class="total-omset"> Rp.1. 234.567,00</p>
+              <p class="total-omset"> Rp. 110.000</p>
             </div>
           </div>
         </div>

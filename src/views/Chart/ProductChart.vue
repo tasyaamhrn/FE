@@ -119,7 +119,7 @@ console.log(data)
         )
         .then((res) => {
           const { data } = res.data;
-          // const data = res.data.data;
+     
           
           this.chartData.labels = [];
           this.chartData.datasets[0].data = [];

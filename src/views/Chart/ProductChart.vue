@@ -79,10 +79,38 @@ export default {
     // this.getProduct();
   },
   methods: {
-    getProduct(tanggal, storeId) {
+    getProductDaily(tanggal, storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/product?tanggal="+ tanggal +"&store_id=" + storeId,
+          "https://api-kasirin.jaggs.id/api/stats/product/daily?tanggal="+ tanggal +"&store_id=" + storeId,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          const { data } = res.data;
+          // const data = res.data.data;
+          
+          this.chartData.labels = [];
+          this.chartData.datasets[0].data = [];
+
+          data.forEach(item => {
+            this.chartData.labels.push(item.name);
+            this.chartData.datasets[0].data.push(item.Dibeli);
+          });
+console.log(data)
+          this.renderChart(this.chartData, this.options);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getProductWeekly(tanggal, storeId) {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/stats/product/weekly?tanggal="+ tanggal +"&store_id=" + storeId,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),

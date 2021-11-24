@@ -90,18 +90,18 @@
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
       getChartDataMonthly() {
-        this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
-        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+        this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
+        this.$root.$refs.categorychart.getCategoryMonthly(this.getTanggal(), this.store_id);
         this.getOmsetMonthly();
       },
- getChartDataWeekly() {
-        this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
-        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+      getChartDataWeekly() {
+        this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
+        this.$root.$refs.categorychart.getCategoryWeekly(this.getTanggal(), this.store_id);
         this.getOmsetWeekly();
       },
        getChartDataDaily() {
-        this.$root.$refs.productchart.getProduct(this.getTanggal(), this.store_id);
-        this.$root.$refs.categorychart.getCategory(this.getTanggal(), this.store_id);
+        this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
+        this.$root.$refs.categorychart.getCategoryDaily(this.getTanggal(), this.store_id);
         this.getOmsetDaily();
       },
       currentDateTime() {

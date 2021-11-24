@@ -70,10 +70,66 @@ import axios from "axios";
     this.$root.$refs.categorychart = this;
   },
     methods:{
- getCategory(tanggal,storeId) {
+ getCategoryDaily(tanggal,storeId) {
       axios
         .get(
           "https://api-kasirin.jaggs.id/api/stats/category/daily?tanggal="+ tanggal +"&store_id=" + storeId
+          ,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          const { data } = res.data;
+          // const data = res.data.data;
+          console.log(data)
+          this.chartData.labels = [];
+          this.chartData.datasets[0].data = [];
+          data.forEach(item => {
+            this.chartData.labels.push(item.name);
+            this.chartData.datasets[0].data.push(item.Dibeli);
+          });
+
+          this.renderChart(this.chartData, this.options);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getCategoryWeekly(tanggal,storeId) {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/stats/category/weekly?tanggal="+ tanggal +"&store_id=" + storeId
+          ,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then((res) => {
+          const { data } = res.data;
+          // const data = res.data.data;
+          console.log(data)
+          this.chartData.labels = [];
+          this.chartData.datasets[0].data = [];
+          data.forEach(item => {
+            this.chartData.labels.push(item.name);
+            this.chartData.datasets[0].data.push(item.Dibeli);
+          });
+
+          this.renderChart(this.chartData, this.options);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getCategoryMonthly(tanggal,storeId) {
+      axios
+        .get(
+          "https://api-kasirin.jaggs.id/api/stats/category/monthly?tanggal="+ tanggal +"&store_id=" + storeId
           ,
           {
             headers: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="aplikasi">
     <div class="detail">
       <h1>DETAIL TRANSAKSI</h1>
       <div class="daftar-produk">
@@ -11,7 +11,9 @@
               {{ item.product.name }}
             </span>
             <br />
-            <span class="jml">Rp. {{formatPrice(item.product.price)}}</span>
+            <span class="jml">{{
+              item.product.price
+            }}</span>
             <span class="jml-produk">{{ item.qty }} item</span>
           </li>
         </div>
@@ -37,18 +39,16 @@
             </div>
             <div class="col-md-8">
               <span>
-                <p class="transaksi">Rp. {{ formatPrice(total) }}</p>
+                <p class="transaksi">{{ total }}</p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">Rp. {{formatPrice(item.transactions.discount)}}
-                </p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.discount}}</p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">Rp. {{formatPrice(item.transactions.pay)}}</p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.pay}}</p>
               </span><br />
               <span>
-                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">Rp. {{formatPrice(item.transactions.change)}}
-                </p>
+                <p class="transaksi" v-for="(item) in detail_transaction" :key="item.id">{{item.transactions.change}}</p>
               </span><br />
               <span>
                 <p class="transaksi">
@@ -68,8 +68,6 @@
   import axios from "axios";
   import Swal from "sweetalert2";
   import moment from 'moment';
-  import html2canvas from 'html2canvas';
-  import jsPDF from 'jspdf';
   export default {
     data() {
       return {
@@ -105,10 +103,6 @@
     },
     methods: {
       moment: moment,
-      formatPrice(value) {
-        let val = (value / 1).toFixed(2).replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-      },
       getStore() {
         axios
           .get(
@@ -196,19 +190,16 @@
           }
         });
       },
-      makePDF(){
-        window.html2canvas = html2canvas;
-        var doc = new jsPDF("p", "pt", "a4");
-        doc.html(document.querySelector("#aplikasi"), {
-          callback: function(pdf){
-            pdf.save("mypdf.pdf");
-          }
-        });
-      }
+      
     },
   };
 </script>
 <style scoped>
+    #app{
+        font-family: Arial, Helvetica, sans-serif;
+        height: 11in;
+        width: 8.5in;
+    }
   .col-md-4 {
     padding-left: 0px;
     padding-top: 10px;

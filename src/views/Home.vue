@@ -90,7 +90,7 @@
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
       getChartDataMonthly() {
-        this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
+        this.$root.$refs.productchart.getProductMonthly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryMonthly(this.getTanggal(), this.store_id);
         this.getOmsetMonthly();
       },

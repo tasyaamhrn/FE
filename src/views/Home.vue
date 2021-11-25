@@ -95,7 +95,7 @@
         this.getOmsetMonthly();
       },
       getChartDataWeekly() {
-        this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
+        this.$root.$refs.productchart.getProductWeekly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryWeekly(this.getTanggal(), this.store_id);
         this.getOmsetWeekly();
       },

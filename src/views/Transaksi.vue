@@ -47,18 +47,18 @@
         <div class="row">
           <div class="col-md-5">
             <div class="filter">
-              Tanggal Awal <input type="date" class="form-control" name="tanggal">
+              Tanggal Awal <input type="date" class="form-control" name="tanggal" v-model="startDate">
             </div>
           </div>
           <div class="col-md-5">
             <div class="filter">
-              Tanggal Akhir <input type="date" class="form-control" name="tanggal">
+              Tanggal Akhir <input type="date" class="form-control" name="tanggal" v-model="endDate">
             </div>
           </div>
           <div class="col-md-2">
             <div class="filter-btn">
               <div class="tambah">
-                <button type="button" class="search">Cari</button>
+                <button type="button" class="search" >Cari</button>
               </div>
             </div>
           </div>
@@ -69,11 +69,13 @@
           <div class="list-group">
 
             <router-link v-for="(item) in transaction" :key="item.id" :to="`/detail_transaksi/${item.id}`">
-              <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span
-                  class="jml">Rp. {{formatPrice(item.price)}}</span>
+            <div >
+              <li class="list-group-item list-group-item-action" ><i class='bx bx-bar-chart-alt' ></i><span
+                  class="jml" >Rp. {{formatPrice(item.price)}}</span>
                 <!-- new Date(item.created_at).toLocaleDateString() -->
                 <span class="waktu">{{ new Date(item.created_at).toLocaleString() }}</span>
               </li>
+              </div>
             </router-link>
             <!-- <router-link to="">
               <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'> </i><span
@@ -102,7 +104,10 @@
   import Swal from "sweetalert2";
   export default {
     data() {
+
       return {
+        startDate: null,
+        endDate: null,
         stores: [],
         store_id: "",
         omset: 0,
@@ -132,12 +137,38 @@
       this.getTransaksi()
       this.getDetailTransaksi()
       this.getOmset()
+      this.filterTanggal()
     },
     methods: {
-        formatPrice(value) {
-        let val = (value/1).toFixed(2).replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    filterTanggal () {
+      
+      let filterType = this.selectedType
+      if (!filterType) return this.getTransaksi;  // when filterType not selected
+
+      let startDate = this.startDate && new Date(this.startDate);
+      let endDate = this.endDate && new Date(this.endDate);
+      
+      return this.transaction_id.filter(item => {
+        return item.price == filterType;
+      }).filter(item => {
+        const itemDate = new Date(item.date)
+        if (startDate && endDate) {
+          return startDate <= itemDate && itemDate <= endDate;
+        }
+        if (startDate && !endDate) {
+          return startDate <= itemDate;
+        }
+        if (!startDate && endDate) {
+          return itemDate <= endDate;
+        }
+        return true;  // when neither startDate nor endDate selected
+      })
+      
     },
+      formatPrice(value) {
+        let val = (value / 1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      },
       getStore() {
         axios
           .get(
@@ -279,7 +310,7 @@
 
   .list-transaksi {
     padding-top: 20px;
-  } 
+  }
 
   .list-transaksi i {
     color: #5D9EFE;

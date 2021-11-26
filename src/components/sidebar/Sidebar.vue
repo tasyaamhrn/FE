@@ -8,7 +8,7 @@
         <label>{{ user.name }}</label>
         <li>
           <router-link :to="{ name: 'Home' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-home"></i>
             <span class="links_name">Beranda</span>
           </router-link>
         </li>
@@ -27,50 +27,50 @@
         </li> -->
         <li>
           <router-link :to="{ name: 'Store' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-store"></i>
             <span class="links_name">Toko</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Karyawan' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-user"></i>
             <span class="links_name">Karyawan</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Category' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-list-ul"></i>
             <span class="links_name">Kategori</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Product' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-boxes"></i>
             <span class="links_name">Produk</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Transaksi' }">
-            <i class="bx bx-plus"></i>
-            <span class="links_name">Transaksi</span>
+            <i class="fas fa-history"></i>
+            <span class="links_name">Histori Transaksi</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Langganan' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-crown"></i>
             <span class="links_name">Langganan</span>
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'About' }">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-question-circle"></i>
             <span class="links_name">Tentang Kami</span>
           </router-link>
         </li>
 
         <li>
           <a href="mailto:dokterapps.mail@gmail.com">
-            <i class="bx bx-plus"></i>
+            <i class="fas fa-phone-square-alt"></i>
             <span class="links_name">Hubungi Kami</span>
           </a>
         </li>

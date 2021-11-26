@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="aplikasi">
+  <div class="container" id="aplikasiplaris">
     <div class="detail">
       <h1>DETAIL TRANSAKSI</h1>
       <div class="daftar-produk">

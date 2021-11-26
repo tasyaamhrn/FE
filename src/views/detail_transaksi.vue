@@ -199,7 +199,7 @@
       makePDF(){
         window.html2canvas = html2canvas;
         var doc = new jsPDF("p", "pt", "a4");
-        doc.html(document.querySelector("#aplikasi"), {
+        doc.html(document.querySelector(".container"), {
           callback: function(pdf){
             pdf.save("mypdf.pdf");
           }

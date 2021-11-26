@@ -96,6 +96,7 @@
         this.$root.$refs.productchart.getProductMonthly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryMonthly(this.getTanggal(), this.store_id);
         this.getOmsetMonthly();
+         this.getTransaksiMonthly();
       },
       getChartDataWeekly() {
         this.$root.$refs.productchart.getProductWeekly(this.getTanggal(), this.store_id);
@@ -212,6 +213,28 @@
           axios
           .get(
             "https://api-kasirin.jaggs.id/api/stats/transaction/weekly?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.transaction = res.data.data;
+            console.log(res)
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+       getTransaksiMonthly(){
+          axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/transaction/monthly?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),

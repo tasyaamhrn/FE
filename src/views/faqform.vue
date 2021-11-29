@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h1>TAMBAH KATEGORI</h1>
+          <h1>TAMBAH PERTANYAAN</h1>
         </div>
         <div class="col-md-4">
           <div class="kembali">
@@ -16,11 +16,11 @@
           <form @submit.prevent="save">
             <div class="form-group">
               <label>Pertanyaan</label>
-              <input type="text" class="form-control" id="namakategori" v-model="form.name" name="" value="" />
+              <input type="text" class="form-control" id="namakategori" v-model="form.questions" name="" value="" />
             </div>
             <div class="form-group">
               <label>Jawaban</label>
-              <input type="text" class="form-control" id="namakategori" v-model="form.name" name="" value="" />
+              <input type="text" class="form-control" id="namakategori" v-model="form.answer" name="" value="" />
             </div>
             <button type="submit" v-show="!updateSubmit" name="button" class="sv">
               SAVE
@@ -85,11 +85,9 @@
     data() {
       return {
         form: {
-          name: "",
-          store_id: "",
+          questions: "",
+          answer: "",
         },
-        categories: [],
-        stores: [],
       };
     },
     mounted() {
@@ -116,19 +114,21 @@
       save() {
         axios
           .post(
-            "https://api-kasirin.jaggs.id/api/category/store", {
-              name: this.form.name,
-              store_id: this.form.store_id,
+            "https://api-kasirin.jaggs.id/api/faq/store", {
+              questions: this.form.questions,
+              answer: this.form.answer,
             }, {
               headers: {
                 Authorization: "Bearer " + localStorage.access_token,
               },
             }
           )
-          .then(() => {
+          .then((res) => {
+            console.log(res);
             this.$router.push({
-              name: "Category",
+              name: "FAQ",
             });
+            
           })
           .catch((err) => {
             console.log(err);

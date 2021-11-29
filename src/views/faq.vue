@@ -18,7 +18,7 @@
                 <div class="accordion faq-accordian" id="faqAccordion">
                     <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="card-header" id="headingOne">
-                            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How can I install this app?<span class="lni-chevron-up"></span></h6>
+                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How can I install this app?<span class="lni-chevron-up"></span></h5>
                         </div>
                         <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#faqAccordion">
                             <div class="card-body">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="card border-0 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
                         <div class="card-header" id="headingTwo">
-                            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">The apps isn't installing?<span class="lni-chevron-up"></span></h6>
+                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">The apps isn't installing?<span class="lni-chevron-up"></span></h5>
                         </div>
                         <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#faqAccordion">
                             <div class="card-body">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="card border-0 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="card-header" id="headingThree">
-                            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Contact form isn't working?<span class="lni-chevron-up"></span></h6>
+                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Contact form isn't working?<span class="lni-chevron-up"></span></h5>
                         </div>
                         <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#faqAccordion">
                             <div class="card-body">
@@ -72,7 +72,9 @@
     z-index: 1;
     background-color: #f5f5ff;
 }
-
+h5{
+    font-size:18px;
+}
 .faq-accordian {
     position: relative;
     z-index: 1;
@@ -90,7 +92,7 @@
     padding: 0;
     border-bottom-color: #ebebeb;
 }
-.faq-accordian .card .card-header h6 {
+.faq-accordian .card .card-header h5 {
     cursor: pointer;
     padding: 1.75rem 2rem;
     color: #3f43fd;

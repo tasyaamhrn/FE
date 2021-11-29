@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
   
           <div class="add">
-            <router-link to=""><button type="button" id="btn-add">+ Tambah</button>
+            <router-link to="faqform"><button type="button" id="btn-add">+ Tambah</button>
             </router-link>
          
         </div>

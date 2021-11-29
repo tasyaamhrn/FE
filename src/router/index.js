@@ -26,6 +26,7 @@ import CobaChart from '../views/CobaChart.vue'
 import TampilTransaksi from '../views/tampil_transaksi.vue'
 import FAQ from '../views/faq.vue'
 import Producttampiltransaksi from '../views/Producttampiltransaksi.vue'
+import FAQForm from '../views/faqform.vue'
 
 //langganan
 import Langganan from '../views/Langganan/Langganan.vue'
@@ -156,6 +157,11 @@ const routes = [{
     path: '/faq',
     name: 'FAQ',
     component: FAQ
+  },
+  {
+    path: '/faqform',
+    name: 'FAQForm',
+    component: FAQForm
   },
   {
     path: '/editkaryawan/:id',

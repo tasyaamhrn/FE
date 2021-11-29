@@ -46,22 +46,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5">
-            <div class="filter">
-              Tanggal Awal <input type="date" class="form-control" name="tanggal" v-model="startDate">
+            <div class="filter" >
+              Tanggal Awal <input type="date" class="form-control" name="tanggal" v-model="form.tanggal_mulai" @change="getFilterTransaksi" >
             </div>
           </div>
           <div class="col-md-5">
             <div class="filter">
-              Tanggal Akhir <input type="date" class="form-control" name="tanggal" v-model="endDate">
+              Tanggal Akhir <input type="date" class="form-control" name="tanggal" v-model="form.tanggal_selesai"  @change="getFilterTransaksi">
             </div>
           </div>
-          <div class="col-md-2">
+          <!-- <div class="col-md-2">
             <div class="filter-btn">
               <div class="tambah">
-                <button type="button" class="search" >Cari</button>
+                <button type="submit">Cari</button>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="container">
@@ -69,12 +69,12 @@
           <div class="list-group">
 
             <router-link v-for="(item) in transaction" :key="item.id" :to="`/detail_transaksi/${item.id}`">
-            <div >
-              <li class="list-group-item list-group-item-action" ><i class='bx bx-bar-chart-alt' ></i><span
-                  class="jml" >Rp. {{formatPrice(item.price)}}</span>
-                <!-- new Date(item.created_at).toLocaleDateString() -->
-                <span class="waktu">{{ new Date(item.created_at).toLocaleString() }}</span>
-              </li>
+              <div>
+                <li class="list-group-item list-group-item-action"><i class='bx bx-bar-chart-alt'></i><span
+                    class="jml">Rp. {{formatPrice(item.price)}}</span>
+                  <!-- new Date(item.created_at).toLocaleDateString() -->
+                  <span class="waktu">{{ new Date(item.created_at).toLocaleString() }}</span>
+                </li>
               </div>
             </router-link>
             <!-- <router-link to="">
@@ -106,8 +106,10 @@
     data() {
 
       return {
-        startDate: null,
-        endDate: null,
+        form: {
+          tanggal_mulai: "",
+          tanggal_selesai: "",
+        },
         stores: [],
         store_id: "",
         omset: 0,
@@ -117,9 +119,7 @@
         change: "",
         counter: "",
         tanggal: "",
-        transaction: [{
-          id: "",
-        }],
+        transaction: {},
         detail_transaction: [{
           product_id: "",
           qty: "",
@@ -137,34 +137,51 @@
       this.getTransaksi()
       this.getDetailTransaksi()
       this.getOmset()
-      this.filterTanggal()
+      
     },
     methods: {
-    filterTanggal () {
-      
-      let filterType = this.selectedType
-      if (!filterType) return this.getTransaksi;  // when filterType not selected
+      getFilterTransaksi() {
+        axios
+          .get(
+            `https://api-kasirin.jaggs.id/api/filter/transaction?store_id=${this.store_id}&tanggal_mulai=${this.form.tanggal_mulai}&tanggal_selesai=${this.form.tanggal_selesai}`, {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            this.transaction = res.data.data,
+              console.log(res)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      filterTanggal() {
 
-      let startDate = this.startDate && new Date(this.startDate);
-      let endDate = this.endDate && new Date(this.endDate);
-      
-      return this.transaction_id.filter(item => {
-        return item.price == filterType;
-      }).filter(item => {
-        const itemDate = new Date(item.date)
-        if (startDate && endDate) {
-          return startDate <= itemDate && itemDate <= endDate;
-        }
-        if (startDate && !endDate) {
-          return startDate <= itemDate;
-        }
-        if (!startDate && endDate) {
-          return itemDate <= endDate;
-        }
-        return true;  // when neither startDate nor endDate selected
-      })
-      
-    },
+        let filterType = this.selectedType
+        if (!filterType) return this.getTransaksi; // when filterType not selected
+
+        let startDate = this.startDate && new Date(this.startDate);
+        let endDate = this.endDate && new Date(this.endDate);
+
+        return this.transaction_id.filter(item => {
+          return item.price == filterType;
+        }).filter(item => {
+          const itemDate = new Date(item.date)
+          if (startDate && endDate) {
+            return startDate <= itemDate && itemDate <= endDate;
+          }
+          if (startDate && !endDate) {
+            return startDate <= itemDate;
+          }
+          if (!startDate && endDate) {
+            return itemDate <= endDate;
+          }
+          return true; // when neither startDate nor endDate selected
+        })
+
+      },
       formatPrice(value) {
         let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")

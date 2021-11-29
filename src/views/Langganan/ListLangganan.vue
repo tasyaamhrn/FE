@@ -25,7 +25,7 @@
             </thead>
             <tbody>
               <tr v-for="item in subscription" :key="item.id">
-                <td>{{ item.name }}</td>
+                <td data-toggle="modal" data-target="#myModal">{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <!-- <td><img :src="item.image_url" style="width: 20%" alt="Subscription Image" /></td> -->
                 <td>Rp. {{ item.price }}</td>
@@ -38,6 +38,33 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <tr v-for="i in subscription" :key="i.id">
+                  <td>{{i.description}}</td>
+                </tr>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="hapus" class="btn btn-danger btn-lg center-block">
+                  <i class="bx bx-minus-circle" data-dismiss="modal">Batal</i>
+                </button>
+
+                <button type="button" id="edit" class="btn btn-primary btn-lg center-block">
+                  <i class="bx bx-check" data-dismiss="modal">Pilih</i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

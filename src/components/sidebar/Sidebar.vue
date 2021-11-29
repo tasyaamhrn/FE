@@ -62,8 +62,14 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'About' }">
+          <router-link :to="{ name: 'FAQ' }">
             <i class="fas fa-question-circle"></i>
+            <span class="links_name">FAQ</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'About' }">
+            <i class="fas fa-question"></i>
             <span class="links_name">Tentang Kami</span>
           </router-link>
         </li>

@@ -26,7 +26,9 @@
           <div class="col-md-6">
             <p class="omset">Omset</p>
             <p class="pendapatan">Rp. {{formatPrice(omset)}}</p>
-            <p class="transaksi">4 Transaksi</p>
+            <div v-for="item in transaction" :key="item.id" >
+            <p class="transaksi">{{item.Jumlah_Transaksi}} Transaksi</p>
+            </div>
           </div>
           <div class="col-md-6">
             <div class="app">
@@ -72,7 +74,8 @@
       return {
         stores: [],
         store_id: "",
-        omset: 0
+        omset: 0,
+        transaction:{}
       };
     },
     components: {
@@ -93,16 +96,19 @@
         this.$root.$refs.productchart.getProductMonthly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryMonthly(this.getTanggal(), this.store_id);
         this.getOmsetMonthly();
+         this.getTransaksiMonthly();
       },
       getChartDataWeekly() {
         this.$root.$refs.productchart.getProductWeekly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryWeekly(this.getTanggal(), this.store_id);
         this.getOmsetWeekly();
+          this.getTransaksiWeekly();
       },
        getChartDataDaily() {
         this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryDaily(this.getTanggal(), this.store_id);
         this.getOmsetDaily();
+        this.getTransaksiDaily();
       },
       currentDateTime() {
         const current = new Date();
@@ -174,6 +180,72 @@
             // const { data } = res.data;
             // const data = res.data.data;
             this.omset = res.data.data;
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+        getTransaksiDaily(){
+          axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/transaction/daily?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.transaction = res.data.data;
+            console.log(res)
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      getTransaksiWeekly(){
+          axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/transaction/weekly?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.transaction = res.data.data;
+            console.log(res)
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+       getTransaksiMonthly(){
+          axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/stats/transaction/monthly?store_id=" + this.store_id + "&tanggal=" + this
+            . getTanggal() + "", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+            // const { data } = res.data;
+            // const data = res.data.data;
+            this.transaction = res.data.data;
+            console.log(res)
 
 
           })

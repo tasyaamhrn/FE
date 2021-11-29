@@ -42,8 +42,10 @@ export default {
                     .then(response => {
                         const token = response.data.access_token
                         const id = response.data.data.id
+                        const role_name = response.data.data.role_name
                         localStorage.setItem('access_token', token)
                         localStorage.setItem('id', id)
+                        localStorage.setItem('role_name', role_name)
                         setHeaderToken(token)
                         dispatch('get_user')
                         resolve(response)
@@ -68,6 +70,7 @@ export default {
                 removeHeaderToken()
                 localStorage.removeItem('access_token')
                 localStorage.removeItem('id')
+                localStorage.removeItem('role_name')
                 return error
             }
         },
@@ -78,6 +81,7 @@ export default {
                         commit('reset_user')
                         localStorage.removeItem('access_token')
                         localStorage.removeItem('id')
+                        localStorage.removeItem('role_name')
                         removeHeaderToken()
                         resolve()
                     })

@@ -47,8 +47,8 @@
                     </p>
                     
                   </div>
-                  <div class="col-md-10 col-lg-6 col-xl-6 d-flex">
-                    <img src="../assets/logo-pelaris-06.png" class="img-fluid" alt="Sample image" />
+                  <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center">
+                    <img src="../assets/logo-pelaris-07.png" class="img-fluid" alt="Sample image" />
                   </div>
                 </div>
               </div>
@@ -132,7 +132,7 @@
   }
 
   .img-fluid {
-    width: 60%;
+    width: 100%;
   }
 
   .login-title {

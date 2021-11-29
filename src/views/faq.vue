@@ -2,14 +2,7 @@
     
 <div class="faq_area section_padding_130" id="faq">
     <div class="container">
-        <div class="row justify-content-center">
-  
-          <div class="add">
-            <router-link to="faqform"><button type="button" id="btn-add">+ Tambah</button>
-            </router-link>
-         
-        </div>
-        </div>
+        
         <div class="row justify-content-center">
           
             <div class="col-12 col-sm-8 col-lg-6">
@@ -24,37 +17,15 @@
             <!-- FAQ Area-->
             <div class="col-12 col-sm-10 col-lg-8">
                 <div class="accordion faq-accordian" id="faqAccordion">
-                    <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="card-header" id="headingOne">
-                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How can I install this app?<span class="lni-chevron-up"></span></h5>
+                    <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" v-for="item in faq" :key="item.id">
+                        <div class="card-header" id="headingOne" >
+                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >{{item.questions}}<span class="lni-chevron-up"></span></h5>
                         </div>
                         <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#faqAccordion">
                             <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quidem facere deserunt sint animi sapiente vitae suscipit.</p>
-                                <p>Appland is completely creative, lightweight, clean &amp; super responsive app landing page.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border-0 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-                        <div class="card-header" id="headingTwo">
-                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">The apps isn't installing?<span class="lni-chevron-up"></span></h5>
-                        </div>
-                        <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quidem facere deserunt sint animi sapiente vitae suscipit.</p>
-                                <p>Appland is completely creative, lightweight, clean &amp; super responsive app landing page.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border-0 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <div class="card-header" id="headingThree">
-                            <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Contact form isn't working?<span class="lni-chevron-up"></span></h5>
-                        </div>
-                        <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quidem facere deserunt sint animi sapiente vitae suscipit.</p>
-                                <p>Appland is completely creative, lightweight, clean &amp; super responsive app landing page.</p>
-                            </div>
+                                <p>{{item.answer}}</p>
+                              
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -62,13 +33,78 @@
                 <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
                     <i class="lni-emoji-sad"></i>
                     <p class="mb-0 px-2">Can't find your answers?</p>
-                    <a href="#"> Contact us</a>
+                    <a href="#" id="contact"> Contact us</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </template>
+<script>
+  import axios from "axios";
+  export default {
+    data() {
+      return {
+        form: {
+          questions: "",
+          answer: "",
+        },
+        faq:[{
+            id:"",
+            questions:"",
+            answer:"",
+        }]
+      };
+    },
+    mounted() {
+      this.getFAQ();
+    },
+    methods: {
+      getFAQ() {
+        axios
+          .get(
+            "https://api-kasirin.jaggs.id/api/faq", {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then((res) => {
+              
+            this.faq = res.data.data;
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      save() {
+        axios
+          .post(
+            "https://api-kasirin.jaggs.id/api/faq/store", {
+              questions: this.form.questions,
+              answer: this.form.answer,
+            }, {
+              headers: {
+                Authorization: "Bearer " + localStorage.access_token,
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+            this.$router.push({
+              name: "FAQ",
+            });
+            
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("saving error");
+          });
+      },
+    },
+  };
+</script>
 <style scoped>
     body{margin-top:20px;}
 .section_padding_130 {
@@ -83,6 +119,11 @@
 h5{
     font-size:18px;
 }
+h3{
+    margin-bottom:40px;
+    font-weight: bold;
+    color:#0870CA;
+}
 .faq-accordian {
     position: relative;
     z-index: 1;
@@ -95,6 +136,9 @@ h5{
 .faq-accordian .card:last-child {
     margin-bottom: 0;
 }
+#contact{
+  color:  #0870CA;
+}
 .faq-accordian .card .card-header {
     background-color: #ffffff;
     padding: 0;
@@ -103,7 +147,7 @@ h5{
 .faq-accordian .card .card-header h5 {
     cursor: pointer;
     padding: 1.75rem 2rem;
-    color: #3f43fd;
+    color: #5D9EFE;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

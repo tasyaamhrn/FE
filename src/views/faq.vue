@@ -3,11 +3,19 @@
 <div class="faq_area section_padding_130" id="faq">
     <div class="container">
         <div class="row justify-content-center">
+  
+          <div class="add">
+            <router-link to=""><button type="button" id="btn-add">+ Tambah</button>
+            </router-link>
+         
+        </div>
+        </div>
+        <div class="row justify-content-center">
+          
             <div class="col-12 col-sm-8 col-lg-6">
                 <!-- Section Heading-->
                 <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                     <h3><span>Frequently </span> Asked Questions</h3>
-                    <p>Appland is completely creative, lightweight, clean &amp; super responsive app landing page.</p>
                     <div class="line"></div>
                 </div>
             </div>
@@ -123,7 +131,19 @@ h5{
 .faq-accordian .card .card-body p:last-child {
     margin-bottom: 0;
 }
-
+.add{
+    margin-left: 50%;
+    
+}
+  #btn-add {
+    background-color: #5D9EFE;
+    border-color: transparent;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+    font-weight: bold;
+  }
 @media only screen and (max-width: 575px) {
     .support-button p {
         font-size: 14px;

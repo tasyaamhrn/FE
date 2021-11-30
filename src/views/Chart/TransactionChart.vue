@@ -6,11 +6,11 @@
     data () {
       return {
         chartData: {
-          labels: ["09/10/2021","10/10/2021","11/10/2021","12/10/2021","13/10/2021"],
+          labels: [],
           datasets: [
             {
               label: 'Transaction',
-              data: [0,10000, 15000, 9000,12000],
+              data: [],
               fill: false,
               borderColor: '#2554FF',
               backgroundColor: '#2554FF',
@@ -42,6 +42,9 @@
         }
       }
     },
+    created() {
+    this.$root.$refs.Transactionchart = this;
+  },
     mounted () {
       this.renderChart(this.chartData, this.options)
     },

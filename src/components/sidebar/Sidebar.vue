@@ -25,56 +25,56 @@
             <span class="links_name">Tampil Transaksi </span>
           </router-link>
         </li> -->
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Store' }">
             <i class="fas fa-store"></i>
             <span class="links_name">Toko</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Karyawan' }">
             <i class="fas fa-user"></i>
             <span class="links_name">Karyawan</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Category' }">
             <i class="fas fa-list-ul"></i>
             <span class="links_name">Kategori</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Product' }">
             <i class="fas fa-boxes"></i>
             <span class="links_name">Produk</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Transaksi' }">
             <i class="fas fa-history"></i>
             <span class="links_name">Histori Transaksi</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Langganan' }">
             <i class="fas fa-crown"></i>
             <span class="links_name">Langganan</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'FAQ' }">
             <i class="fas fa-question-circle"></i>
             <span class="links_name">FAQ</span>
           </router-link>
         </li>
-        <li>
+        <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'About' }">
             <i class="fas fa-question"></i>
             <span class="links_name">Tentang Kami</span>
           </router-link>
         </li>
 
-        <li>
+        <li v-if = "user.role_id != 2">
           <a href="mailto:dokterapps.mail@gmail.com">
             <i class="fas fa-phone-square-alt"></i>
             <span class="links_name">Hubungi Kami</span>

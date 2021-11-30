@@ -26,10 +26,13 @@
                 <td>{{ item.store.address }}</td>
                 <td>
                   <router-link :to="{ name: 'EditStore', params: { id: item.store.id } }">
-                    <i class="fas fa-edit blue" style="padding-right: 10px"></i>
+                    <button type="button" class="btn btn-primary">
+                      Edit
+                    </button>
                   </router-link>
-                  <a @click="deleteData(item.store.id)" class="text-danger">
-                    <i class="fas fa-trash-alt red"></i></a>
+                  <button type="button" class="btn btn-danger" @click="deleteData(item.store.id)">
+                    Hapus
+                  </button>
                 </td>
               </tr>
             </tbody>

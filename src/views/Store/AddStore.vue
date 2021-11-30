@@ -2,8 +2,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-8" style="padding-top:75px; padding-bottom:30px;">
-          
+        <div class="col-md-8" style="padding-top:75px; padding-bottom:30px; padding-left:84%;">
           <span class="label info"><i class="bx bx-plus"></i> Tambah Toko</span>
         </div>
       </div>
@@ -90,15 +89,19 @@
   };
 </script>
 <style scoped>
-
   .label {
-  color: white;
-  padding: 10px 5px;
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    color: white;
+    padding: 10px 18px;
+    font-size: 17px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-.info {background-color: #5D9EFE;} /* Blue */
+  .info {
+    background-color: #5D9EFE;
+  }
+
+  /* Blue */
 
   button {
     margin-top: 90px;
@@ -108,6 +111,21 @@
     height: 40px;
     color: white;
     border-color: transparent;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    padding: 0;
+    border: none;
   }
 
   .kembali {
@@ -139,18 +157,6 @@
     width: 100%;
   }
 
-  .login-title {
-    font-family: 'Poppins';
-    font-size: 24px;
-    color: #333333;
-    line-height: 1.2;
-    text-align: center;
-
-    width: 100%;
-    display: block;
-    padding-bottom: 20px;
-  }
-
   .wrap-input100 {
     position: relative;
     width: 100%;
@@ -172,17 +178,6 @@
     border: none;
   }
 
-  .input200 {
-    font-size: 15px;
-    line-height: 2.5;
-    color: black;
-
-    display: block;
-    width: 100%;
-    background: whitesmoke;
-    border-radius: 25px;
-    padding: 0 30px 0 68px;
-  }
 
   .focus-input100 {
     display: block;
@@ -246,47 +241,7 @@
     padding-left: 28px;
   }
 
-  .container-login100-form-btn {
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 20px;
-  }
-
-  .login100-form-btn {
-    font-family: Montserrat-Bold;
-    font-size: 15px;
-    line-height: 1.5;
-    color: #fff;
-    text-transform: uppercase;
-
-    width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    background: #4D8AFE;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 25px;
-
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
-    padding: 0;
-    border: none;
-  }
-
-  .login100-form-btn:hover {
+  button:hover {
     background: grey;
   }
 </style>

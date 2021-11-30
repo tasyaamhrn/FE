@@ -2,9 +2,11 @@
     <div>
         <div class="container">
             <div class="row">
-        <div class="col-md-8" style="padding-top:75px; padding-bottom:30px; padding-left:80.5%;">
-          <span class="label info"><i class="bx bx-plus"></i> Tambah Karyawan</span>
-        </div>
+                <div class="col-md-8" style="padding-bottom:25px; margin-top:-25px; padding-left:85.5%;">
+                    <router-link to="karyawan">
+                        <button type="button">&#8592; Kembali</button>
+                    </router-link>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -16,63 +18,88 @@
                     <span class="symbol-input100">
                         <i class="fas fa-user" aria-hidden="true"></i>
                     </span>
-                    <the-error :errors="errors.name"></the-error>
                 </div>
+                <the-error :errors="errors.name" class="error"></the-error>
 
                 <div class="wrap-input100 validate-input">
-                      <input class="input200" type="file" accept="avatar/*" @change="onImageSelected" name="avatar">
-                      <span class="focus-input100"></span>
-                      <span class="symbol-input100">
+                    <input class="input200" type="file" accept="avatar/*" @change="onImageSelected" name="avatar">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
                         <i class="far fa-image" aria-hidden="true"></i>
-                      </span>
-                    </div>
+                    </span>
+                </div>
+                <the-error :errors="errors.avatar" class="error"></the-error>
 
                 <div class="wrap-input100 validate-input">
-                      <select class="input100" v-model="form.store_id">
-                       <option value="" disabled>Pilih Toko</option>
+                    <select class="input100" v-model="form.store_id">
+                        <option value="" disabled>Pilih Toko</option>
                         <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
                             {{ store.store.name }}
                         </option>
-                      </select>
-                      <span class="focus-input100"></span>
-                      <span class="symbol-input100">
+                    </select>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
                         <i class="fas fa-store" aria-hidden="true"></i>
-                      </span>
-                    </div>
+                    </span>
+                </div>
+                <the-error :errors="errors.store_id" class="error"></the-error>
+
 
                 <div class="wrap-input100 validate-input">
-                      <select class="input100" v-model="form.gender">
+                    <select class="input100" v-model="form.gender">
                         <option value="" disabled>Jenis Kelamin</option>
                         <option> Male </option>
                         <option> Female </option>
-                      </select>
-                      <span class="focus-input100"></span>
-                      <span class="symbol-input100">
+                    </select>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
                         <i class="fas fa-venus-mars" aria-hidden="true"></i>
-                      </span>
-                    </div>
+                    </span>
+                </div>
+                <the-error :errors="errors.gender" class="error"></the-error>
 
-                <div class="form-group">
-                    <label>Alamat</label>
-                    <input class="form-control" id="address" type="text" placeholder="Masukkan Alamat"
-                        v-model="form.address" />
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" v-model="form.address" type="text" name="name"
+                        placeholder="Silahkan Masukkan Alamat Karyawan Anda">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    </span>
                 </div>
-                <div class="form-group">
-                    <label>Telepon</label>
-                    <input class="form-control" id="phone" type="text" placeholder="Masukkan Telepon"
-                        v-model="form.phone" />
+                <the-error :errors="errors.address" class="error"></the-error>
+
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" v-model="form.phone" type="text" name="name"
+                        placeholder="Silahkan Masukkan Nomor Telepon Karyawan Anda">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                    </span>
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="Masukkan Email" v-model="form.email" class="form-control" />
+                <the-error :errors="errors.phone" class="error"></the-error>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" v-model="form.email" type="text" name="name"
+                        placeholder="Silahkan Masukkan Email Karyawan Anda">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    </span>
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Masukkan Password" v-model="form.password"
-                        class="form-control" />
+                <the-error :errors="errors.email" class="error"></the-error>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" v-model="form.password" type="password" name="password"
+                        placeholder="Silahkan Masukkan Password Email Karyawan Anda">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fas fa-lock" aria-hidden="true"></i>
+                    </span>
                 </div>
-                <button @click="karyawan" type="button" name="button" class="sv">
-                    SAVE
+                <the-error :errors="errors.password" class="error"></the-error>
+                <button @click="karyawan" type="button" style="" name="button" class="sv">
+                    <i class="bx bx-plus"></i> Tambah Karyawan
                 </button>
             </div>
         </div>
@@ -82,6 +109,8 @@
     import axios from "axios";
     // import InputForm from "../../components/inputForm.vue";
     import Swal from 'sweetalert2';
+    import TheError from "../../components/ErrorForm.vue";
+
 
     export default {
         data() {
@@ -102,6 +131,8 @@
         },
         components: {
             // InputForm
+            TheError
+
         },
         mounted() {
             this.getStore();
@@ -148,7 +179,7 @@
                     })
                     .catch((err) => {
                         this.errors = err.response.data;
-                        Swal.fire("Gagal", err.data.message, "warning");
+                        Swal.fire("Gagal", "Gagal Menambahkan Karyawan", "warning");
                     });
             },
         },
@@ -156,6 +187,10 @@
 </script>
 
 <style scoped>
+    .error {
+        padding-bottom: 5px;
+    }
+
     .sv {
         margin-top: 20px;
         border-radius: 10px;
@@ -200,7 +235,7 @@
     button {
         margin-top: 90px;
         border-radius: 15px;
-        background-color: #376caf;
+        background-color: #5D9EFE;
         width: 150px;
         height: 40px;
         color: white;
@@ -336,12 +371,8 @@
     }
 
     button:hover {
-        background: grey;
-    }
-
-    .kembali {
-        font-size: 16px;
-        text-align: right;
+        background: #82CCFE;
+        text-decoration: none;
     }
 
     .judul {
@@ -360,15 +391,16 @@
         font-size: 18px;
         margin-bottom: 5px;
     }
-    .input200 {
-    font-size: 15px;
-    line-height: 2.5;
-    color: black;
 
-    display: block;
-    width: 100%;
-    background: whitesmoke;
-    border-radius: 25px;
-    padding: 0 30px 0 68px;
-  }
+    .input200 {
+        font-size: 15px;
+        line-height: 2.5;
+        color: black;
+
+        display: block;
+        width: 100%;
+        background: whitesmoke;
+        border-radius: 25px;
+        padding: 0 30px 0 68px;
+    }
 </style>

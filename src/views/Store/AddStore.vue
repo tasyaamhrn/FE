@@ -69,6 +69,8 @@
           })
           .catch((err) => {
             this.errors = err.response.data;
+            Swal.fire("Gagal", "Gagal Menambahkan Toko", "warning");
+
           });
       },
     },

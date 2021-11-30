@@ -22,7 +22,7 @@ import EditKaryawan from '../views/Karyawan/EditKaryawan.vue';
 
 import Pembelian from '../views/Pembelian.vue'
 import Pembelian2 from '../views/Pembelian2.vue'
-import CobaChart from '../views/CobaChart.vue'
+
 import TampilTransaksi from '../views/tampil_transaksi.vue'
 import FAQ from '../views/faq.vue'
 import Producttampiltransaksi from '../views/Producttampiltransaksi.vue'
@@ -205,11 +205,7 @@ const routes = [{
     name: 'Pembelian2',
     component: Pembelian2
   },
-  {
-    path: '/CobaChart',
-    name: 'CobaChart',
-    component: CobaChart
-  },
+ 
 
   {
     path: '/Producttampiltransaksi',

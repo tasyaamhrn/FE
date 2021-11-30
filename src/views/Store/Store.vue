@@ -83,6 +83,10 @@
     height: 40px;
     font-weight: bold;
   }
+   #btn-add:hover {
+    background: #82CCFE;
+    text-decoration: none;
+  }
 </style>
 <script>
   import axios from "axios";
@@ -128,6 +132,8 @@
           })
           .catch((err) => {
             console.log(err);
+            Swal.fire("Gagal", "Anda Belum Mempunyai Store", "warning");
+
           });
       },
       deleteData(id) {
@@ -144,12 +150,13 @@
           if (result.value) {
             axios
               .delete("https://api-kasirin.jaggs.id/api/stores/" + id)
-              .then(() => {
-                Swal.fire("Terhapus", "Store Anda Sudah Terhapus", "success");
+              .then((res) => {
+                Swal.fire("Terhapus", res.data.message, "success");
                 this.load();
               })
-              .catch(() => {
-                Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");
+              .catch((err) => {
+                Swal.fire("Gagal", err.data.message, "warning");
+                console.log(err)
               });
           } else {
             Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");

@@ -26,6 +26,9 @@
                     aria-describedby="emailHelp">
             </div>
             <input type="file" accept="image/*" class="form-control" @change="onImageSelected" />
+            <div id="preview">
+                <img v-if="url" :src="url" />
+            </div>
             <!-- <label for="">test</label> -->
             <!-- <div class="mb-3">
                 <label for="exampleInputCategory" class="form-label">Nama Kategori</label>
@@ -70,6 +73,7 @@
                     stock: "",
                     barcode: "",
                 },
+                url: "",
                 product_id: this.$route.params.id,
             }
         },
@@ -79,6 +83,7 @@
         methods: {
             onImageSelected(e) {
                 this.form.image = e.target.files[0];
+                this.url = URL.createObjectURL(this.form.image);
             },
             getData() {
                 axios
@@ -93,6 +98,7 @@
                         this.form.stock = res.data.data.stock;
                         this.form.barcode = res.data.data.barcode;
                         this.form.category_id = res.data.data.category_id
+                        this.url = res.data.data.image_url
                     })
                     .catch((err) => {
                         console.log(err);
@@ -135,6 +141,17 @@
 </script>
 
 <style scoped>
+    #preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #preview img {
+        max-width: 100%;
+        max-height: 500px;
+    }
+
     .btn-success {
         font-size: 16px;
     }

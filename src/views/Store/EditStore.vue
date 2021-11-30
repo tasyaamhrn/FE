@@ -2,8 +2,8 @@
   <div>
     <div class="container">
       <div class="row">
-       <div class="col-md-8" style="padding-top:75px; padding-bottom:30px; padding-left:86.5%;">
-          <span class="label info"><i class="fas fa-edit"></i> Edit Toko</span>
+       <div class="col-md-8" style="padding-bottom:25px; margin-top:-25px; padding-left:85.5%;">
+              <button type="button" @click="back">&#8592; Kembali</button>
         </div>
       </div>
       <div class="wrap-input100 validate-input">
@@ -13,8 +13,8 @@
         <span class="symbol-input100">
           <i class="fas fa-store" aria-hidden="true"></i>
         </span>
-        <the-error :errors="errors.name"></the-error>
       </div>
+        <the-error :errors="errors.name"></the-error>
       <div class="wrap-input100 validate-input">
         <input class="input100" v-model="form.address" type="text" name="address"
           placeholder="Silahkan Masukkan Alamat Toko Anda">
@@ -22,104 +22,18 @@
         <span class="symbol-input100">
           <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
         </span>
-        <the-error :errors="errors.address"></the-error>
       </div>
+        <the-error :errors="errors.address"></the-error>
       <button @click="update" type="button" name="button" class="sv">
-        SAVE
+        <i class="fas fa-pencil-alt fa-fw"></i> Edit Toko
       </button>
     </div>
   </div>
 </template>
-<script>
-  import axios from "axios";
-  import TheError from "../../components/ErrorForm.vue";
-  import Swal from "sweetalert2";
 
-  export default {
-    name: "AddStore",
-    components: {
-      TheError
-    },
-    data() {
-      return {
-        form: {
-          user_id: this.$store.state.auth.user.id,
-          name: "",
-          address: "",
-        },
-        errors: [],
-        user: this.$store.state.auth.user,
-        store_id: this.$route.params.id,
-      };
-    },
-    mounted() {
-      this.getData();
-    },
-    methods: {
-      getData() {
-        axios
-          .get("https://api-kasirin.jaggs.id/api/stores/" + this.store_id, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          })
-          .then((res) => {
-            this.form.name = res.data.data.name;
-            this.form.address = res.data.data.address;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
-      update() {
-        axios
-          .put(
-            "https://api-kasirin.jaggs.id/api/stores/" + this.store_id,
-            this.form, {
-              headers: {
-                Authorization: "Bearer " + localStorage.access_token,
-              },
-            }
-          )
-          .then((res) => {
-            this.$router.push({
-              name: "Store"
-            });
-            Swal.fire("Terupdate", res.data.message, "success");
-          })
-          .catch((err) => {
-            this.errors = err.response.data;
-            Swal.fire("Gagal", "Store Anda Gagal diupdate", "warning");
-          });
-      },
-      alertSuccess() {
-        this.$swal({
-          type: "success",
-          title: "Success",
-          text: "Toko berhasil ditambahkan",
-        });
-      },
-      alertError() {
-        this.$swal({
-          type: "error",
-          title: "Oops...",
-          text: "Toko gagal ditambahkan, silahkan coba lagi",
-        });
-      },
-    },
-  };
-</script>
 <style scoped>
-  .label {
-   color: white;
-    padding: 10px 18px;
-    font-size: 17px;
-    border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .info {
-    background-color: #5D9EFE;
+.error{
+    padding-bottom: 10px;
   }
 
   /* Blue */
@@ -127,7 +41,7 @@
   button {
     margin-top: 90px;
     border-radius: 15px;
-    background-color: #376caf;
+    background-color: #5D9EFE;
     width: 150px;
     height: 40px;
     color: white;
@@ -263,7 +177,8 @@
   }
 
   button:hover {
-    background: grey;
+    background: #82CCFE;
+    text-decoration: none;
   }
 
   .kembali {
@@ -280,3 +195,74 @@
     font-weight: bold;
   }
 </style>
+
+<script>
+  import axios from "axios";
+  import TheError from "../../components/ErrorForm.vue";
+  import Swal from "sweetalert2";
+
+  export default {
+    name: "AddStore",
+    components: {
+      TheError
+    },
+    data() {
+      return {
+        form: {
+          user_id: this.$store.state.auth.user.id,
+          name: "",
+          address: "",
+        },
+        errors: [],
+        user: this.$store.state.auth.user,
+        store_id: this.$route.params.id,
+      };
+    },
+    mounted() {
+      this.getData();
+    },
+    methods: {
+      back(){
+         this.$router.push({
+              name: "Store"
+            });
+      },
+      getData() {
+        axios
+          .get("https://api-kasirin.jaggs.id/api/stores/" + this.store_id, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          })
+          .then((res) => {
+            this.form.name = res.data.data.name;
+            this.form.address = res.data.data.address;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      update() {
+        axios
+          .put(
+            "https://api-kasirin.jaggs.id/api/stores/" + this.store_id,
+            this.form, {
+              headers: {
+                Authorization: "Bearer " + localStorage.access_token,
+              },
+            }
+          )
+          .then((res) => {
+            this.$router.push({
+              name: "Store"
+            });
+            Swal.fire("Terupdate", res.data.message, "success");
+          })
+          .catch((err) => {
+            this.errors = err.response.data;
+            Swal.fire("Gagal", "Store Anda Gagal diupdate", "warning");
+          });
+      },
+    },
+  };
+</script>

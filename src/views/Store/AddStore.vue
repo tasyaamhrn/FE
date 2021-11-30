@@ -2,8 +2,10 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-8" style="padding-top:75px; padding-bottom:30px; padding-left:84%;">
-          <span class="label info"><i class="bx bx-plus"></i> Tambah Toko</span>
+        <div class="col-md-8" style="padding-bottom:25px; margin-top:-25px; padding-left:85.5%;">
+            <router-link to="store">
+              <button type="button">&#8592; Kembali</button>
+            </router-link>
         </div>
       </div>
       <div class="wrap-input100 validate-input">
@@ -13,8 +15,8 @@
         <span class="symbol-input100">
           <i class="fas fa-store" aria-hidden="true"></i>
         </span>
-        <the-error :errors="errors.name"></the-error>
       </div>
+        <the-error :errors="errors.name" class="error"></the-error>
 
       <div class="wrap-input100 validate-input">
         <input class="input100" v-model="form.address" type="text" name="address"
@@ -23,10 +25,10 @@
         <span class="symbol-input100">
           <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
         </span>
-        <the-error :errors="errors.address"></the-error>
       </div>
+        <the-error :errors="errors.address" class="error"></the-error>
       <button @click="createStore" type="button" name="button" class="sv">
-        SAVE
+        <i class="bx bx-plus"></i> Tambah Toko
       </button>
     </div>
   </div>
@@ -34,6 +36,7 @@
 <script>
   import axios from "axios";
   import TheError from "../../components/ErrorForm.vue";
+  import Swal from "sweetalert2";
   export default {
     name: "AddStore",
     components: {
@@ -58,55 +61,28 @@
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
           })
-          .then(() => {
-            this.alertSuccess();
+          .then((res) => {
+            Swal.fire("Berhasil", res.data.message, "success");
             this.$router.push({
               name: "Store"
             });
           })
           .catch((err) => {
             this.errors = err.response.data;
-            console.log(err.response.data);
           });
-      },
-      alertSuccess() {
-        // Use sweetalert2
-        this.$swal({
-          type: "success",
-          title: "Success",
-          text: "Toko berhasil ditambahkan",
-        });
-      },
-      alertError() {
-        // Use sweetalert2
-        this.$swal({
-          type: "error",
-          title: "Oops...",
-          text: "Toko gagal ditambahkan, silahkan coba lagi",
-        });
       },
     },
   };
 </script>
 <style scoped>
-  .label {
-    color: white;
-    padding: 10px 18px;
-    font-size: 17px;
-    border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+  .error{
+    padding-bottom: 10px;
   }
-
-  .info {
-    background-color: #5D9EFE;
-  }
-
-  /* Blue */
 
   button {
     margin-top: 90px;
     border-radius: 15px;
-    background-color: #376caf;
+    background-color: #5D9EFE;
     width: 150px;
     height: 40px;
     color: white;
@@ -126,10 +102,6 @@
     transition: all 0.4s;
     padding: 0;
     border: none;
-  }
-
-  .kembali {
-    text-align: right;
   }
 
   h1 {
@@ -242,6 +214,7 @@
   }
 
   button:hover {
-    background: grey;
+    background: #82CCFE;
+    text-decoration: none;
   }
 </style>

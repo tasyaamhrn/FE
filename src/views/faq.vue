@@ -33,7 +33,7 @@
                 <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
                     <i class="lni-emoji-sad"></i>
                     <p class="mb-0 px-2">Can't find your answers?</p>
-                    <a href="#" id="contact"> Contact us</a>
+                    <a href="ContactUs" id="contact"> Contact us</a>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
     background-color: #f5f5ff;
 }
 h5{
-    font-size:18px;
+    font-size:14px;
 }
 h3{
     margin-bottom:40px;
@@ -140,9 +140,9 @@ h3{
   color:  #0870CA;
 }
 .faq-accordian .card .card-header {
-    background-color: #ffffff;
+    background-color: #F5F5FF;
     padding: 0;
-    border-bottom-color: #ebebeb;
+    border-bottom-color: #F5F5FF;
 }
 .faq-accordian .card .card-header h5 {
     cursor: pointer;

@@ -2,57 +2,24 @@
   <div class="container">
     <div class="home">
       <h1>TRANSAKSI</h1>
-      <!-- <div class="container hasil">
-        <div class="row hsl">
-          <div class="col-md-6">
-            <p class="omset">Omset</p>
-            <p class="pendapatan">{{omset}}</p>
-            <p class="transaksi">5 Transaksi</p>
-            <p class="omset-bulanan">Total omset bulan
-              {{myFunction()}} :
-            </p>
-
-          </div>
-          <div class="col-md-6">
-            <div class="app">
-              <p class="tanggal">
-                {{currentDateTime()}}
-              </p>
-              <p class="total-omset"> Rp. 110.000</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12" id="toko">
-          <div class="form-group">
-            <select v-model="store_id" class="form-control" @change="getTransaksi">
-              <option value="">Pilih Toko</option>
-              <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
-                {{ store.store.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div> -->
-      <div class="col-md-12" id="toko">
-        <div class="form-group">
-          <select v-model="store_id" class="form-control" @change="getTransaksi">
-            <option value="" disabled>Pilih Toko</option>
-            <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
-              {{ store.store.name }}
-            </option>
-          </select>
-        </div>
-      </div>
+      <select v-model="store_id" class="form-control" @change="getTransaksi">
+        <option value="" disabled>Pilih Toko</option>
+        <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
+          {{ store.store.name }}
+        </option>
+      </select>
       <div class="container">
         <div class="row">
-          <div class="col-md-5">
-            <div class="filter" >
-              Tanggal Awal <input type="date" class="form-control" name="tanggal" v-model="form.tanggal_mulai" @change="getFilterTransaksi" >
+          <div class="col-md-6" id="filter">
+            <div class="filter">
+              Tanggal Awal <input type="date" class="form-control" name="tanggal" v-model="form.tanggal_mulai"
+                @change="getFilterTransaksi">
             </div>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-6" id="filter2">
             <div class="filter">
-              Tanggal Akhir <input type="date" class="form-control" name="tanggal" v-model="form.tanggal_selesai"  @change="getFilterTransaksi">
+              Tanggal Akhir <input type="date" class="form-control" name="tanggal" v-model="form.tanggal_selesai"
+                @change="getFilterTransaksi">
             </div>
           </div>
           <!-- <div class="col-md-2">
@@ -64,7 +31,7 @@
           </div> -->
         </div>
       </div>
-      <div class="container">
+      <div class="container" id="price">
         <div class="list-transaksi">
           <div class="list-group">
 
@@ -137,7 +104,7 @@
       this.getTransaksi()
       this.getDetailTransaksi()
       this.getOmset()
-      
+
     },
     methods: {
       getFilterTransaksi() {
@@ -310,6 +277,17 @@
 </script>
 
 <style scoped>
+  #price{
+    padding: 0px;
+  }
+  #filter {
+    padding-left: 0px;
+  }
+
+  .col-md-6 {
+    padding: 0px;
+  }
+
   #toko {
     padding-top: 20px;
   }

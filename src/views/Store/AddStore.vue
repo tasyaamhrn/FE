@@ -2,9 +2,10 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-8" style="padding-top:75px; padding-bottom:30px;">
-          
-          <span class="label info"><i class="bx bx-plus"></i> Tambah Toko</span>
+        <div class="col-md-8" style="padding-bottom:25px; margin-top:-25px; padding-left:85.5%;">
+            <router-link to="store">
+              <button type="button">&#8592; Kembali</button>
+            </router-link>
         </div>
       </div>
       <div class="wrap-input100 validate-input">
@@ -14,8 +15,8 @@
         <span class="symbol-input100">
           <i class="fas fa-store" aria-hidden="true"></i>
         </span>
-        <the-error :errors="errors.name"></the-error>
       </div>
+        <the-error :errors="errors.name" class="error"></the-error>
 
       <div class="wrap-input100 validate-input">
         <input class="input100" v-model="form.address" type="text" name="address"
@@ -24,10 +25,10 @@
         <span class="symbol-input100">
           <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
         </span>
-        <the-error :errors="errors.address"></the-error>
       </div>
+        <the-error :errors="errors.address" class="error"></the-error>
       <button @click="createStore" type="button" name="button" class="sv">
-        SAVE
+        <i class="bx bx-plus"></i> Tambah Toko
       </button>
     </div>
   </div>
@@ -35,6 +36,7 @@
 <script>
   import axios from "axios";
   import TheError from "../../components/ErrorForm.vue";
+  import Swal from "sweetalert2";
   export default {
     name: "AddStore",
     components: {
@@ -59,59 +61,47 @@
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
           })
-          .then(() => {
-            this.alertSuccess();
+          .then((res) => {
+            Swal.fire("Berhasil", res.data.message, "success");
             this.$router.push({
               name: "Store"
             });
           })
           .catch((err) => {
             this.errors = err.response.data;
-            console.log(err.response.data);
           });
-      },
-      alertSuccess() {
-        // Use sweetalert2
-        this.$swal({
-          type: "success",
-          title: "Success",
-          text: "Toko berhasil ditambahkan",
-        });
-      },
-      alertError() {
-        // Use sweetalert2
-        this.$swal({
-          type: "error",
-          title: "Oops...",
-          text: "Toko gagal ditambahkan, silahkan coba lagi",
-        });
       },
     },
   };
 </script>
 <style scoped>
-
-  .label {
-  color: white;
-  padding: 10px 5px;
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.info {background-color: #5D9EFE;} /* Blue */
+  .error{
+    padding-bottom: 10px;
+  }
 
   button {
     margin-top: 90px;
     border-radius: 15px;
-    background-color: #376caf;
+    background-color: #5D9EFE;
     width: 150px;
     height: 40px;
     color: white;
     border-color: transparent;
-  }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
 
-  .kembali {
-    text-align: right;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    padding: 0;
+    border: none;
   }
 
   h1 {
@@ -139,18 +129,6 @@
     width: 100%;
   }
 
-  .login-title {
-    font-family: 'Poppins';
-    font-size: 24px;
-    color: #333333;
-    line-height: 1.2;
-    text-align: center;
-
-    width: 100%;
-    display: block;
-    padding-bottom: 20px;
-  }
-
   .wrap-input100 {
     position: relative;
     width: 100%;
@@ -172,17 +150,6 @@
     border: none;
   }
 
-  .input200 {
-    font-size: 15px;
-    line-height: 2.5;
-    color: black;
-
-    display: block;
-    width: 100%;
-    background: whitesmoke;
-    border-radius: 25px;
-    padding: 0 30px 0 68px;
-  }
 
   .focus-input100 {
     display: block;
@@ -246,47 +213,8 @@
     padding-left: 28px;
   }
 
-  .container-login100-form-btn {
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 20px;
-  }
-
-  .login100-form-btn {
-    font-family: Montserrat-Bold;
-    font-size: 15px;
-    line-height: 1.5;
-    color: #fff;
-    text-transform: uppercase;
-
-    width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    background: #4D8AFE;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 25px;
-
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
-    padding: 0;
-    border: none;
-  }
-
-  .login100-form-btn:hover {
-    background: grey;
+  button:hover {
+    background: #82CCFE;
+    text-decoration: none;
   }
 </style>

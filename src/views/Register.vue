@@ -85,13 +85,13 @@
                   <div class="text-center">
                     <p>
                       Or
-                      <span style="color: #337ab7;text-decoration: none;" @click="toggleBtn">
+                      <span style="color: #337ab7;text-decoration: none; cursor:pointer;" @click="toggleBtn">
                         Login
                       </span>
                     </p>
                   </div>
                 </div>
-                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-2 ">
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center">
                   <img src="../assets/logo-pelaris-07.png" class="img-fluid" alt="Sample image" />
                 </div>
               </div>
@@ -150,7 +150,7 @@
           })
           .catch((err) => {
             this.errors = err.response.data;
-            Swal.fire("Gagal", err.data.message, "warning");
+            Swal.fire("Gagal", "Registrasi Gagal", "warning");
           });
       },
     },
@@ -311,7 +311,7 @@
   }
 
   .login100-form-btn {
-    font-family: Montserrat-Bold;
+    font-family: 'Poppins';
     font-size: 15px;
     line-height: 1.5;
     color: #fff;

@@ -294,6 +294,9 @@
 
 
   }
+  .choose-store{
+    margin-left:-10px;
+  }
 
   /* *{
   

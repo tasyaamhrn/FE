@@ -23,6 +23,7 @@
                           <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                       </div>
+
                       <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <input class="input100" type="password" v-model="form.password" name="pass"
                           placeholder="Password">
@@ -32,7 +33,6 @@
                         </span>
                       </div>
 
-
                       <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                           Login
@@ -41,11 +41,11 @@
                     </form>
                     <p>
                       Don't have an account?
-                      <span style="color: #337ab7;text-decoration: none;" @click="toggleBtn">
+                      <span style="color: #337ab7;text-decoration: none; cursor:pointer;" @click="toggleBtn">
                         Register
                       </span>
                     </p>
-                    
+
                   </div>
                   <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center">
                     <img src="../assets/logo-pelaris-07.png" class="img-fluid" alt="Sample image" />
@@ -63,9 +63,11 @@
 
 <script>
   import TheRegister from "./Register.vue";
+  import Swal from 'sweetalert2';
+
   export default {
     components: {
-      TheRegister
+      TheRegister,
     },
     data() {
       return {
@@ -86,29 +88,15 @@
           .dispatch("login", this.form)
           .then((response) => {
             console.log(response);
-            this.alertSuccess();
+            Swal.fire("Berhasil", response.data.message, "success");
             this.$router.push({
               name: "Home",
             });
           })
           .catch((error) => {
-            this.alertError();
-            this.errors = error.response.data.errors;
+            Swal.fire("Gagal", "Login Failed", "warning");
+            console.log(error);
           });
-      },
-      alertSuccess() {
-        this.$swal({
-          type: "success",
-          title: "Success",
-          text: "Login Berhasil!",
-        });
-      },
-      alertError() {
-        this.$swal({
-          type: "error",
-          title: "Oops...",
-          text: "Login gagal! periksa email dan password anda",
-        });
       },
     },
   };
@@ -116,8 +104,8 @@
 
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-  
-  
+
+
   p {
     text-align: center;
     padding-top: 10px;
@@ -242,7 +230,7 @@
   }
 
   .login100-form-btn {
-    font-family: Montserrat-Bold;
+    font-family: 'Poppins';
     font-size: 15px;
     line-height: 1.5;
     color: #fff;

@@ -19,6 +19,9 @@
           <label>Foto Produk/Layanan</label>
           <input type="file" accept="image/*" class="form-control" @change="onImageSelected" />
         </div>
+        <div id="preview">
+    <img v-if="url" :src="url" />
+  </div>
         <div class="form-group">
           <label>Toko</label>
           <select v-model="store_id" class="form-control" @change="getCategory">
@@ -132,6 +135,17 @@
   </div>
 </template>
 <style scoped>
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
   h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: #5D9EFE;
@@ -226,6 +240,7 @@
         stores: [],
         errors: [],
         categories: {},
+        url: null,
       };
     },
     components: {
@@ -235,6 +250,7 @@
     methods: {
       onImageSelected(event) {
         this.form.image = event.target.files[0];
+        this.url = URL.createObjectURL(this.form.image);
       },
       getStore() {
         axios

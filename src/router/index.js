@@ -27,6 +27,7 @@ import TampilTransaksi from '../views/tampil_transaksi.vue'
 import FAQ from '../views/faq.vue'
 import Producttampiltransaksi from '../views/Producttampiltransaksi.vue'
 import FAQForm from '../views/faqform.vue'
+import ContactUs from '../views/ContactUs.vue'
 
 //langganan
 import Langganan from '../views/Langganan/Langganan.vue'
@@ -162,6 +163,11 @@ const routes = [{
     path: '/faqform',
     name: 'FAQForm',
     component: FAQForm
+  },
+  {
+    path: '/ContactUs',
+    name: 'ContactUs',
+    component: ContactUs
   },
   {
     path: '/editkaryawan/:id',

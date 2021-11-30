@@ -6,13 +6,14 @@
         <label>Daftar Produk Dibeli</label>
         <div class="list-group produk">
           <li class="list-group-item list-group-item-action" v-for="item in detail_transaction" :key="item.id">
-            <img :src="item.product.image_url" />
-            <span class="nama">
+            <ul><img :src="item.product.image_url" /></ul>
+            <br>
+            <ul class="nama">
               {{ item.product.name }}
-            </span>
-            <br />
-            <span class="jml">Rp. {{formatPrice(item.product.price)}}</span>
-            <span class="jml-produk">{{ item.qty }} item</span>
+            </ul>
+            <br>
+            <ul class="jml">Rp. {{formatPrice(item.product.price)}}</ul>
+            <ul class="jml-produk">{{ item.qty }} item</ul>
           </li>
         </div>
         <label>Transaksi</label>
@@ -249,7 +250,7 @@
   .produk .jml {
     color: black;
     font-weight: bold;
-    margin-left: 110px;
+    
   }
 
   .transaksi2 {

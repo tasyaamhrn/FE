@@ -121,36 +121,7 @@
             console.log(err);
           });
       },
-      // edit(item) {
-      //   this.updateSubmit = true;
-      //   this.form.id = item.id;
-      //   this.form.name = item.name;
-      // },
-      // update(form) {
-      //   axios
-      //     .post(
-      //       "https://api-kasirin.jaggs.id/api/category/edit/" + form.id,
-      //       {
-      //         name: this.form.name,
-      //         store_id: this.store_id,
-      //       },
-      //       {
-      //         headers: {
-      //           Authorization: "Bearer " + localStorage.access_token,
-      //         },
-      //       }
-      //     )
-      //     .then(() => {
-      //       this.load();
-
-      //       this.form.name = "";
-      //       this.updateSubmit = false;
-      //       Swal.fire("Terupdate", "kategori Anda Sudah Terupdate", "success");
-      //     })
-      //     .catch(() => {
-      //       Swal.fire("Gagal", "Produk Anda Gagal diupdate", "warning");
-      //     });
-      // },
+      
       deleteData(id) {
         Swal.fire({
           title: "Anda Yakin Ingin Menghapus Data Ini ?",

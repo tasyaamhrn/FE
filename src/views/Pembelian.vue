@@ -335,6 +335,7 @@
 
         // this.form.price -= this.form.products[index].qty * this.form.products[index].price;
         this.form.products.splice(index, 1)
+     
 
       },
       DeleteCart(index) {

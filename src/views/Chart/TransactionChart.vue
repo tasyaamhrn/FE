@@ -49,7 +49,7 @@
       this.renderChart(this.chartData, this.options)
     },
     methods: {
-      getDetailTransaksi() {
+      getTransactionchart() {
                 axios
                     .get(
                         "https://api-kasirin.jaggs.id/api/transaction?store_id=" +

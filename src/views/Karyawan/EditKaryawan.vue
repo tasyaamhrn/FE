@@ -24,6 +24,9 @@
                         <i class="far fa-image" aria-hidden="true"></i>
                     </span>
                 </div>
+             <div id="preview" v-if="url">
+                <img v-if="url" :src="url" />
+            </div>
 
             <div class="wrap-input100 validate-input">
                 <input class="input100" v-model="form.address" type="text" name="name"
@@ -81,6 +84,7 @@
                     avatar: "",
                     phone: "",
                 },
+                 url: "",
                 employee_id: this.$route.params.id,
             }
         },
@@ -90,6 +94,7 @@
         methods: {
             onImageSelected(e) {
                 this.form.avatar = e.target.files[0];
+                this.url = URL.createObjectURL(this.form.avatar);
             },
             getData() {
                 axios
@@ -104,6 +109,7 @@
                         this.form.gender = res.data.data.gender;
                         this.form.avatar = res.data.data.avatar;
                         this.form.phone = res.data.data.phone;
+                        this.url = res.data.data.avatar_url
                     })
                     .catch((err) => {
                         console.log(err);
@@ -150,6 +156,20 @@
 </script>
 
 <style scoped>
+    #preview {
+        border: 2px dashed grey;
+        padding: 1rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #preview img {
+        width: 30%;
+        object-fit: cover;
+    }
+
  .input200 {
         font-size: 15px;
         line-height: 2.5;

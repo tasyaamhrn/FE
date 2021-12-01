@@ -108,7 +108,6 @@
                         this.employees = res.data.data;
                     })
                     .catch((err) => {
-                        this.employees = "";
                         Swal.fire(
                             "Anda Belum Mempunyai Karyawan",
                             "Silahkan Tambahkan Karyawan Terlebih Dahulu",

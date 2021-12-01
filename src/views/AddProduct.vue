@@ -134,92 +134,6 @@
     </div>
   </div>
 </template>
-<style scoped>
-#preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#preview img {
-  max-width: 100%;
-  max-height: 500px;
-}
-
-  h1 {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #5D9EFE;
-  font-size: 18px;
-  font-weight: bold;
-  padding-top: 75px;
-}
-  .sv {
-  margin-top: 20px;
-  border-radius: 10px;
-  background-color: #5D9EFE;
-  float: right;
-  /* height: 30px; */
-  color: white;
-  border-color: transparent;
-  font-weight: bold;
-}
-  .col-md-6 {
-    padding-left: 45px;
-  }
-  .col-md-12{
-    padding: 0px;
-  }
-
-  .tambahproduk {
-    width: 100%;
-  }
-
-  label {
-    color: #5D9EFE;
-  }
-
-  /* label {
-    padding-top: 90px;
-    margin-bottom: 15px;
-    color: #5D9EFE;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: sans-serif;
-  } */
-
-  button {
-    font-size: 16px;
-    margin-top: 90px;
-    border-radius: 15px;
-    background-color: #376caf;
-    width: 150px;
-    height: 40px;
-    color: white;
-    border-color: transparent;
-  }
-
-  .kembali {
-    font-size: 16px;
-    text-align: right;
-  }
-
-  .judul {
-    padding-left: 28px;
-    color: #5D9EFE;
-    font-family: sans-serif;
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-
-  .judul1 {
-    padding-left: 28px;
-    padding-top: 20px;
-    color: #5D9EFE;
-    font-family: sans-serif;
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-</style>
 <script>
   import axios from "axios";
   // import InputForm from "../components/inputForm.vue";
@@ -315,3 +229,90 @@
     },
   };
 </script>
+
+<style scoped>
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
+  h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #5D9EFE;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 75px;
+}
+  .sv {
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: #5D9EFE;
+  float: right;
+  /* height: 30px; */
+  color: white;
+  border-color: transparent;
+  font-weight: bold;
+}
+  .col-md-6 {
+    padding-left: 45px;
+  }
+  .col-md-12{
+    padding: 0px;
+  }
+
+  .tambahproduk {
+    width: 100%;
+  }
+
+  label {
+    color: #5D9EFE;
+  }
+
+  /* label {
+    padding-top: 90px;
+    margin-bottom: 15px;
+    color: #5D9EFE;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+  } */
+
+  button {
+    font-size: 16px;
+    margin-top: 90px;
+    border-radius: 15px;
+    background-color: #376caf;
+    width: 150px;
+    height: 40px;
+    color: white;
+    border-color: transparent;
+  }
+
+  .kembali {
+    font-size: 16px;
+    text-align: right;
+  }
+
+  .judul {
+    padding-left: 28px;
+    color: #5D9EFE;
+    font-family: sans-serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .judul1 {
+    padding-left: 28px;
+    padding-top: 20px;
+    color: #5D9EFE;
+    font-family: sans-serif;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+</style>

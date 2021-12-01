@@ -111,15 +111,14 @@
             console.log(res);
             this.categories = res.data.data;
           })
-          .catch((err) => {
-            this.categories = "";
-            Swal.fire(
-              "Anda Belum Mempunyai Kategori",
-              "Silahkan Tambahkan Kategori Terlebih Dahulu",
-              "warning"
-            );
-            console.log(err);
-          });
+           .catch((err) => {
+                        Swal.fire(
+                            "Anda Belum Mempunyai Kategori",
+                            "Silahkan Tambahkan Kategori Terlebih Dahulu",
+                            "warning"
+                        );
+                        console.log(err);
+                    });
       },
       
       deleteData(id) {

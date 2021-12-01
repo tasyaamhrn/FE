@@ -14,22 +14,93 @@
           <i class="fas fa-store" aria-hidden="true"></i>
         </span>
       </div>
-        <the-error :errors="errors.name"></the-error>
+        <the-error :errors="errors.name" class="error" ></the-error>
       <div class="wrap-input100 validate-input">
         <input class="input100" v-model="form.address" type="text" name="address"
           placeholder="Silahkan Masukkan Alamat Toko Anda">
+          
         <span class="focus-input100"></span>
         <span class="symbol-input100">
           <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
         </span>
       </div>
-        <the-error :errors="errors.address"></the-error>
+        <the-error :errors="errors.address" class="error"></the-error>
       <button @click="update" type="button" name="button" class="sv">
         <i class="fas fa-pencil-alt fa-fw"></i> Edit Toko
       </button>
     </div>
   </div>
 </template>
+<script>
+  import axios from "axios";
+  import TheError from "../../components/ErrorForm.vue";
+  import Swal from "sweetalert2";
+
+  export default {
+    name: "AddStore",
+    components: {
+      TheError
+    },
+    data() {
+      return {
+        form: {
+          user_id: this.$store.state.auth.user.id,
+          name: "",
+          address: "",
+        },
+        errors: [],
+        user: this.$store.state.auth.user,
+        store_id: this.$route.params.id,
+      };
+    },
+    mounted() {
+      this.getData();
+    },
+    methods: {
+      back(){
+         this.$router.push({
+              name: "Store"
+            });
+      },
+      getData() {
+        axios
+          .get("https://api-kasirin.jaggs.id/api/stores/" + this.store_id, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          })
+          .then((res) => {
+            this.form.name = res.data.data.name;
+            this.form.address = res.data.data.address;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      update() {
+        axios
+          .put(
+            "https://api-kasirin.jaggs.id/api/stores/" + this.store_id,
+            this.form, {
+              headers: {
+                Authorization: "Bearer " + localStorage.access_token,
+              },
+            }
+          )
+          .then((res) => {
+            this.$router.push({
+              name: "Store"
+            });
+            Swal.fire("Terupdate", res.data.message, "success");
+          })
+          .catch((err) => {
+            this.errors = err.response.data;
+            Swal.fire("Gagal", "Store Anda Gagal diupdate", "warning");
+          });
+      },
+    },
+  };
+</script>
 
 <style scoped>
 .error{
@@ -195,74 +266,3 @@
     font-weight: bold;
   }
 </style>
-
-<script>
-  import axios from "axios";
-  import TheError from "../../components/ErrorForm.vue";
-  import Swal from "sweetalert2";
-
-  export default {
-    name: "AddStore",
-    components: {
-      TheError
-    },
-    data() {
-      return {
-        form: {
-          user_id: this.$store.state.auth.user.id,
-          name: "",
-          address: "",
-        },
-        errors: [],
-        user: this.$store.state.auth.user,
-        store_id: this.$route.params.id,
-      };
-    },
-    mounted() {
-      this.getData();
-    },
-    methods: {
-      back(){
-         this.$router.push({
-              name: "Store"
-            });
-      },
-      getData() {
-        axios
-          .get("https://api-kasirin.jaggs.id/api/stores/" + this.store_id, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          })
-          .then((res) => {
-            this.form.name = res.data.data.name;
-            this.form.address = res.data.data.address;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
-      update() {
-        axios
-          .put(
-            "https://api-kasirin.jaggs.id/api/stores/" + this.store_id,
-            this.form, {
-              headers: {
-                Authorization: "Bearer " + localStorage.access_token,
-              },
-            }
-          )
-          .then((res) => {
-            this.$router.push({
-              name: "Store"
-            });
-            Swal.fire("Terupdate", res.data.message, "success");
-          })
-          .catch((err) => {
-            this.errors = err.response.data;
-            Swal.fire("Gagal", "Store Anda Gagal diupdate", "warning");
-          });
-      },
-    },
-  };
-</script>

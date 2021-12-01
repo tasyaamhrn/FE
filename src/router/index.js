@@ -28,6 +28,7 @@ import FAQ from '../views/faq.vue'
 import Producttampiltransaksi from '../views/Producttampiltransaksi.vue'
 import FAQForm from '../views/faqform.vue'
 import ContactUs from '../views/ContactUs.vue'
+import privacy from '../views/privacy.vue'
 
 //langganan
 import Langganan from '../views/Langganan/Langganan.vue'
@@ -188,6 +189,11 @@ const routes = [{
     path: '/addlangganan/:id',
     name: 'AddLangganan',
     component: AddLangganan
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: privacy
   },
   //   {
   // <<<<<<< HEAD

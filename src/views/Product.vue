@@ -3,21 +3,20 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h1>PRODUK</h1>
-        </div>
-        <div class="col-md-4">
-          <div class="add">
-            <router-link to="AddProduct"><button type="button" id="btn-add" class="button">+Tambah</button>
-            </router-link>
-          </div>
-        </div>
+                    <h1>PRODUK</h1>
+                </div>
+                <div class="col-md-4">
+                    <div class="add">
+                        <router-link :to="{ name: 'AddProduct' }"><button type="button" id="btn-add">+ Tambah</button>
+                        </router-link>
+                    </div>
+                </div>
       </div>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label>Pilih Toko</label>
             <select v-model="store_id" class="form-control" @change="getCategory">
               <option value="" disabled>Pilih Toko</option>
               <option :value="store.store.id" v-for="(store, index) in stores" :key="index">
@@ -26,45 +25,6 @@
             </select>
           </div>
         </div>
-        <!-- <div class="col-md-12" v-if="store_id">
-          <div class="form-group">
-            <label>Pilih Kategori</label>
-            <select
-              v-model="category_id"
-              class="form-control"
-              @change="getData"
-            >
-              <option value="">Pilih Kategori</option>
-              <option
-                :value="category.id"
-                v-for="(category, index) in categories"
-                :key="index"
-              >
-                {{ category.name }}
-              </option>
-            </select>
-          </div>
-        </div> -->
-        <!-- <div class="col-md-6">
-          <div class="cariproduk">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Cari Produk"
-              aria-label="First name"
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="carikategori">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Cari Kategori"
-              aria-label="Last name"
-            />
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="container">
@@ -78,21 +38,21 @@
             <div class="col-md-3" v-for="p in item.product" :key="p.id">
               <div class="container-barang">
                 <center>
-                  <img :src="p.image_url" style="width: 20%" alt="Product Image" />
+                  <img :src="p.image_url" class="productimg" alt="Product Image" />
                 </center>
-                <p class="makanan">{{ p.name }}</p>
-                <p class="makanan">Rp {{ formatPrice(p.price) }}</p>
-                <p class="makanan">Stock : {{ p.stock }}</p>
+                <p class="title">{{ p.name }}</p>
+                <p class="stock">Stock : {{ p.stock }} buah</p>
+                <p class="price">Rp {{ formatPrice(p.price) }}</p>
+                  <center class="pt-2">
                 <router-link :to="{ name: 'EditProduct', params: { id: p.id } }">
-                  <i class="fas fa-edit blue" style="margin-left:35%;" @click="edit(item)"></i>
-                  <!-- <button type="button" style="width:50%;" class="btn btn-primary" @click="edit(item)">
+                  <button type="button" class="btn btn-primary" @click="edit(item)">
                   Edit
-                </button> -->
+                </button>
                 </router-link>
-                <i class="far fa-trash-alt" style="margin-left:10%; color:red;" @click="deleteData(p.id)"></i>
-                <!-- <button type="button" style="width:50%;" class="btn btn-danger" @click="deleteData(p.id)">
+                <button type="button" class="btn btn-danger" @click="deleteData(p.id)">
                   Hapus
-                </button> -->
+                </button>
+                </center>
               </div>
             </div>
           </div>
@@ -172,6 +132,7 @@
           }) => (this.products = data.data))
           .catch((err) => {
             console.log(err);
+
           });
       },
       load() {
@@ -199,11 +160,11 @@
                 console.log(res);
               })
               .catch((err) => {
-                Swal.fire("Gagal", err.data.message, "warning");
+                Swal.fire("Gagal", "Produk Anda Gagal Terhapus", "warning");
                 console.log(err);
               });
           } else {
-            Swal.fire("Gagal", "Store Anda Gagal Terhapus", "warning");
+            Swal.fire("Gagal", "Produk Anda Gagal Terhapus", "warning");
           }
         });
       },
@@ -212,6 +173,25 @@
 </script>
 
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+.price{
+  font-size: 18px;
+  font-family: 'Poppins';
+  text-align: center;
+  font-weight: bolder;
+  color: orangered;
+}
+.title{
+font-family: 'Poppins';
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-top:5px ;
+}
   /* h3 {
     font-family: Arial, Helvetica, sans-serif;
     color: #5D9EFE;
@@ -219,6 +199,10 @@
     font-weight: bold;
     padding-top: 75px;
   } */
+  .productimg{
+    width: 80%;
+    object-fit: cover;
+  }
   h1 {
     font-family: Arial, Helvetica, sans-serif;
     color: #5D9EFE;
@@ -235,11 +219,15 @@
     padding-left: 0px;
   }
 
-  .makanan {
-    font-weight: bold;
-    color: #5D9EFE;
+  .stock {
+    color: black;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+  
   }
+
+
 
   hr {
     border: none;
@@ -272,14 +260,12 @@
     border-color: transparent;
   }
 
-  .add {
-    /* margin-top: 65px; */
-    float: right;
-    text-align: center;
-
-    padding-bottom: 10px;
-
-  }
+  
+    .add {
+        margin-top: 65px;
+        float: right;
+        text-align: center;
+    }
 
   #btn-add {
     background-color: #5D9EFE;
@@ -312,8 +298,8 @@
   }
 
   img {
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    height: 100px;
     margin-top: 10px;
   }
 
@@ -321,8 +307,8 @@
     margin-top: 12px;
     margin-bottom: 20px;
     border-radius: 10px;
-    width: 130px;
-    height: 170px;
+    width: 200px;
+    height: 230px;
     background-color: white;
     z-index: 1;
   }

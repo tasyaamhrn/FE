@@ -131,7 +131,7 @@
                         axios
                             .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
                             .then((res) => {
-                                Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
+                                Swal.fire("Terhapus", "Karyawan Anda Berhasil Terhapus", "success");
                                 this.getEmployee();
                                 console.log(res);
                             })

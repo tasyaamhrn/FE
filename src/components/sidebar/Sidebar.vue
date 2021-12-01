@@ -19,12 +19,6 @@
             <span class="links_name">Tambah Transaksi </span>
           </router-link>
         </li>
-        <!-- <li>
-          <router-link :to="{ name: 'Producttampiltransaksi' }">
-            <i class="bx bx-plus"></i>
-            <span class="links_name">Tampil Transaksi </span>
-          </router-link>
-        </li> -->
         <li v-if = "user.role_id != 2">
           <router-link :to="{ name: 'Store' }">
             <i class="fas fa-store"></i>
@@ -146,6 +140,8 @@
     width: 0;
     /* Remove scrollbar space */
   }
+
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
   * {
     margin: 0;
@@ -353,7 +349,8 @@
 
   .sidebar li a .links_name {
     color: #fff;
-    font-size: 18px;
+    font-family: 'Poppins';
+    font-size: 16px;
     font-weight: 400;
     white-space: nowrap;
     opacity: 0;

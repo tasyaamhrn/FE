@@ -136,16 +136,16 @@
             axios
               .delete("https://api-kasirin.jaggs.id/api/category/delete/" + id)
               .then((res) => {
-                Swal.fire("Terhapus", "Produk Anda Sudah Terhapus", "success");
+                Swal.fire("Terhapus", "Kategori Anda Berhasil Terhapus", "success");
                 this.load();
                 console.log(res);
               })
               .catch((err) => {
-                Swal.fire("Gagal", "Produk Anda Gagal Terhapus", "warning");
+                Swal.fire("Gagal", "Kategori Anda Gagal Terhapus", "warning");
                 console.log(err);
               });
           } else {
-            Swal.fire("Gagal", "Produk Anda Gagal Terhapus", "warning");
+            Swal.fire("Gagal", "Kategori Anda Gagal Terhapus", "warning");
           }
         });
       },

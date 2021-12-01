@@ -37,10 +37,17 @@
                             <div class="collapse" id="collapseOne" aria-labelledby="headingOne"
                                 data-parent="#faqAccordion">
                                 <div class="card-body">
-                                    <router-link :to="item.content">
+                                    <!-- <router-link :to="item.content">
+                                        <i class="fas fa-phone-square-alt"></i>
+                                        <span class="links_name">Hubungi Kami</span>
+                                    </router-link> -->
+                                    <a :href="item.content" target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
+                                    <!-- <p>Klik disini {{item.content}} </p> -->
+
+                                    <!-- <router-link :to="item.content" target="_blank">
                                         <p>Klik disini </p>
-                                    </router-link>
-                                    
+                                    </router-link> -->
+
 
 
                                 </div>

@@ -95,18 +95,21 @@
       getChartDataMonthly() {
         this.$root.$refs.productchart.getProductMonthly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryMonthly(this.getTanggal(), this.store_id);
+        this.$root.$refs.transactionchart.getTransactionMonthly( this.store_id,this.getYear(),this.getMonth());
         this.getOmsetMonthly();
          this.getTransaksiMonthly();
       },
       getChartDataWeekly() {
         this.$root.$refs.productchart.getProductWeekly(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryWeekly(this.getTanggal(), this.store_id);
+        this.$root.$refs.transactionchart.getTransactionWeekly(this.getMonth(), this.store_id,this.getYear());
         this.getOmsetWeekly();
           this.getTransaksiWeekly();
       },
        getChartDataDaily() {
         this.$root.$refs.productchart.getProductDaily(this.getTanggal(), this.store_id);
         this.$root.$refs.categorychart.getCategoryDaily(this.getTanggal(), this.store_id);
+        this.$root.$refs.transactionchart.getTransactionDaily( this.store_id,this.getTanggal());
         this.getOmsetDaily();
         this.getTransaksiDaily();
       },
@@ -123,6 +126,19 @@
         const dateTime = date;
 
         return dateTime;
+      },
+       getMonth() {
+        const current = new Date();
+        const month = (current.getMonth() + 1);
+        const monthly = month;
+        return monthly;
+      },
+      getYear() {
+        const current = new Date();
+        const year = current.getFullYear();
+        const years = year;
+
+        return years;
       },
       getOmsetMonthly() {
         axios

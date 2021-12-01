@@ -62,17 +62,17 @@
           </router-link>
         </li>
         <li v-if = "user.role_id != 2">
-          <router-link :to="{ name: 'About' }">
+          <router-link :to="{ name: 'privacy' }">
             <i class="fas fa-question"></i>
             <span class="links_name">Tentang Kami</span>
           </router-link>
         </li>
 
         <li v-if = "user.role_id != 2">
-          <a href="mailto:dokterapps.mail@gmail.com">
+          <router-link :to="{ name: 'ContactUs' }">
             <i class="fas fa-phone-square-alt"></i>
             <span class="links_name">Hubungi Kami</span>
-          </a>
+          </router-link>
         </li>
         <li class="out" @click="peringatan">
           <router-link to="">

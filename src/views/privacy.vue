@@ -3,8 +3,7 @@
     <div class="container">
         <h1>TENTANG KAMI</h1>
         <p class="awal" v-for="item in privacy" :key="item.id"> {{item.content}} </p>
-        <p class="awal" v-for="item in privacy" :key="item.id"> {{item.content}} </p>
-
+       
 
 <!--         
         <p class="kebijakan">Kebijakan Privasi</p>
@@ -31,7 +30,7 @@
             getPrivacy() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/privacy", {
+                        "http://127.0.0.1:8000/api/privacy", {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
                             },

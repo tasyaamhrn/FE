@@ -139,7 +139,7 @@
         formData.set("phone", this.form.phone);
         formData.set("password", this.form.password);
         axios
-          .post("https://api-kasirin.jaggs.id/api/register", formData)
+          .post("http://127.0.0.1:8000/api/register", formData)
           .then((res) => {
             Swal.fire("Berhasil", res.data.message, "success");
             console.log(res);

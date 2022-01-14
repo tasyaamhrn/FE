@@ -143,7 +143,7 @@
       getOmsetMonthly() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&tanggal=" + this
+            "http://127.0.0.1:8000/api/stats/income/monthly?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -164,7 +164,7 @@
       getOmsetWeekly(){
           axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/income/weekly?store_id=" + this.store_id + "&tanggal=" + this
+            "http://127.0.0.1:8000/api/stats/income/weekly?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -185,7 +185,7 @@
         getOmsetDaily(){
           axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/income/daily?store_id=" + this.store_id + "&tanggal=" + this
+            "http://127.0.0.1:8000/api/stats/income/daily?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -206,7 +206,7 @@
         getTransaksiDaily(){
           axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/transaction/daily?store_id=" + this.store_id + "&tanggal=" + this
+            "http://127.0.0.1:8000/api/stats/transaction/daily?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -228,7 +228,7 @@
       getTransaksiWeekly(){
           axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/transaction/weekly?store_id=" + this.store_id + "&tanggal=" + this
+            "http://127.0.0.1:8000/api/stats/transaction/weekly?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -250,7 +250,7 @@
        getTransaksiMonthly(){
           axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/transaction/monthly?store_id=" + this.store_id + "&tanggal=" + this
+            "http://127.0.0.1:8000/api/stats/transaction/monthly?store_id=" + this.store_id + "&tanggal=" + this
             . getTanggal() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -272,7 +272,7 @@
       getStore() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),

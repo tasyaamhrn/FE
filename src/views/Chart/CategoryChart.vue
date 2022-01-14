@@ -73,7 +73,7 @@ import axios from "axios";
  getCategoryDaily(tanggal,storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/category/daily?tanggal="+ tanggal +"&store_id=" + storeId
+          "http://127.0.0.1:8000/api/stats/category/daily?tanggal="+ tanggal +"&store_id=" + storeId
           ,
           {
             headers: {
@@ -101,7 +101,7 @@ import axios from "axios";
     getCategoryWeekly(tanggal,storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/category/weekly?tanggal="+ tanggal +"&store_id=" + storeId
+          "http://127.0.0.1:8000/api/stats/category/weekly?tanggal="+ tanggal +"&store_id=" + storeId
           ,
           {
             headers: {
@@ -129,7 +129,7 @@ import axios from "axios";
     getCategoryMonthly(tanggal,storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/category/monthly?tanggal="+ tanggal +"&store_id=" + storeId
+          "http://127.0.0.1:8000/api/stats/category/monthly?tanggal="+ tanggal +"&store_id=" + storeId
           ,
           {
             headers: {

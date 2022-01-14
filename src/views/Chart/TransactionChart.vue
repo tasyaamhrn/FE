@@ -54,7 +54,7 @@
              getTransactionWeekly(bulan,storeId,tahun) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/trend/transaction/weekly?month= "+ bulan + " &store_id="+ storeId +"&year="+ tahun ,
+          "http://127.0.0.1:8000/api/trend/transaction/weekly?month= "+ bulan + " &store_id="+ storeId +"&year="+ tahun ,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -72,7 +72,7 @@
           data.forEach(item => {
              
             this.chartData.labels.push(moment(item.waktu).format('DD/MM/YYYY'));
-            this.chartData.datasets[0].data.push(item.total_ransaksi);
+            this.chartData.datasets[0].data.push(item.total_transaksi);
           });
 console.log(data)
           this.renderChart(this.chartData, this.options);
@@ -84,7 +84,7 @@ console.log(data)
              getTransactionMonthly(storeId,tahun,bulan) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/trend/transaction/monthly?store_id="+ storeId +"&year="+ tahun + "&month="+ bulan ,
+          "http://127.0.0.1:8000/api/trend/transaction/monthly?store_id="+ storeId +"&year="+ tahun + "&month="+ bulan ,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -114,7 +114,7 @@ console.log(data)
              getTransactionDaily(storeId,tanggal) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/trend/transaction/daily?tanggal="+ tanggal +"store_id="+ storeId  ,
+          "http://127.0.0.1:8000/api/trend/transaction/daily?store_id=" + storeId+ "&tanggal="+ tanggal   ,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -138,7 +138,7 @@ console.log(data)
           this.renderChart(this.chartData, this.options);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response);
         });
     },
     },

@@ -41,7 +41,7 @@
                     <td>{{ item.email }}</td>
                     <td>{{ item.address }}</td>
                     <td>{{ item.gender }}</td>
-                    <td><img :src="item.avatar_url" style="width: 20%" alt="Product Image" /></td>
+                    <td><img :src="item.avatar_url" style="width: 20%" alt="Karyawan Image" /></td>
                     <td>{{ item.phone }}</td>
                     <td>
                         <router-link :to="{ name: 'EditKaryawan', params: { id: item.id } }">
@@ -80,7 +80,7 @@
             getStore() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+                        "http://127.0.0.1:8000/api/user-stores?user_id=" +
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -97,7 +97,7 @@
             getEmployee() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/karyawan?store_id=" + this.store_id, {
+                        "http://127.0.0.1:8000/api/karyawan?store_id=" + this.store_id, {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
                             },
@@ -108,6 +108,7 @@
                         this.employees = res.data.data;
                     })
                     .catch((err) => {
+                        this.employees = "";
                         Swal.fire(
                             "Anda Belum Mempunyai Karyawan",
                             "Silahkan Tambahkan Karyawan Terlebih Dahulu",
@@ -129,9 +130,9 @@
                 }).then((result) => {
                     if (result.value) {
                         axios
-                            .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
+                            .delete("http://127.0.0.1:8000/api/karyawan/delete/" + id)
                             .then((res) => {
-                                Swal.fire("Terhapus", "Karyawan Anda Berhasil Terhapus", "success");
+                                Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
                                 this.getEmployee();
                                 console.log(res);
                             })

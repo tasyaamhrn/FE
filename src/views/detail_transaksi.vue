@@ -55,9 +55,9 @@
                 <p class="transaksi">
                   {{ moment(detail_transaction[0].created_at).locale('id').format('DD MMMM YYYY HH:mm:ss') }}</p>
               </span><br />
-              <button @click="makePDF" type="button" class="btn btn-success btn-lg">
+              <!-- <button @click="makePDF" type="button" class="btn btn-success btn-lg">
                 Cetak Struk
-              </button>
+              </button> -->
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
       getStore() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -130,7 +130,7 @@
       getTransaksi() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this
+            "http://127.0.0.1:8000/api/transaction?tanggal=&store_id=" + this.tanggal + this
             .store_id, {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -152,7 +152,7 @@
           });
       },
       getDetailTransaksi() {
-        const url = `https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=${this.$route.params.id}`;
+        const url = `http://127.0.0.1:8000/api/detail-transaction?transaction_id=${this.$route.params.id}`;
         axios
           .get(url, localStorage.getItem("id"), {
             headers: {
@@ -182,7 +182,7 @@
         }).then((result) => {
           if (result.value) {
             axios
-              .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
+              .delete("http://127.0.0.1:8000/api/karyawan/delete/" + id)
               .then((res) => {
                 Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
                 this.getEmployee();

@@ -98,7 +98,7 @@
             },
             getData() {
                 axios
-                    .get("https://api-kasirin.jaggs.id/api/karyawan/" + this.employee_id, {
+                    .get("http://127.0.0.1:8000/api/karyawan/" + this.employee_id, {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("access_token"),
                         },
@@ -125,7 +125,7 @@
                 console.log(formData.get('avatar'));
                 axios
                     .post(
-                        "https://api-kasirin.jaggs.id/api/karyawan/edit/" + this.employee_id,
+                        "http://127.0.0.1:8000/api/karyawan/edit/" + this.employee_id,
                         formData, {
                             headers: {
                                 "Content-Type": "multipart/form-data",

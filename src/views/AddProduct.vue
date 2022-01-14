@@ -129,7 +129,7 @@
       getStore() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -145,7 +145,7 @@
       },
       getCategory() {
         axios
-          .get("https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id, {
+          .get("http://127.0.0.1:8000/api/category?store_id=" + this.store_id, {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('access_token')
             }
@@ -169,7 +169,7 @@
         formData.set("stock", this.form.stock);
         formData.set("barcode", this.form.barcode);
         axios
-          .post("https://api-kasirin.jaggs.id/api/product/store", formData)
+          .post("http://127.0.0.1:8000/api/product/store", formData)
           .then((res) => {
             Swal.fire("Berhasil", res.data.message, "success");
             console.log(res);

@@ -58,7 +58,7 @@
       },
       getData() {
         axios
-          .get("https://api-kasirin.jaggs.id/api/category/" + this.category_id, {
+          .get("http://127.0.0.1:8000/api/category/" + this.category_id, {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
@@ -75,7 +75,7 @@
       update() {
         axios
           .post(
-            "https://api-kasirin.jaggs.id/api/category/edit/" + this.category_id,
+            "http://127.0.0.1:8000/api/category/edit/" + this.category_id,
             this.form, {
               headers: {
                 Authorization: "Bearer " + localStorage.access_token,

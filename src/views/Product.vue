@@ -86,7 +86,7 @@
       getStore() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -103,7 +103,7 @@
       getCategory() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/category?store_id=" + this.store_id, {
+            "http://127.0.0.1:8000/api/category?store_id=" + this.store_id, {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
               },
@@ -119,7 +119,7 @@
       },
       getData() {
         axios
-          .get("https://api-kasirin.jaggs.id/api/product", {
+          .get("http://127.0.0.1:8000/api/product", {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
@@ -153,7 +153,7 @@
         }).then((result) => {
           if (result.value) {
             axios
-              .delete("https://api-kasirin.jaggs.id/api/product/delete/" + id)
+              .delete("http://127.0.0.1:8000/api/product/delete/" + id)
               .then((res) => {
                 Swal.fire("Terhapus", res.data.message, "success");
                 this.load();

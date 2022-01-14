@@ -97,7 +97,7 @@
             },
             getData() {
                 axios
-                    .get("https://api-kasirin.jaggs.id/api/product/" + this.product_id, {
+                    .get("http://127.0.0.1:8000/api/product/" + this.product_id, {
                         headers: {
                             Authorization: "Bearer " + localStorage.getItem("access_token"),
                         },
@@ -125,7 +125,7 @@
                 console.log(formData.get('image'));
                 axios
                     .post(
-                        "https://api-kasirin.jaggs.id/api/product/edit/" + this.product_id,
+                        "http://127.0.0.1:8000/api/product/edit/" + this.product_id,
                         formData, {
                             headers: {
                                 "Content-Type": "multipart/form-data",

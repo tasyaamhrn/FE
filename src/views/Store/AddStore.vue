@@ -56,7 +56,7 @@
     methods: {
       createStore() {
         axios
-          .post("https://api-kasirin.jaggs.id/api/stores", this.form, {
+          .post("http://127.0.0.1:8000/api/stores", this.form, {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },

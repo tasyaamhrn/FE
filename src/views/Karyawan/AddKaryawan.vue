@@ -28,9 +28,6 @@
                         <i class="far fa-image" aria-hidden="true"></i>
                     </span>
                 </div>
-                <div id="preview" v-if="url">
-                    <img v-if="url" :src="url" />
-                </div>
                 <the-error :errors="errors.avatar" class="error"></the-error>
 
                 <div class="wrap-input100 validate-input">
@@ -128,7 +125,6 @@
                     password: "",
                     store_id: "",
                 },
-                url: null,
                 stores: {},
                 errors: [],
             };
@@ -144,12 +140,11 @@
         methods: {
             onImageSelected(event) {
                 this.form.avatar = event.target.files[0];
-                this.url = URL.createObjectURL(this.form.avatar);
             },
             getStore() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+                        "http://127.0.0.1:8000/api/user-stores?user_id=" +
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -174,7 +169,7 @@
                 formData.set("password", this.form.password);
                 formData.set("store_id", this.form.store_id);
                 axios
-                    .post("https://api-kasirin.jaggs.id/api/karyawan/add", formData)
+                    .post("http://127.0.0.1:8000/api/karyawan/add", formData)
                     .then((res) => {
                         Swal.fire("Berhasil", res.data.message, "success");
                         console.log(res);
@@ -192,20 +187,6 @@
 </script>
 
 <style scoped>
-    #preview {
-        border: 2px dashed grey;
-        padding: 1rem;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #preview img {
-        width: 30%;
-        object-fit: cover;
-    }
-
     .error {
         padding-bottom: 5px;
     }

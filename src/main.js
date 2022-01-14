@@ -11,7 +11,7 @@ import { setHeaderToken } from './utils/auth'
 Vue.use(VueSweetalert2);
 Vue.use(Vuex)
 
-axios.defaults.baseURL = 'https://api-kasirin.jaggs.id/api'
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 
 Vue.config.productionTip = false
 

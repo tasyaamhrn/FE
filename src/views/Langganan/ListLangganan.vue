@@ -137,7 +137,7 @@
       load() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/subscription", {
+            "http://127.0.0.1:8000/api/subscription", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
               },

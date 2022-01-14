@@ -132,7 +132,7 @@
             getStore() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+                        "http://127.0.0.1:8000/api/user-stores?user_id=" +
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -149,7 +149,7 @@
             getTransaksi() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/transaction?tanggal=&store_id=" + this.tanggal + this
+                        "http://127.0.0.1:8000/api/transaction?tanggal=&store_id=" + this.tanggal + this
                         .store_id, {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -173,7 +173,7 @@
             getDetailTransaksi() {
                 axios
                     .get(
-                        "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=73", 
+                        "http://127.0.0.1:8000/api/detail-transaction?transaction_id=73", 
                         localStorage.getItem("id"), {
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -201,7 +201,7 @@
                 }).then((result) => {
                     if (result.value) {
                         axios
-                            .delete("https://api-kasirin.jaggs.id/api/karyawan/delete/" + id)
+                            .delete("http://127.0.0.1:8000/api/karyawan/delete/" + id)
                             .then((res) => {
                                 Swal.fire("Terhapus", "Karyawan Anda Sudah Terhapus", "success");
                                 this.getEmployee();

@@ -82,7 +82,7 @@ export default {
     getProductDaily(tanggal, storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/product/daily?tanggal="+ tanggal +"&store_id=" + storeId,
+          "http://127.0.0.1:8000/api/stats/product/daily?tanggal="+ tanggal +"&store_id=" + storeId,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -110,7 +110,7 @@ console.log(data)
      getProductWeekly(tanggal, storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/product/weekly?tanggal="+ tanggal +"&store_id=" + storeId,
+          "http://127.0.0.1:8000/api/stats/product/weekly?tanggal="+ tanggal +"&store_id=" + storeId,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -138,7 +138,7 @@ console.log(data)
      getProductMonthly(tanggal, storeId) {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/stats/product/monthly?tanggal="+ tanggal +"&store_id=" + storeId,
+          "http://127.0.0.1:8000/api/stats/product/monthly?tanggal="+ tanggal +"&store_id=" + storeId,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),

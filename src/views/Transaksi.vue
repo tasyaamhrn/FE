@@ -110,7 +110,7 @@
       getFilterTransaksi() {
         axios
           .get(
-            `https://api-kasirin.jaggs.id/api/filter/transaction?store_id=${this.store_id}&tanggal_mulai=${this.form.tanggal_mulai}&tanggal_selesai=${this.form.tanggal_selesai}`, {
+            `http://127.0.0.1:8000/api/filter/transaction?store_id=${this.store_id}&tanggal_mulai=${this.form.tanggal_mulai}&tanggal_selesai=${this.form.tanggal_selesai}`, {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
               },
@@ -156,7 +156,7 @@
       getStore() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -173,7 +173,7 @@
       getTransaksi() {
         axios
           .get(
-            `https://api-kasirin.jaggs.id/api/transaction?tanggal=${this.tanggal}&store_id=${this.store_id}`, {
+            `http://127.0.0.1:8000/api/transaction?tanggal=${this.tanggal}&store_id=${this.store_id}`, {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
               },
@@ -196,7 +196,7 @@
       getDetailTransaksi() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/detail-transaction?transaction_id=72",
+            "http://127.0.0.1:8000/api/detail-transaction?transaction_id=72",
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -254,7 +254,7 @@
       getOmset() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this
+            "http://127.0.0.1:8000/api/stats/income/monthly?store_id=" + this.store_id + "&year=" + this
             .getYear() + "&month=" + this.getMonth() + "", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),

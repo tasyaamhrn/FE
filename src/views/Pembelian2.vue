@@ -321,7 +321,7 @@ export default {
     getStore() {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+          "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"),
           {
             headers: {
@@ -339,7 +339,7 @@ export default {
     getData() {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/product",
+          "http://127.0.0.1:8000/api/product",
           {
             params: {
               name: this.product_name,
@@ -364,7 +364,7 @@ export default {
     getCategory() {
       axios
         .get(
-          "https://api-kasirin.jaggs.id/api/category?store_id=" + this.form.store_id,
+          "http://127.0.0.1:8000/api/category?store_id=" + this.form.store_id,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -395,7 +395,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           axios
-            .delete("https://api-kasirin.jaggs.id/api/product/delete/" + id)
+            .delete("http://127.0.0.1:8000/api/product/delete/" + id)
             .then((res) => {
               Swal.fire("Terhapus", res.data.message, "success");
               this.load();
@@ -439,7 +439,7 @@ export default {
     },
     save() {
       axios
-        .post("https://api-kasirin.jaggs.id/api/transaction", this.form, {
+        .post("http://127.0.0.1:8000/api/transaction", this.form, {
           headers: {
             Authorization: "Bearer " + localStorage.access_token,
           },

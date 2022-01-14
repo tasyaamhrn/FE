@@ -118,7 +118,7 @@
       load() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/user-stores?user_id=" +
+            "http://127.0.0.1:8000/api/user-stores?user_id=" +
             localStorage.getItem("id"), {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -149,7 +149,7 @@
         }).then((result) => {
           if (result.value) {
             axios
-              .delete("https://api-kasirin.jaggs.id/api/stores/" + id)
+              .delete("http://127.0.0.1:8000/api/stores/" + id)
               .then((res) => {
                 Swal.fire("Terhapus", res.data.message, "success");
                 this.load();

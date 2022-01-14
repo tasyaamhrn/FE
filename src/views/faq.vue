@@ -63,7 +63,7 @@
       getFAQ() {
         axios
           .get(
-            "https://api-kasirin.jaggs.id/api/faq", {
+            "http://127.0.0.1:8000/api/faq", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
               },
@@ -81,7 +81,7 @@
       save() {
         axios
           .post(
-            "https://api-kasirin.jaggs.id/api/faq/store", {
+            "http://127.0.0.1:8000/api/faq/store", {
               questions: this.form.questions,
               answer: this.form.answer,
             }, {

@@ -64,7 +64,7 @@
       },
       getData() {
         axios
-          .get("https://api-kasirin.jaggs.id/api/stores/" + this.store_id, {
+          .get("http://127.0.0.1:8000/api/stores/" + this.store_id, {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
@@ -80,7 +80,7 @@
       update() {
         axios
           .put(
-            "https://api-kasirin.jaggs.id/api/stores/" + this.store_id,
+            "http://127.0.0.1:8000/api/stores/" + this.store_id,
             this.form, {
               headers: {
                 Authorization: "Bearer " + localStorage.access_token,
